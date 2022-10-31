@@ -16,21 +16,21 @@
   <meta name="author" content="Mengki">
   <meta name="keywords" content="个人博客，个人分享">
   
-    <meta name="description" content="七、	C语言入门——文件操作&amp;ensp;&amp;ensp;我们前面的所有程序都是暂时的，把程序一关，什么都不会留下来，打开又是从头再来，当我们希望能保留一下处理的数据，或者对现存在的数据进行处理，我们就需要文件操作了。&amp;ensp;&amp;ensp;我们主要讨论如何对数据文件进行操作。&amp;ensp;&amp;ensp;像什么文本文件，都是存储在磁盘上的，这些数据掉电不丢失，">
+    <meta name="description" content="七、	C语言入门——文件操作我们前面的所有程序都是暂时的，把程序一关，什么都不会留下来，打开又是从头再来，当我们希望能保留一下处理的数据，或者对现存在的数据进行处理，我们就需要文件操作了。我们主要讨论如何对数据文件进行操作。像什么文本文件，都是存储在磁盘上的，这些数据掉电不丢失，我们把程序处理的数据放在这里，就能实现长期保留了。文件分成2类：ASCII文件和二进制文件。ASCII文件就是所有字符以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言总结项目和入门——文件操作">
-<meta property="og:url" content="https://github.com/357meng/357meng.github.io/ndexi/2021/08/24/C06/index.html">
+<meta property="og:url" content="https://357meng.github.io/2021/08/24/C06/index.html">
 <meta property="og:site_name" content="MengkiPage">
-<meta property="og:description" content="七、	C语言入门——文件操作&amp;ensp;&amp;ensp;我们前面的所有程序都是暂时的，把程序一关，什么都不会留下来，打开又是从头再来，当我们希望能保留一下处理的数据，或者对现存在的数据进行处理，我们就需要文件操作了。&amp;ensp;&amp;ensp;我们主要讨论如何对数据文件进行操作。&amp;ensp;&amp;ensp;像什么文本文件，都是存储在磁盘上的，这些数据掉电不丢失，">
+<meta property="og:description" content="七、	C语言入门——文件操作我们前面的所有程序都是暂时的，把程序一关，什么都不会留下来，打开又是从头再来，当我们希望能保留一下处理的数据，或者对现存在的数据进行处理，我们就需要文件操作了。我们主要讨论如何对数据文件进行操作。像什么文本文件，都是存储在磁盘上的，这些数据掉电不丢失，我们把程序处理的数据放在这里，就能实现长期保留了。文件分成2类：ASCII文件和二进制文件。ASCII文件就是所有字符以">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/img/C.jpg">
+<meta property="og:image" content="https://357meng.github.io/img/C.jpg">
 <meta property="article:published_time" content="2021-08-24T06:14:43.000Z">
-<meta property="article:modified_time" content="2022-10-24T05:00:33.425Z">
+<meta property="article:modified_time" content="2022-10-31T09:32:50.300Z">
 <meta property="article:author" content="Mengki">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="知识总结">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/img/C.jpg">
+<meta name="twitter:image" content="https://357meng.github.io/img/C.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"github.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -287,7 +287,7 @@ WIDGET = {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          2.9k 字
         
       </span>
     
@@ -298,7 +298,7 @@ WIDGET = {
         
         
         
-          31 分钟
+          25 分钟
         
       </span>
     
@@ -349,7 +349,7 @@ WIDGET = {
               <p class="note note-info">
                 
                   
-                    本文最后更新于：7 天前
+                    本文最后更新于：4 分钟前
                   
                 
               </p>
@@ -357,8 +357,8 @@ WIDGET = {
             
               <div class="markdown-body">
                 
-                <h1 id="七、C语言入门——文件操作"><a href="#七、C语言入门——文件操作" class="headerlink" title="七、	C语言入门——文件操作"></a>七、	C语言入门——文件操作</h1><p>&amp;ensp;&amp;ensp;我们前面的所有程序都是暂时的，把程序一关，什么都不会留下来，打开又是从头再来，当我们希望能保留一下处理的数据，或者对现存在的数据进行处理，我们就需要文件操作了。<br>&amp;ensp;&amp;ensp;我们主要讨论如何对数据文件进行操作。<br>&amp;ensp;&amp;ensp;像什么文本文件，都是存储在磁盘上的，这些数据掉电不丢失，我们把程序处理的数据放在这里，就能实现长期保留了。<br>&amp;ensp;&amp;ensp;文件分成2类：ASCII文件和二进制文件。ASCII文件就是所有字符以ASCII形式存储，二进制文件就是原汁原味的（毕竟计算机是二进制的）如存放1000这个数，ASCII要存1和4个0，二进制则存放001111101000，它们的所占大小区别很大。<br>&amp;ensp;&amp;ensp;<strong>文件缓冲区</strong>：系统为每一个正在使用的文件开辟的缓冲区，这个缓冲区在内存，当我们从磁盘读取一定的数据是，数据先从磁盘到缓冲区，缓冲区满后再送程序数据区，给程序使用，对磁盘文件的写操作也是如此。<br>&amp;ensp;&amp;ensp;每个被使用的文件都在内存中有一个存放对应文件信息的区域，叫文件信息区，这些信息放在一个结构体中，这个结构体是系统定义和命名的，就是<strong>FILE</strong>，其定义包含在头文件stdio中。这个结构体通过前面的typedef重名名过，所以可以直接用FILE不用加struct。<br>&amp;ensp;&amp;ensp;<strong>FILE *fp——我们定义了一个FILE类型的指针fp。由于fp指向一个存放打开文件信息的结构体，所以我们可以通过fp访问对应的文件。</strong><br>&amp;ensp;&amp;ensp;这样的fp我们叫做<strong>文件指针</strong>。<br>&amp;ensp;&amp;ensp;关于文件操作，还有一些概念。<br>&amp;ensp;&amp;ensp;文件一定要打开才能操作，这个应该没什么疑问吧。<br>&amp;ensp;&amp;ensp;<strong>文件打开了一定要关闭</strong>，防止其被程序误用，要有始有终。</p>
-<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><h2 id="1-文件打开：fopen函数"><a href="#1-文件打开：fopen函数" class="headerlink" title="1.	文件打开：fopen函数"></a>1.	文件打开：fopen函数</h2><p>fopen（文件名，打开方式）；<br>    &amp;ensp;&amp;ensp;fopen函数返回一个指向打开文件的文件指针，通过这个指针我们可以访问我们打开的文件的内容。如fopen（“k”，“r”）；——以只读的方式打开名为k的文件。<br>&amp;ensp;&amp;ensp;我们用一个FILE类型的指针fp来接收：fp &#x3D; fopen（“k”，“r”）；</p>
+                <h1 id="七、C语言入门——文件操作"><a href="#七、C语言入门——文件操作" class="headerlink" title="七、	C语言入门——文件操作"></a>七、	C语言入门——文件操作</h1><p>我们前面的所有程序都是暂时的，把程序一关，什么都不会留下来，打开又是从头再来，当我们希望能保留一下处理的数据，或者对现存在的数据进行处理，我们就需要文件操作了。<br>我们主要讨论如何对数据文件进行操作。<br>像什么文本文件，都是存储在磁盘上的，这些数据掉电不丢失，我们把程序处理的数据放在这里，就能实现长期保留了。<br>文件分成2类：ASCII文件和二进制文件。ASCII文件就是所有字符以ASCII形式存储，二进制文件就是原汁原味的（毕竟计算机是二进制的）如存放1000这个数，ASCII要存1和4个0，二进制则存放001111101000，它们的所占大小区别很大。<br><strong>文件缓冲区</strong>：系统为每一个正在使用的文件开辟的缓冲区，这个缓冲区在内存，当我们从磁盘读取一定的数据是，数据先从磁盘到缓冲区，缓冲区满后再送程序数据区，给程序使用，对磁盘文件的写操作也是如此。<br>每个被使用的文件都在内存中有一个存放对应文件信息的区域，叫文件信息区，这些信息放在一个结构体中，这个结构体是系统定义和命名的，就是<strong>FILE</strong>，其定义包含在头文件stdio中。这个结构体通过前面的typedef重名名过，所以可以直接用FILE不用加struct。<br><strong>FILE *fp——我们定义了一个FILE类型的指针fp。由于fp指向一个存放打开文件信息的结构体，所以我们可以通过fp访问对应的文件。</strong><br>这样的fp我们叫做<strong>文件指针</strong>。<br>关于文件操作，还有一些概念。<br>文件一定要打开才能操作，这个应该没什么疑问吧。<br><strong>文件打开了一定要关闭</strong>，防止其被程序误用，要有始有终。</p>
+<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><h2 id="1-文件打开：fopen函数"><a href="#1-文件打开：fopen函数" class="headerlink" title="1.	文件打开：fopen函数"></a>1.	文件打开：fopen函数</h2><p>fopen（文件名，打开方式）；<br>    fopen函数返回一个指向打开文件的文件指针，通过这个指针我们可以访问我们打开的文件的内容。如fopen（“k”，“r”）；——以只读的方式打开名为k的文件。<br>我们用一个FILE类型的指针fp来接收：fp &#x3D; fopen（“k”，“r”）；</p>
 <p>打开方式：</p>
 <table>
 <thead>
@@ -412,35 +412,37 @@ WIDGET = {
 <td align="center">读写（二进制文件），文件不存在就出错</td>
 </tr>
 </tbody></table>
-<p>&amp;ensp;&amp;ensp;注：w方式只写，写入时会删除原来存在的，再写入。<br>&amp;ensp;&amp;ensp;a方式，在文件末尾追加数据，不会删除原来的。<br>&amp;ensp;&amp;ensp;用a+方式，能读能写，但文件读写的位置是从最后开始的。<br>&amp;ensp;&amp;ensp;如果文件打开失败，返回空指针。<br>常用的打开格式：</p>
+<p>注：w方式只写，写入时会删除原来存在的，再写入。<br>a方式，在文件末尾追加数据，不会删除原来的。<br>用a+方式，能读能写，但文件读写的位置是从最后开始的。<br>如果文件打开失败，返回空指针。<br>常用的打开格式：</p>
 <pre><code class="hljs">if(!(fp = fopen(&quot;name&quot;,&quot;r&quot;)))
 &#123;
     printf(&quot;Error\a\n&quot;);
     exit(0);
 &#125;
 </code></pre>
-<p>&amp;ensp;&amp;ensp;exit（0）是使程序停止运行。</p>
-<h2 id="2-文件关闭：fclose"><a href="#2-文件关闭：fclose" class="headerlink" title="2.文件关闭：fclose"></a>2.文件关闭：fclose</h2><p>&amp;ensp;&amp;ensp;fclose（fp）——关闭fp指向的文件。成功返回0，不成功返回EOF（-1）<br>&amp;ensp;&amp;ensp;文件打开后，我们可以对文件操作了</p>
+<p>exit（0）是使程序停止运行。</p>
+<h2 id="2-文件关闭：fclose"><a href="#2-文件关闭：fclose" class="headerlink" title="2.文件关闭：fclose"></a>2.文件关闭：fclose</h2><p>fclose（fp）——关闭fp指向的文件。成功返回0，不成功返回EOF（-1）<br>文件打开后，我们可以对文件操作了</p>
 <h2 id="3-文件读取"><a href="#3-文件读取" class="headerlink" title="3.文件读取"></a>3.文件读取</h2><p><strong>fgetc（fp</strong>）——从fp指向的文件中读一个字符，成功返回该字符，失败返回EOF<br><strong>fputc（ch，fp）</strong>——把ch字符写到fp中的文件中去，成功返回写入字符，失败返回EOF<br><strong>fgets（str，n，fp）</strong>——从fp指向的文件中读长度为n-1的字符放在str数组中，成功返回str地址，失败返回空指针<br><strong>fputs（str，fp）</strong>——把str指向的字符串写入fp指向的文件，成功返回0，不成功返回非0</p>
-<p>&amp;ensp;&amp;ensp;由于字符串有结束标志，所以n长度字符串有效的只有n-1，</p>
-<p>&amp;ensp;&amp;ensp;我们在对文件内部操作时，有一个就向word的光标一样的东西，表示当前要操作的地方， 我们写入，删除时，光标就跟进移动，同时执行操作，这个东西在文件中就是文件读写位置标记，表示当有操作来的时候，对文件的哪里进行操作，新文件就在开头，a方式打开的文件就在文件尾，r方式打开的文件也在文件头。</p>
+<p>由于字符串有结束标志，所以n长度字符串有效的只有n-1，</p>
+<p>我们在对文件内部操作时，有一个就向word的光标一样的东西，表示当前要操作的地方， 我们写入，删除时，光标就跟进移动，同时执行操作，这个东西在文件中就是文件读写位置标记，表示当有操作来的时候，对文件的哪里进行操作，新文件就在开头，a方式打开的文件就在文件尾，r方式打开的文件也在文件头。</p>
 <ul>
-<li><p>格式化文件读写<br><strong>fprintf（文件指针，格式化字符串，输出列表）；<br>fscanf（文件指针，格式化字符串，输入列表）；</strong><br>  &amp;ensp;&amp;ensp;如fprintf（fp，“%d，%lf”，a，b）；把a，b写入fp指向文件中，和输出到屏幕中是一样的用法和效果，只不过这个是输出到文件中。<br>  &amp;ensp;&amp;ensp;格式化读写输入输出时都需要将ASCII转换成二进制形式，不适合频繁交换。</p>
+<li><p>格式化文件读写<br><strong>fprintf（文件指针，格式化字符串，输出列表）；<br>fscanf（文件指针，格式化字符串，输入列表）；</strong><br>  如fprintf（fp，“%d，%lf”，a，b）；把a，b写入fp指向文件中，和输出到屏幕中是一样的用法和效果，只不过这个是输出到文件中。<br>  格式化读写输入输出时都需要将ASCII转换成二进制形式，不适合频繁交换。</p>
 </li>
 <li><pre><code class="hljs">二进制读写
 </code></pre>
-<p><strong>fread（buffer，size，count，fp）；<br>fwrite（buffer，size，count，fp）；</strong><br>  &amp;ensp;&amp;ensp;这两个函数可以实现一个数据块的写入和读出，适合数组，结构体这种大数据的读写。<br>  buffer——读出的内容存放的地方或者写入这个地方的内容，是个地址。<br>  Size——要读写的一个元素的字节数<br>  Count——读写的个数<br>  fp——文件指针<br><strong>&amp;ensp;&amp;ensp;注意：这两个函数只能以二进制方式读写，所以文件也要用二进制的形式打开。</strong></p>
+<p><strong>fread（buffer，size，count，fp）；<br>fwrite（buffer，size，count，fp）；</strong><br>  这两个函数可以实现一个数据块的写入和读出，适合数组，结构体这种大数据的读写。<br>  buffer——读出的内容存放的地方或者写入这个地方的内容，是个地址。<br>  Size——要读写的一个元素的字节数<br>  Count——读写的个数<br>  fp——文件指针<br><strong>注意：这两个函数只能以二进制方式读写，所以文件也要用二进制的形式打开。</strong></p>
 </li>
-<li><p>文件的随机读写：<br>  &amp;ensp;&amp;ensp;随机读写是指随意读写文件的任何位置信息，这就要用到前面说过的文件位置标记了。我们可以人为的移动文件标记，从而实现对任何位置的操作。<br>  <strong>rewind（fp）</strong>——使文件标记返回开头<br><strong>fseek（fp，位移量，起始点）</strong>——改变文件标记，表示将文件标记移动到距起始点多少偏移量的位置去。<br>&amp;ensp;&amp;ensp;起始点：0表示从开头，1表示当前，2表示文件末尾。<br>&amp;ensp;&amp;ensp;位移量是以起始点为基点，向前移动的字节数，其类型应该是long，向后移就是负值。<br><strong>ftell（fp）</strong>——获得文件标志当前位置：返回相对于开头的偏移量，出错返回-1</p>
+<li><p>文件的随机读写：<br>  随机读写是指随意读写文件的任何位置信息，这就要用到前面说过的文件位置标记了。我们可以人为的移动文件标记，从而实现对任何位置的操作。<br>  <strong>rewind（fp）</strong>——使文件标记返回开头<br><strong>fseek（fp，位移量，起始点）</strong>——改变文件标记，表示将文件标记移动到距起始点多少偏移量的位置去。<br>起始点：0表示从开头，1表示当前，2表示文件末尾。<br>位移量是以起始点为基点，向前移动的字节数，其类型应该是long，向后移就是负值。<br><strong>ftell（fp）</strong>——获得文件标志当前位置：返回相对于开头的偏移量，出错返回-1</p>
 </li>
 <li><p>文件结束：<br>  <strong>feof（fp）</strong>——判断fp指向的文件是否结束，即文件读写位置是否为文件尾，结束返回1，没结束返回0</p>
 </li>
-<li><p>文件出错检测：<br><strong>ferror（fp）</strong>——对于任何一次读写操作，除了看返回值外，还可以调用这个函数查看是否出错，返回0表示没有出错，非0表示出错。<br>&amp;ensp;&amp;ensp;注意的是，每次新的读写都会改变ferror的返回值，要及时访问。<br><strong>clearerr（fp）</strong>——ferror如果检测出出错，就一直保留非0值，直到下一次更新，我们也可以给它手动复位，clearerr（fp）就负责复位ferror。</p>
+<li><p>文件出错检测：<br><strong>ferror（fp）</strong>——对于任何一次读写操作，除了看返回值外，还可以调用这个函数查看是否出错，返回0表示没有出错，非0表示出错。<br>注意的是，每次新的读写都会改变ferror的返回值，要及时访问。<br><strong>clearerr（fp）</strong>——ferror如果检测出出错，就一直保留非0值，直到下一次更新，我们也可以给它手动复位，clearerr（fp）就负责复位ferror。</p>
 </li>
 </ul>
-<p>&amp;ensp;&amp;ensp;这章说的比较快，因为大家都写过word吧，这个读写的概念很常见，文件的概念也比较常见，我现在打字就能看到这个光标跟着字走，打一个就前进一个，删一个就后退一个，这就是文件位置标记，大家想必也有文件打不开，莫名其妙就弹个警告然后卡退了，或者你把文件删除了，然后还是从快捷方式打开，就会提示快捷方式占不到文件，就是文件打开失败，C语言有函数来判断这些，概念什么的没有很难的，函数又是现成的，用起来还是比较顺手的。</p>
-<p>&amp;ensp;&amp;ensp;文件操作的程序例子单拿出来也写不出啥，下一章会做一个C语言大作业，就一起在下一章来说吧。<br>    &amp;ensp;&amp;ensp;C语言入门学习到这里已经将近结束了，后续或许会补充一些零星的知识。<br>    &amp;ensp;&amp;ensp;可能以后会更新一下C++的知识，复习用，不过都是后话了。<br>    &amp;ensp;&amp;ensp;我们下章再见！</p>
-
+<p>这章说的比较快，因为大家都写过word吧，这个读写的概念很常见，文件的概念也比较常见，我现在打字就能看到这个光标跟着字走，打一个就前进一个，删一个就后退一个，这就是文件位置标记，大家想必也有文件打不开，莫名其妙就弹个警告然后卡退了，或者你把文件删除了，然后还是从快捷方式打开，就会提示快捷方式占不到文件，就是文件打开失败，C语言有函数来判断这些，概念什么的没有很难的，函数又是现成的，用起来还是比较顺手的。</p>
+<p>文件操作的程序例子单拿出来也写不出啥，下一章会做一个C语言大作业，就一起在下一章来说吧。<br>    C语言入门学习到这里已经将近结束了，后续或许会补充一些零星的知识。<br>    可能以后会更新一下C++的知识，复习用，不过都是后话了。<br>    我们下章再见！</p>
+<style>
+  p {text-indent:2em;} 
+</style>
                 
               </div>
             
@@ -488,7 +490,7 @@ WIDGET = {
   <div class="license-box my-3">
     <div class="license-title">
       <div>C语言总结项目和入门——文件操作</div>
-      <div>https://github.com/357meng/357meng.github.io/ndexi/2021/08/24/C06/</div>
+      <div>https://357meng.github.io/2021/08/24/C06/</div>
     </div>
     <div class="license-meta">
       
@@ -506,7 +508,7 @@ WIDGET = {
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月24日</div>
+          <div>2022年10月31日</div>
         </div>
       
       
@@ -706,7 +708,7 @@ WIDGET = {
   
   
   
-<span>全站字数：101k</span>
+<span>全站字数：90k</span>
 </div>
 
   </footer>

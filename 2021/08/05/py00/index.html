@@ -16,21 +16,21 @@
   <meta name="author" content="Mengki">
   <meta name="keywords" content="个人博客，个人分享">
   
-    <meta name="description" content="前言&amp;ensp;&amp;ensp;最近在学习py，趁着没忘把这两天（其实也就学了两次）学的总结一下，我是学C语言起手的，就顺便做个知识迁移，重点比较一下py和C语言或C++之间不同的地方，相同的就不提了。&amp;ensp;&amp;ensp;学习书籍——《python编程，从入门到实践》&amp;ensp;&amp;ensp;学了点py，说说感受，确实是“简单”了一些，并不是说它不复杂">
+    <meta name="description" content="前言最近在学习py，趁着没忘把这两天（其实也就学了两次）学的总结一下，我是学C语言起手的，就顺便做个知识迁移，重点比较一下py和C语言或C++之间不同的地方，相同的就不提了。学习书籍——《python编程，从入门到实践》学了点py，说说感受，确实是“简单”了一些，并不是说它不复杂（函数方法多的要死），而是封装的是真的好，C语言几乎所有函数都是自己写，sort函数写了不知道多少个，py直接提供，挺不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python学习入门（个人版）">
-<meta property="og:url" content="https://github.com/357meng/357meng.github.io/ndexi/2021/08/05/py00/index.html">
+<meta property="og:url" content="https://357meng.github.io/2021/08/05/py00/index.html">
 <meta property="og:site_name" content="MengkiPage">
-<meta property="og:description" content="前言&amp;ensp;&amp;ensp;最近在学习py，趁着没忘把这两天（其实也就学了两次）学的总结一下，我是学C语言起手的，就顺便做个知识迁移，重点比较一下py和C语言或C++之间不同的地方，相同的就不提了。&amp;ensp;&amp;ensp;学习书籍——《python编程，从入门到实践》&amp;ensp;&amp;ensp;学了点py，说说感受，确实是“简单”了一些，并不是说它不复杂">
+<meta property="og:description" content="前言最近在学习py，趁着没忘把这两天（其实也就学了两次）学的总结一下，我是学C语言起手的，就顺便做个知识迁移，重点比较一下py和C语言或C++之间不同的地方，相同的就不提了。学习书籍——《python编程，从入门到实践》学了点py，说说感受，确实是“简单”了一些，并不是说它不复杂（函数方法多的要死），而是封装的是真的好，C语言几乎所有函数都是自己写，sort函数写了不知道多少个，py直接提供，挺不">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/img/py.jpg">
+<meta property="og:image" content="https://357meng.github.io/img/py.jpg">
 <meta property="article:published_time" content="2021-08-05T03:30:17.000Z">
-<meta property="article:modified_time" content="2022-10-24T05:02:12.270Z">
+<meta property="article:modified_time" content="2022-10-31T09:33:35.540Z">
 <meta property="article:author" content="Mengki">
 <meta property="article:tag" content="知识总结">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/img/py.jpg">
+<meta name="twitter:image" content="https://357meng.github.io/img/py.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"github.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -287,7 +287,7 @@ WIDGET = {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          570 字
+          489 字
         
       </span>
     
@@ -349,7 +349,7 @@ WIDGET = {
               <p class="note note-info">
                 
                   
-                    本文最后更新于：7 天前
+                    本文最后更新于：3 分钟前
                   
                 
               </p>
@@ -357,7 +357,7 @@ WIDGET = {
             
               <div class="markdown-body">
                 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&amp;ensp;&amp;ensp;最近在学习py，趁着没忘把这两天（其实也就学了两次）学的总结一下，我是学C语言起手的，就顺便做个知识迁移，重点比较一下py和C语言或C++之间不同的地方，相同的就不提了。<br>&amp;ensp;&amp;ensp;学习书籍——《python编程，从入门到实践》<br>&amp;ensp;&amp;ensp;学了点py，说说感受，确实是“简单”了一些，并不是说它不复杂（函数方法多的要死），而是封装的是真的好，C语言几乎所有函数都是自己写，sort函数写了不知道多少个，py直接提供，挺不错的。这种简单对上手难度的减少有很大帮助，对新手很友好，你甚至不需要知道变量的类型就能写py的代码，这在C语言是不可想象的，你不会变量类型，你变量都定义不了。当然简单是要付出代价的，我这里并不说运行和解释编译上的事，而是对学习编程的人来说，py优秀的封装是优点，同时也是学习编程的人向更深的地方迈进的难关，因为你只需要用函数，用方法就ok，功能一样能实现，其他的什么py都帮你搞好了。知其然还要知其所以然，只有更深的学习，才能更理解代码和编程，我或许明白现在很多学校还是要教C语言的原因了。<br>&amp;ensp;&amp;ensp;好了言归正传，py的学习笔记。<br>&amp;ensp;&amp;ensp;内容：从开始到字典。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在学习py，趁着没忘把这两天（其实也就学了两次）学的总结一下，我是学C语言起手的，就顺便做个知识迁移，重点比较一下py和C语言或C++之间不同的地方，相同的就不提了。<br>学习书籍——《python编程，从入门到实践》<br>学了点py，说说感受，确实是“简单”了一些，并不是说它不复杂（函数方法多的要死），而是封装的是真的好，C语言几乎所有函数都是自己写，sort函数写了不知道多少个，py直接提供，挺不错的。这种简单对上手难度的减少有很大帮助，对新手很友好，你甚至不需要知道变量的类型就能写py的代码，这在C语言是不可想象的，你不会变量类型，你变量都定义不了。当然简单是要付出代价的，我这里并不说运行和解释编译上的事，而是对学习编程的人来说，py优秀的封装是优点，同时也是学习编程的人向更深的地方迈进的难关，因为你只需要用函数，用方法就ok，功能一样能实现，其他的什么py都帮你搞好了。知其然还要知其所以然，只有更深的学习，才能更理解代码和编程，我或许明白现在很多学校还是要教C语言的原因了。<br>好了言归正传，py的学习笔记。<br>内容：从开始到字典。</p>
 <hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
 
@@ -418,7 +418,7 @@ WIDGET = {
 <ol start="6">
 <li>Py用回车区分语句段，不用写；了，不过为保持一致的习惯我还是加上了。</li>
 </ol>
-<h1 id="二、列表"><a href="#二、列表" class="headerlink" title="二、列表"></a>二、列表</h1><p>&amp;ensp;&amp;ensp;这算是学py的第一个新类型，其实和数组很像，不过比数组功能强很多，这里正好比较一下。<br>    &amp;ensp;&amp;ensp;列表——啥都能放<br>&amp;ensp;&amp;ensp;b &#x3D; [5,6,”5”,”5.55”,5.66,’d’];完全没有问题，C语言的数组是有类型限制的，定义的时候是啥类型就是啥，只能放同类型的变量。<br>&amp;ensp;&amp;ensp;列表是动态的，和C++的容器vector非常像。</p>
+<h1 id="二、列表"><a href="#二、列表" class="headerlink" title="二、列表"></a>二、列表</h1><p>这算是学py的第一个新类型，其实和数组很像，不过比数组功能强很多，这里正好比较一下。<br>    列表——啥都能放<br>b &#x3D; [5,6,”5”,”5.55”,5.66,’d’];完全没有问题，C语言的数组是有类型限制的，定义的时候是啥类型就是啥，只能放同类型的变量。<br>列表是动态的，和C++的容器vector非常像。</p>
 <ul>
 <li>列表定义——列表名 &#x3D; [列表内容]；</li>
 <li>访问列表——列表名[序号]，从0开始（可能只有matlab奇葩的会从1开始算吧……）<br>注：可以倒着访问，如a[-1]——访问a列表最后一个元素，而不用管a的长度。<br><strong>A[-2]——A的倒第二元素</strong>。</li>
@@ -481,7 +481,7 @@ WIDGET = {
 <h1 id="三、for循环"><a href="#三、for循环" class="headerlink" title="三、for循环"></a>三、for循环</h1><pre><code class="hljs">for A in B:
     操作A
 </code></pre>
-<p>&amp;ensp;&amp;ensp;对B列表中的元素遍历操作，出for循环时A保留最后一次的值。<br>&amp;ensp;&amp;ensp;注：py不用大括号，看缩进。注意冒号<br>&amp;ensp;&amp;ensp;	for A in range（30）：<br>&amp;ensp;&amp;ensp;循环30次，A的值从0到29.</p>
+<p>对B列表中的元素遍历操作，出for循环时A保留最后一次的值。<br>注：py不用大括号，看缩进。注意冒号<br>    for A in range（30）：<br>循环30次，A的值从0到29.</p>
 <h1 id="四、if语句"><a href="#四、if语句" class="headerlink" title="四、if语句"></a>四、if语句</h1><p>If-else</p>
 <pre><code class="hljs">if 条件判断：
     操作
@@ -499,7 +499,7 @@ else：
 <p>逻辑与：and，C中的（&amp;&amp;）；<br>逻辑或：or，C中的（||）；</p>
 <p>判断某东西是否在列表中，用关键字in<br>A in B——A在B（列表）中吗——返回bool值<br>判断某东西不在列表中，用关键字not in<br>A not in B——A不在B（列表）中吗——返回bool值</p>
 <p><strong>注：If语句中条件表达式为列表名时，列表为空时非false，不空时为true。</strong></p>
-<h1 id="五、字典（和C中的结构体比较像）"><a href="#五、字典（和C中的结构体比较像）" class="headerlink" title="五、字典（和C中的结构体比较像）"></a>五、字典（和C中的结构体比较像）</h1><p>&amp;ensp;&amp;ensp;py-字典：是动态的。<br>&amp;ensp;&amp;ensp;键值对：一一对应的一对，（键：值）——就是变量的名字和值。</p>
+<h1 id="五、字典（和C中的结构体比较像）"><a href="#五、字典（和C中的结构体比较像）" class="headerlink" title="五、字典（和C中的结构体比较像）"></a>五、字典（和C中的结构体比较像）</h1><p>py-字典：是动态的。<br>键值对：一一对应的一对，（键：值）——就是变量的名字和值。</p>
 <ul>
 <li>定义：字典名 &#x3D; {键值对}；</li>
 <li>访问：字典名[键]——访问这个键对应的值。</li>
@@ -515,7 +515,7 @@ else：
 ……
 &#125;b = &#123;值1，值2……&#125;；    //结构体变量的定义和初始化
 </code></pre>
-<p>&amp;ensp;&amp;ensp;访问：结构体变量.变量名——访问这个结构体变量的这个变量名的值<br>&amp;ensp;&amp;ensp;结构体是静态的，因为定义好之后编译器就分配这么大的内存，变化不了了，想实现动态的改变，可以包含指针类型的变量，通过指针的指向的变化来实现。<br>&amp;ensp;&amp;ensp;printf（结构体名）——没这个操作……</p>
+<p>访问：结构体变量.变量名——访问这个结构体变量的这个变量名的值<br>结构体是静态的，因为定义好之后编译器就分配这么大的内存，变化不了了，想实现动态的改变，可以包含指针类型的变量，通过指针的指向的变化来实现。<br>printf（结构体名）——没这个操作……</p>
 <ul>
 <li>对字典的遍历：<ol>
 <li><pre><code class="hljs">for A，B in M.items()： A-键；B-值；M-字典名；M.items()-返回一个键值对
@@ -543,6 +543,9 @@ else：
 <hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
 
+<style>
+  p {text-indent:2em;} 
+</style>
                 
               </div>
             
@@ -590,7 +593,7 @@ else：
   <div class="license-box my-3">
     <div class="license-title">
       <div>Python学习入门（个人版）</div>
-      <div>https://github.com/357meng/357meng.github.io/ndexi/2021/08/05/py00/</div>
+      <div>https://357meng.github.io/2021/08/05/py00/</div>
     </div>
     <div class="license-meta">
       
@@ -608,7 +611,7 @@ else：
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月24日</div>
+          <div>2022年10月31日</div>
         </div>
       
       
@@ -808,7 +811,7 @@ else：
   
   
   
-<span>全站字数：101k</span>
+<span>全站字数：90k</span>
 </div>
 
   </footer>

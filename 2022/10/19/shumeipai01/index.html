@@ -19,34 +19,35 @@
     <meta name="description" content="前言换源： https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;help&#x2F;ubuntu 如果你安装的过程中出现无法定位软件包的问题，或者下不动，可以考虑换源。 其他换源教程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43029747&#x2F;article&#x2F;details&#x2F;94874442 上次搞了一个树莓派，相当于有了自己的服务器。大家应该也想着部署些什么东西上去吧。这次带">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx服务器搭建与个人博客部署">
-<meta property="og:url" content="https://github.com/357meng/357meng.github.io/ndexi/2022/10/19/shumeipai01/index.html">
+<meta property="og:url" content="https://357meng.github.io/2022/10/19/shumeipai01/index.html">
 <meta property="og:site_name" content="MengkiPage">
 <meta property="og:description" content="前言换源： https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;help&#x2F;ubuntu 如果你安装的过程中出现无法定位软件包的问题，或者下不动，可以考虑换源。 其他换源教程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43029747&#x2F;article&#x2F;details&#x2F;94874442 上次搞了一个树莓派，相当于有了自己的服务器。大家应该也想着部署些什么东西上去吧。这次带">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image001.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image003.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image005.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image007.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image009.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image011.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image013.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image015.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image017.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image019.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image021.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image023.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image025.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image027.png">
-<meta property="og:image" content="https://github.com/page/2022/10/19/shumeipai01/image029.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image001.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image003.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image005.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image007.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image009.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image011.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image013.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image015.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image017.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image019.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image033.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image021.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image023.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image025.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image027.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image029.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/b3a11d10196c4f9eac80e36360da8c96.png#pic_center">
 <meta property="article:published_time" content="2022-10-19T10:59:05.000Z">
-<meta property="article:modified_time" content="2022-10-19T13:28:48.144Z">
+<meta property="article:modified_time" content="2022-10-31T09:34:17.907Z">
 <meta property="article:author" content="Mengki">
 <meta property="article:tag" content="树莓派">
 <meta property="article:tag" content="服务器">
 <meta property="article:tag" content="博客">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/page/2022/10/19/shumeipai01/image001.png">
+<meta name="twitter:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image001.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -96,7 +97,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"github.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -365,7 +366,7 @@ WIDGET = {
               <p class="note note-info">
                 
                   
-                    本文最后更新于：12 天前
+                    本文最后更新于：2 分钟前
                   
                 
               </p>
@@ -381,24 +382,24 @@ WIDGET = {
 <p>关于博客：网页页面分2种：动态页面和静态页面。静态页面比较简单，直接是浏览器能够读取的文本形式，如html等，有人访问的时候直接把html丢过去就行了，比较快速，缺点是管理比较麻烦，每次更新都相当于重写整个页面的代码，没有相关框架的话工程量比较大。动态页面涉及到数据库的操作，代码也是更为上层的形式，所有元素都是从库中调用的关系，有访问的时候需要在服务器先编译，把库中的内容联系起来生成浏览器可以访问的形式，再进行发送。反应比静态的慢（对于有限带宽、处理器内存也不行的话更是如此），但是适合管理和大型工程。个人博客比较简单，静态页面也有快速响应、保密性好的特点。所以个人博客大多数是静态的。如果从头开始编写html之类的代码，对于外行人属实是折磨。所以我们一般使用静态博客的框架，相当于帮助我们快速完成html等相关代码的编写，我们只需要专注于博客设计和文章就好了，你可能觉得这样博客会显的比较单调或者不能独树一帜。我当时也有这种想法，不过现在我可以说不用担心，一方面博客框架都有很多的主题可以选择，另一方面主题也会提供很多参数让你自己修改，完全能够满足个人的需求。如果你说我就想要一个前无古人后无来者的风格，你或许可以考虑自己写一个或者使用动态博客。静态博客框架有很多，我这里使用的hexo。</p>
 <h1 id="一、web服务器：Nginx搭建"><a href="#一、web服务器：Nginx搭建" class="headerlink" title="一、web服务器：Nginx搭建"></a>一、web服务器：Nginx搭建</h1><p>首先，下载nginx：<code>sudo apt install nginx</code><br>查看版本：<code>nginx -v</code><br>下载完成后，输入nginx就可以运行（大家都是这么说）。然而如果你出现了fail to listen 80端口的情况，一般来说都是你的nginx已经在运行了。可以先关闭：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nginx -s stop<br></code></pre></td></tr></table></figure>
-<p><img src="/page/2022/10/19/shumeipai01/image001.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>再启动，就ok了</p>
-<p><strong>此时在网页输入你的ip（树莓派就是树莓派的ip，前提是在和你树莓派在同一网络的设备的浏览器上输入，当然如果你有公网ip（云服务器就自带）就都行。），能看到下面的欢迎页面就ok</strong><br><img src="/page/2022/10/19/shumeipai01/image003.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>Nginx重启：<code>nginx -s reload</code><br>其他Nginx教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40036754/article/details/102463099?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166616431316800192281667%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=166616431316800192281667&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-102463099-null-null.142%5Ev59%5Epc_search_tree,201%5Ev3%5Econtrol_1&utm_term=nginx&spm=1018.2226.3001.4187">大佬nginx学习教程</a></p>
+<p><img src="/2022/10/19/shumeipai01/image001.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>再启动，就ok了</p>
+<p><strong>此时在网页输入你的ip（树莓派就是树莓派的ip，前提是在和你树莓派在同一网络的设备的浏览器上输入，当然如果你有公网ip（云服务器就自带）就都行。），能看到下面的欢迎页面就ok</strong><br><img src="/2022/10/19/shumeipai01/image003.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>Nginx重启：<code>nginx -s reload</code><br>其他Nginx教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40036754/article/details/102463099?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166616431316800192281667%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=166616431316800192281667&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-102463099-null-null.142%5Ev59%5Epc_search_tree,201%5Ev3%5Econtrol_1&utm_term=nginx&spm=1018.2226.3001.4187">大佬nginx学习教程</a></p>
 <h1 id="二、博客搭建"><a href="#二、博客搭建" class="headerlink" title="二、博客搭建"></a>二、博客搭建</h1><p>由于使用静态博客框架，所以<strong>博客框架不一定要放在服务器</strong>上，比如我在我的电脑上使用博客框架，对主题进行调教，写文章，等等。等我感觉差不多了，再生成静态的文本代码等等文件，把这些文件放到服务器上，就相当于把我设计的网站部署在服务器上了。这就是静态网页的好处，设计和部署可以分开，只要把框架生成好的现成的html等等代码放到服务器上，别人就可以正常访问。当然前提是你有web平台（如nginx）。综上，<strong>我建议在自己电脑上写博客，再进行部署</strong>，能少折腾一点服务器。</p>
 <p>博客框架有很多，我这里使用的是Hexo框架，官网：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
 <p>我的电脑是windows，下面的教程也是在windows上的。</p>
 <p>其实官网已经写的十分详细了，照着来应该不会有问题。我说说主要的操作。</p>
 <p>首先，这个框架需要Node.js，需要提前下载：<a target="_blank" rel="noopener" href="https://nodejs.org/en/%EF%BC%8C%E8%87%B3%E4%BA%8Egit%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E6%88%91%E6%84%9F%E8%A7%89%E7%9B%AE%E5%89%8D%E8%BF%98%E4%B8%8D%E7%94%A8%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A6%81%E8%AE%B2%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%9C%A8github%E6%88%96%E8%80%85%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E6%9B%B4%E6%96%B0%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%AE%89%E8%A3%85git%E3%80%82%E6%9C%89%E6%A0%91%E8%8E%93%E6%B4%BE%E6%88%96%E8%80%85%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E4%BB%A5%E5%85%88%E4%B8%8D%E7%94%A8%EF%BC%8C%E9%83%A8%E7%BD%B2%E4%BB%80%E4%B9%88%E7%9A%84%E5%85%88%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%90%8E%E9%9D%A2%E5%86%8D%E8%AF%B4%E3%80%82">https://nodejs.org/en/，至于git是否需要我感觉目前还不用，如果你要讲博客部署在github或者要实现同步更新，可以安装git。有树莓派或者云服务器可以先不用，部署什么的先简单的上传文件就好了，可以后面再说。</a></p>
-<p>下好之后安装，之后打开cmd看看有没有成功<br><img src="/page/2022/10/19/shumeipai01/image005.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>说明安装成功了，如果显示不是外部或内部指令啥的，需要修改一下全局变量。</p>
+<p>下好之后安装，之后打开cmd看看有没有成功<br><img src="/2022/10/19/shumeipai01/image005.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>说明安装成功了，如果显示不是外部或内部指令啥的，需要修改一下全局变量。</p>
 <p>参考配置全局变量：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zsx0806/article/details/121891980">https://blog.csdn.net/zsx0806/article/details/121891980</a></p>
 <p>创建一个文件夹用来放hexo以及管理你的博客，之后就可以安装hexo了，cd到你刚刚创建好的文件夹，使用npm命令：<code>npm install -g hexo-cli</code><br>进行下载，使用<code>hexo -v</code>查看下载的版本，使用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init<br>npm install<br></code></pre></td></tr></table></figure>
-<p>进行安装，必须新建空文件夹，否则<br><img src="/page/2022/10/19/shumeipai01/image007.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>完整运行后，应该是这样的<br><img src="/page/2022/10/19/shumeipai01/image009.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>此时这个ttest文件夹就是你Hexo框架的文件夹了。关于其中的文件目录可以上官网看。</p>
-<p>如果你输入hexo显示不是外部或内部指令啥的，同样需要修改一下全局变量，将hexo的文件加入，放上我个人的环境变量目录：<br> <img src="/page/2022/10/19/shumeipai01/image011.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>进行安装，必须新建空文件夹，否则<br><img src="/2022/10/19/shumeipai01/image007.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>完整运行后，应该是这样的<br><img src="/2022/10/19/shumeipai01/image009.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>此时这个ttest文件夹就是你Hexo框架的文件夹了。关于其中的文件目录可以上官网看。</p>
+<p>如果你输入hexo显示不是外部或内部指令啥的，同样需要修改一下全局变量，将hexo的文件加入，放上我个人的环境变量目录：<br> <img src="/2022/10/19/shumeipai01/image011.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <p>Ok之后，使用cmd在你的Hexo框架的文件夹（如上面的ttest）目录下输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo g<br>hexo s<br></code></pre></td></tr></table></figure>
 
 <p>打开命令行中提示网址，我这里使用了主题，所以输出和白板hexo情况下不太一样</p>
-<p><img src="/page/2022/10/19/shumeipai01/image013.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>关于Hexo的文件目录，有几个比较重要：</p>
+<p><img src="/2022/10/19/shumeipai01/image013.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>关于Hexo的文件目录，有几个比较重要：</p>
 <ul>
 <li><strong>public：存放生成的页面，要运行生成页面的指令后才出现这个文件夹，部署的话就将这个文件夹下的所有文件放到服务器的nginx的根目录下面就ok了（后面还会说）</strong></li>
 <li>scaffolds：生成文章的一些模板</li>
@@ -406,25 +407,27 @@ WIDGET = {
 <li>themes：主题，选择一个好看的主题也是一大乐趣。</li>
 <li><strong>_config.yml: 博客的配置文件</strong>，用来更好的调教你的博客，可以修改配置进行自定义个性化。具体什么是什么可以看官网，非常详细。</li>
 </ul>
-<p>主题：hexo官网也提供很多主题，我使用的是Fluid，当时也是在网上逛的时候看到的，使用下来感觉非常不错，安利一下，感谢大佬们的开源。<br>知乎介绍：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137679728">https://zhuanlan.zhihu.com/p/137679728</a><br>Fluid调教方法（官方手册）：<a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/guide">https://fluid-dev.github.io/hexo-fluid-docs/guide</a><br><img src="/page/2022/10/19/shumeipai01/image015.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>官方文档写的也是非常详细，从安装到调教都有了，大家可以自行食用。<br>个人调教的结果：<br><img src="/page/2022/10/19/shumeipai01/image017.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/page/2022/10/19/shumeipai01/image019.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>Ps：目前博客已经部署在阿里云服务器上了，之前都是部署在我的树莓派上，后来受不了吵闹和频繁的断电断网。但是域名没有搞定，说是阿里云免费的服务器是按量的不能备案，<strong>我真的3Q</strong>。没办法又不能暴露公网IP，大家就先稍等吧。</p>
-<p>最常用的Hexo指令，我称之为一条龙服务：</p>
+<p>主题：hexo官网也提供很多主题，我使用的是Fluid，当时也是在网上逛的时候看到的，使用下来感觉非常不错，安利一下，感谢大佬们的开源。<br>知乎介绍：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137679728">https://zhuanlan.zhihu.com/p/137679728</a><br>Fluid调教方法（官方手册）：<a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/guide">https://fluid-dev.github.io/hexo-fluid-docs/guide</a><br><img src="/2022/10/19/shumeipai01/image015.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>官方文档写的也是非常详细，从安装到调教都有了，大家可以自行食用。<br>个人调教的结果：<br><img src="/2022/10/19/shumeipai01/image017.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/2022/10/19/shumeipai01/image019.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/2022/10/19/shumeipai01/image033.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>Ps：目前博客已经部署在阿里云服务器上了，之前都是部署在我的树莓派上，后来受不了吵闹和频繁的断电断网。但是域名没有搞定，说是阿里云免费的服务器是按量的不能备案，<strong>我真的3Q</strong>。没办法又不能暴露公网IP，大家就先稍等吧。<br>PPS：我把域名挂在Github上了，最起码现在能用了。<br>最常用的Hexo指令，我称之为一条龙服务：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean<br>hexo g<br>hexo s <br></code></pre></td></tr></table></figure>
 
 <p>分别是：清空，生成，开服务，其中hexo g这个指令很重要，<strong>它可以将你写的md文件按照你选择的主题生成静态网页文件</strong>，放在public文件夹中。</p>
 <p>其他Hexo教程：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/44213627">https://zhuanlan.zhihu.com/p/44213627</a></p>
 <h1 id="三、部署在服务器"><a href="#三、部署在服务器" class="headerlink" title="三、部署在服务器"></a>三、部署在服务器</h1><p>重点来了，谁能想到，这是我消耗时间最多的部分。希望我能够帮助大家少走弯路。</p>
 <p>当你把博客调教好后，首先，重新生成一遍防止BUG，之后将public文件夹下的所有文件拷贝，上传到你的服务器的文件夹下（建议在服务器上也新建一个文件夹用来放）。树莓派可以使用VNC传输文件，云服务器没有桌面可以用Xshell的rz指令。完成之后，启动nginx，访问ip，你会发现还是nginx的欢迎页面，<strong>因为nginx的相关配置没有改</strong>，需要操作一下。</p>
-<p><strong>重点来了</strong>，修改nginx配置，我看了极多帖子，都是说修改nginx.conf文件，这样的页面<br><img src="/page/2022/10/19/shumeipai01/image021.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>大多数帖子是2020年的，我不知道现在还能不能行，反正我的文件中压根就没有location这块，更别提什么root了。于是我猜测是导入了其他的配置文件了，我一个一个的翻，终于找到能够生效的改root根目录的地方（使用Linux系统的情况下）。</strong></p>
-<p><strong>&#x2F;etc&#x2F;nginx&#x2F;sites-enabled</strong>，在这个目录中有一个default文件，打开之后才是大家所说的，你会在这里看到一个root<br><img src="/page/2022/10/19/shumeipai01/image023.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述">把后面的目录改成指向你服务器上放hexo生成的静态文件的那个文件夹。然后保存重启nginx，不出意外，就成功了。</p>
+<p><strong>重点来了</strong>，修改nginx配置，我看了极多帖子，都是说修改nginx.conf文件，这样的页面<br><img src="/2022/10/19/shumeipai01/image021.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>大多数帖子是2020年的，我不知道现在还能不能行，反正我的文件中压根就没有location这块，更别提什么root了。于是我猜测是导入了其他的配置文件了，我一个一个的翻，终于找到能够生效的改root根目录的地方（使用Linux系统的情况下）。</strong></p>
+<p><strong>&#x2F;etc&#x2F;nginx&#x2F;sites-enabled</strong>，在这个目录中有一个default文件，打开之后才是大家所说的，你会在这里看到一个root<br><img src="/2022/10/19/shumeipai01/image023.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述">把后面的目录改成指向你服务器上放hexo生成的静态文件的那个文件夹。然后保存重启nginx，不出意外，就成功了。</p>
 <h1 id="四、内网穿透"><a href="#四、内网穿透" class="headerlink" title="四、内网穿透"></a>四、内网穿透</h1><p>博客搞好了，只能在局域网里看多没意思，我们要<strong>让公网也能访问</strong>，一种方法，搞一个公网ip和域名（云服务器），还有用内网穿透。</p>
 <p>内网穿透具体就是让有公网访问能力的人转接你服务器的访问任务，当有人访问你的网址（通常是提供内网穿透的平台给你分配的公网可以访问的网址）时，提供内网穿透的平台会将这个来自公网的请求发送给你的局域网（前提你这个局域网要联网），再发送到你的服务器上，放回也是一样的，先返回给平台，再返回给用户，从而实现公网访问。</p>
 <p>树莓派上实现内网穿透的有很多，我用了2个分享给大家。</p>
-<h2 id="1-sunny内网穿透：https-www-ngrok-cc"><a href="#1-sunny内网穿透：https-www-ngrok-cc" class="headerlink" title="1.	sunny内网穿透：https://www.ngrok.cc/"></a>1.	sunny内网穿透：<a target="_blank" rel="noopener" href="https://www.ngrok.cc/">https://www.ngrok.cc/</a></h2><p> 这个可以自定义域名，好像需要实名认证，还有花2块钱购买一个最低等级的隧道，之后就可以配置了。<br> <img src="/page/2022/10/19/shumeipai01/image025.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>启动的话，需要下载相关软件，官网有教程<br><img src="/page/2022/10/19/shumeipai01/image027.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>树莓派注意下载ARM版本的<br><img src="/page/2022/10/19/shumeipai01/image029.png" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>下载之后放在服务器上，cd到存放你刚刚下载的sunny文件的路径上，输入</p>
+<h2 id="1-sunny内网穿透：https-www-ngrok-cc"><a href="#1-sunny内网穿透：https-www-ngrok-cc" class="headerlink" title="1.	sunny内网穿透：https://www.ngrok.cc/"></a>1.	sunny内网穿透：<a target="_blank" rel="noopener" href="https://www.ngrok.cc/">https://www.ngrok.cc/</a></h2><p> 这个可以自定义域名，好像需要实名认证，还有花2块钱购买一个最低等级的隧道，之后就可以配置了。<br> <img src="/2022/10/19/shumeipai01/image025.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>启动的话，需要下载相关软件，官网有教程<br><img src="/2022/10/19/shumeipai01/image027.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>树莓派注意下载ARM版本的<br><img src="/2022/10/19/shumeipai01/image029.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>下载之后放在服务器上，cd到存放你刚刚下载的sunny文件的路径上，输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./sunny clientid 隧道<span class="hljs-built_in">id</span><br></code></pre></td></tr></table></figure>
 
 <p>其中隧道id就是上面注册时分配给你的。<br>成功的话，你就可以在公网通过你的网址进行访问了。不过有时候连不上，只能说不稳定，而且响应比较慢。</p>
-<h2 id="2-cpolar：-https-dashboard-cpolar-com-login"><a href="#2-cpolar：-https-dashboard-cpolar-com-login" class="headerlink" title="2.	cpolar： https://dashboard.cpolar.com/login"></a>2.	cpolar： <a target="_blank" rel="noopener" href="https://dashboard.cpolar.com/login">https://dashboard.cpolar.com/login</a></h2><p>不能自定义域名，稳定性比上一个好。<br><img src="https://img-blog.csdnimg.cn/b3a11d10196c4f9eac80e36360da8c96.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>同样，下载ARM的cpolar文件，按照教程来就ok，nginx的端口一般是80。成功的话会在命令行里显示分配给你的网址，同样可以公网访问了。速度当然也慢。</p>
-
+<h2 id="2-cpolar：-https-dashboard-cpolar-com-login"><a href="#2-cpolar：-https-dashboard-cpolar-com-login" class="headerlink" title="2.	cpolar： https://dashboard.cpolar.com/login"></a>2.	cpolar： <a target="_blank" rel="noopener" href="https://dashboard.cpolar.com/login">https://dashboard.cpolar.com/login</a></h2><p>不能自定义域名，稳定性比上一个好。<br><img src="https://img-blog.csdnimg.cn/b3a11d10196c4f9eac80e36360da8c96.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>同样，下载ARM的cpolar文件，按照教程来就ok，nginx的端口一般是80。成功的话会在命令行里显示分配给你的网址，同样可以公网访问了。速度当然也慢。</p>
+<style>
+  p {text-indent:2em;} 
+</style>
                 
               </div>
             
@@ -474,7 +477,7 @@ WIDGET = {
   <div class="license-box my-3">
     <div class="license-title">
       <div>Nginx服务器搭建与个人博客部署</div>
-      <div>https://github.com/357meng/357meng.github.io/ndexi/2022/10/19/shumeipai01/</div>
+      <div>https://357meng.github.io/2022/10/19/shumeipai01/</div>
     </div>
     <div class="license-meta">
       
@@ -492,7 +495,7 @@ WIDGET = {
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月19日</div>
+          <div>2022年10月31日</div>
         </div>
       
       
@@ -692,7 +695,7 @@ WIDGET = {
   
   
   
-<span>全站字数：101k</span>
+<span>全站字数：90k</span>
 </div>
 
   </footer>
