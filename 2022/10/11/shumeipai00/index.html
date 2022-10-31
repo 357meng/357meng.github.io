@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/357meng/357meng.github.io/img/fluid.png">
+  <link rel="icon" href="/357meng/357meng.github.io/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="前言最近几天入手了一个树莓派4b，4GRAM，想着搞搞什么服务器之类的，搞了几天，现在写点东西分享一下。现在看到的就是部署在服务器上的成果。我向来讨厌说话说一半，或者就是不说重点，或者非要讲一些高深的东西劝退新人的情况，有能力的人是可以把晦涩的情况用最为朴实和善于理解的话讲明白的，这也是我追求的目标，当然我也是菜鸡，只能分享我在搞这个东西的时候的情况，但我尽量把流程说的明白一点，也方便像我一样的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派4b入门以及各种系统烧录问题分享">
-<meta property="og:url" content="https://357meng.github.io/2022/10/11/shumeipai00/index.html">
+<meta property="og:url" content="https://github.com/357meng/357meng.github.io/2022/10/11/shumeipai00/index.html">
 <meta property="og:site_name" content="MengkiPage">
 <meta property="og:description" content="前言最近几天入手了一个树莓派4b，4GRAM，想着搞搞什么服务器之类的，搞了几天，现在写点东西分享一下。现在看到的就是部署在服务器上的成果。我向来讨厌说话说一半，或者就是不说重点，或者非要讲一些高深的东西劝退新人的情况，有能力的人是可以把晦涩的情况用最为朴实和善于理解的话讲明白的，这也是我追求的目标，当然我也是菜鸡，只能分享我在搞这个东西的时候的情况，但我尽量把流程说的明白一点，也方便像我一样的">
 <meta property="og:locale" content="zh_CN">
@@ -82,35 +82,35 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/357meng/357meng.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/357meng/357meng.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/357meng/357meng.github.io/css/highlight-dark.css" />
   
 
 
 
   
-<link rel="stylesheet" href="/css/fluid-extension.css">
+<link rel="stylesheet" href="/357meng/357meng.github.io/css/fluid-extension.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<link rel="stylesheet" href="/css/indeximg-hover.css">
+<link rel="stylesheet" href="/357meng/357meng.github.io/css/indeximg-hover.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"github.com","root":"/357meng/357meng.github.io/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/357meng/357meng.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/357meng/357meng.github.io/js/utils.js" ></script>
+  <script  src="/357meng/357meng.github.io/js/color-schema.js" ></script>
   
 
 
@@ -127,7 +127,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/357meng/357meng.github.io/">
       <strong>MengkiPage</strong>
     </a>
 
@@ -174,7 +174,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/357meng/357meng.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -186,7 +186,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/357meng/357meng.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -198,7 +198,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/357meng/357meng.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -210,7 +210,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/357meng/357meng.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -222,7 +222,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/357meng/357meng.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -234,7 +234,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/playlist/">
+              <a class="nav-link" href="/357meng/357meng.github.io/playlist/">
                 <i class="iconfont icon-music"></i>
                 音乐
               </a>
@@ -246,7 +246,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/links/">
+              <a class="nav-link" href="/357meng/357meng.github.io/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -275,7 +275,7 @@ WIDGET = {
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/357meng/357meng.github.io/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -393,7 +393,7 @@ WIDGET = {
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c">country=CN<br>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev<br>update_config=<span class="hljs-number">1</span><br> <br>network=&#123;<br>	ssid=<span class="hljs-string">&quot;wifi名&quot;</span><br>	psk=<span class="hljs-string">&quot;wifi密码&quot;</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>&amp;ensp;&amp;ensp;按正常来说，此时你把TF卡弹出，插入树莓派就OK了，<strong>然而如果这么简单我就不会搞3天了</strong>。下面我将整理我烧录树莓派系统是出现的问题以及我查看的贴提出的解决方法。</p>
 <h1 id="三、系统烧录故障情况"><a href="#三、系统烧录故障情况" class="headerlink" title="三、系统烧录故障情况"></a>三、系统烧录故障情况</h1><p>&amp;ensp;&amp;ensp;先上一个LED灯闪烁的情况方便大家判断情况。<br><img src="https://img-blog.csdnimg.cn/067745f6d22f46059337a9dc895e0889.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&amp;ensp;&amp;ensp;PWR是电源红灯，ACT是SD卡绿灯，其他的4b没有就不用看了。<br>&amp;ensp;&amp;ensp;ACT闪烁情况：<br><img src="https://img-blog.csdnimg.cn/70e28dc61e564d3c9502c3f9a5d3b77a.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&amp;ensp;&amp;ensp;下面说说我碰到的问题。</p>
-<h2 id="1-固件问题"><a href="#1-固件问题" class="headerlink" title="1.固件问题"></a>1.固件问题</h2><p>&amp;ensp;&amp;ensp;Raspberry Pi 4B eeprom firmware,bootloader，如果固件有问题，输出屏幕会一直提示firmware的错误，<strong>拔出tf卡再上电，绿色的LED不闪说明固件挂了</strong>，需要修复，<br>&amp;ensp;&amp;ensp;树莓派4b的固件是烧录在EEPROM里的，负责引导系统，没有固件或者固件不行了有系统也进不去。修复需用一个空的TF卡。在官方的烧录里提供了修复文件的烧录（官方烧录真的省事）<br><img src="https://img-blog.csdnimg.cn/52d5579144c049ae862185d85646e8af.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&amp;ensp;&amp;ensp;进入这个Misc开头的，选择里面的Bootloader，选择sd card boot<br><img src="https://img-blog.csdnimg.cn/b7174b1cc27445979d06d5c91e901f32.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&amp;ensp;&amp;ensp;然后烧录到修复卡里就好了，<strong>有可能不成功，多烧几次</strong>。<br>&amp;ensp;&amp;ensp;不想用官方的，也行，上官方的github：<a target="_blank" rel="noopener" href="https://github.com/raspberrypi/rpi-eeprom/tree/master/firmware/critical">官方github</a>。下载这3种最新的修复<br><img src="https://img-blog.csdnimg.cn/d56c0bcd477f4cf48df2598c80874b9b.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&amp;ensp;&amp;ensp;放到FAT32格式话的TF卡中。修复卡就好了，问题是我试过了，感觉不一定能成功，原文链接因为看的太多找不见了……<br>&amp;ensp;&amp;ensp;实在不行我下载了官方的修复，并拷贝出来了，在链接里都有，送给大家，看看能不能用。<br>&amp;ensp;&amp;ensp;有了修复卡后，插入树莓派，上电，等一下，绿灯规律闪烁就ok了。<br>&amp;ensp;&amp;ensp;其他修复方法链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1it4y1y7uQ/">https://www.bilibili.com/video/BV1it4y1y7uQ/</a></p>
+<h2 id="1-固件问题"><a href="#1-固件问题" class="headerlink" title="1.固件问题"></a>1.固件问题</h2><p>&amp;ensp;&amp;ensp;Raspberry Pi 4B eeprom firmware,bootloader，如果固件有问题，输出屏幕会一直提示firmware的错误，<strong>拔出tf卡再上电，绿色的LED不闪说明固件挂了</strong>，需要修复，<br>&amp;ensp;&amp;ensp;树莓派4b的固件是烧录在EEPROM里的，负责引导系统，没有固件或者固件不行了有系统也进不去。修复需用一个空的TF卡。在官方的烧录里提供了修复文件的烧录（官方烧录真的省事）<br><img src="https://img-blog.csdnimg.cn/52d5579144c049ae862185d85646e8af.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&amp;ensp;&amp;ensp;进入这个Misc开头的，选择里面的Bootloader，选择sd card boot<br><img src="https://img-blog.csdnimg.cn/b7174b1cc27445979d06d5c91e901f32.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&amp;ensp;&amp;ensp;然后烧录到修复卡里就好了，<strong>有可能不成功，多烧几次</strong>。<br>&amp;ensp;&amp;ensp;不想用官方的，也行，上官方的github：<a href="https://github.com/raspberrypi/rpi-eeprom/tree/master/firmware/critical">官方github</a>。下载这3种最新的修复<br><img src="https://img-blog.csdnimg.cn/d56c0bcd477f4cf48df2598c80874b9b.png#pic_center" srcset="/page/img/loading.gif" lazyload alt="在这里插入图片描述"><br>&amp;ensp;&amp;ensp;放到FAT32格式话的TF卡中。修复卡就好了，问题是我试过了，感觉不一定能成功，原文链接因为看的太多找不见了……<br>&amp;ensp;&amp;ensp;实在不行我下载了官方的修复，并拷贝出来了，在链接里都有，送给大家，看看能不能用。<br>&amp;ensp;&amp;ensp;有了修复卡后，插入树莓派，上电，等一下，绿灯规律闪烁就ok了。<br>&amp;ensp;&amp;ensp;其他修复方法链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1it4y1y7uQ/">https://www.bilibili.com/video/BV1it4y1y7uQ/</a></p>
 <h2 id="2-验证失败"><a href="#2-验证失败" class="headerlink" title="2.验证失败"></a>2.验证失败</h2><p>&amp;ensp;&amp;ensp;无论树莓派官方的烧录还是其他的，都可以提供验证操作，用来判断烧录的和原来的是不是一样，像上面的Win32DiskImager需要生成检验值，再进行检验，其他的可以自动检验。<strong>如果出现的结果是验证失败。那么你就有的罪受了，表示你的卡出问题了</strong>，具体什么问题，要进一步分析。（自动检验的烧录如果验证失败是不会烧录的，所以你TF卡还是空的）</p>
 <h2 id="3-插入主板，报错：VFS-Unable-to-mount-root-fs-on-unknown-block-179-2"><a href="#3-插入主板，报错：VFS-Unable-to-mount-root-fs-on-unknown-block-179-2" class="headerlink" title="3.插入主板，报错：VFS Unable to mount root fs on unknown-block(179,2)"></a>3.插入主板，报错：VFS Unable to mount root fs on unknown-block(179,2)</h2><p>&amp;ensp;&amp;ensp;这是常见的错误，表示卡中的内容有问题，解决方法：</p>
 <h3 id="1-重新格式化，重新烧录"><a href="#1-重新格式化，重新烧录" class="headerlink" title="1 重新格式化，重新烧录"></a>1 重新格式化，重新烧录</h3><p> &amp;ensp;&amp;ensp;一般没用。我看有的贴说快速格式化不行，要覆盖格式化（overwrite），我试过了，不行的还是不行。不过把这个信息提供给大家。或者用DiskGenius这种磁盘管理工具格式化，删除设备分区，再直接格式化为FAT32，再烧录，不过这个软件操作起来有风险（操作不慎电脑硬盘直接无），至于效果是不是更好我也不好说。</p>
@@ -448,9 +448,9 @@ WIDGET = {
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">#树莓派</a>
+        <a href="/357meng/357meng.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">#树莓派</a>
       
-        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
+        <a href="/357meng/357meng.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
       
     </div>
   
@@ -463,7 +463,7 @@ WIDGET = {
   <div class="license-box my-3">
     <div class="license-title">
       <div>树莓派4b入门以及各种系统烧录问题分享</div>
-      <div>https://357meng.github.io/2022/10/11/shumeipai00/</div>
+      <div>https://github.com/357meng/357meng.github.io/2022/10/11/shumeipai00/</div>
     </div>
     <div class="license-meta">
       
@@ -512,7 +512,7 @@ WIDGET = {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/12/fadai/" title="发呆页面">
+                      <a href="/357meng/357meng.github.io/2022/10/12/fadai/" title="发呆页面">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">发呆页面</span>
                         <span class="visible-mobile">上一篇</span>
@@ -522,7 +522,7 @@ WIDGET = {
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/27/Cplusplus00/" title="String类常见用法总结（C++）">
+                      <a href="/357meng/357meng.github.io/2022/01/27/Cplusplus00/" title="String类常见用法总结（C++）">
                         <span class="hidden-mobile">String类常见用法总结（C++）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -702,8 +702,8 @@ WIDGET = {
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/357meng/357meng.github.io/js/events.js" ></script>
+<script  src="/357meng/357meng.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -726,7 +726,7 @@ WIDGET = {
 
   
     
-      <script  src="/js/img-lazyload.js" ></script>
+      <script  src="/357meng/357meng.github.io/js/img-lazyload.js" ></script>
     
   
 
@@ -826,7 +826,7 @@ WIDGET = {
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/357meng/357meng.github.io/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -842,7 +842,7 @@ WIDGET = {
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/357meng/357meng.github.io/js/boot.js" ></script>
 
 
   
