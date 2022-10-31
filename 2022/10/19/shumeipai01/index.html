@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/357meng.github.io/img/fluid.png">
-  <link rel="icon" href="/357meng.github.io/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="前言换源： https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;help&#x2F;ubuntu 如果你安装的过程中出现无法定位软件包的问题，或者下不动，可以考虑换源。 其他换源教程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43029747&#x2F;article&#x2F;details&#x2F;94874442 上次搞了一个树莓派，相当于有了自己的服务器。大家应该也想着部署些什么东西上去吧。这次带">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx服务器搭建与个人博客部署">
-<meta property="og:url" content="https://357meng.github.io/357meng.github.io/2022/10/19/shumeipai01/index.html">
+<meta property="og:url" content="https://357meng.github.io/2022/10/19/shumeipai01/index.html">
 <meta property="og:site_name" content="MengkiPage">
 <meta property="og:description" content="前言换源： https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;help&#x2F;ubuntu 如果你安装的过程中出现无法定位软件包的问题，或者下不动，可以考虑换源。 其他换源教程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43029747&#x2F;article&#x2F;details&#x2F;94874442 上次搞了一个树莓派，相当于有了自己的服务器。大家应该也想着部署些什么东西上去吧。这次带">
 <meta property="og:locale" content="zh_CN">
@@ -76,35 +76,35 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/357meng.github.io/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/357meng.github.io/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/357meng.github.io/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
   
-<link rel="stylesheet" href="/357meng.github.io/css/fluid-extension.css">
+<link rel="stylesheet" href="/css/fluid-extension.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<link rel="stylesheet" href="/357meng.github.io/css/indeximg-hover.css">
+<link rel="stylesheet" href="/css/indeximg-hover.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"357meng.github.io","root":"/357meng.github.io/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/357meng.github.io/local-search.xml"};
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/357meng.github.io/js/utils.js" ></script>
-  <script  src="/357meng.github.io/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -121,7 +121,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/357meng.github.io/">
+    <a class="navbar-brand" href="/">
       <strong>MengkiPage</strong>
     </a>
 
@@ -168,7 +168,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/357meng.github.io/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -180,7 +180,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/357meng.github.io/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -192,7 +192,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/357meng.github.io/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -204,7 +204,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/357meng.github.io/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -216,7 +216,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/357meng.github.io/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -228,7 +228,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/357meng.github.io/playlist/">
+              <a class="nav-link" href="/playlist/">
                 <i class="iconfont icon-music"></i>
                 音乐
               </a>
@@ -240,7 +240,7 @@ WIDGET = {
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/357meng.github.io/links/">
+              <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -269,7 +269,7 @@ WIDGET = {
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/357meng.github.io/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -442,7 +442,7 @@ WIDGET = {
     
       <span class="category-chain">
         
-  <a href="/357meng.github.io/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="category-chain-item">知识总结</a>
+  <a href="/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="category-chain-item">知识总结</a>
   
   
 
@@ -457,11 +457,11 @@ WIDGET = {
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/357meng.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">#树莓派</a>
+        <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">#树莓派</a>
       
-        <a href="/357meng.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
+        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
       
-        <a href="/357meng.github.io/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>
+        <a href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>
       
     </div>
   
@@ -474,7 +474,7 @@ WIDGET = {
   <div class="license-box my-3">
     <div class="license-title">
       <div>Nginx服务器搭建与个人博客部署</div>
-      <div>https://357meng.github.io/357meng.github.io/2022/10/19/shumeipai01/</div>
+      <div>https://357meng.github.io/2022/10/19/shumeipai01/</div>
     </div>
     <div class="license-meta">
       
@@ -523,7 +523,7 @@ WIDGET = {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/357meng.github.io/2022/10/24/zizhi01/" title="故事">
+                      <a href="/2022/10/24/zizhi01/" title="故事">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">故事</span>
                         <span class="visible-mobile">上一篇</span>
@@ -533,7 +533,7 @@ WIDGET = {
                   <article class="post-next col-6">
                     
                     
-                      <a href="/357meng.github.io/2022/10/13/fenxiang01/" title="《星星变奏曲》 江河">
+                      <a href="/2022/10/13/fenxiang01/" title="《星星变奏曲》 江河">
                         <span class="hidden-mobile">《星星变奏曲》 江河</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -713,8 +713,8 @@ WIDGET = {
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/357meng.github.io/js/events.js" ></script>
-<script  src="/357meng.github.io/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -737,7 +737,7 @@ WIDGET = {
 
   
     
-      <script  src="/357meng.github.io/js/img-lazyload.js" ></script>
+      <script  src="/js/img-lazyload.js" ></script>
     
   
 
@@ -837,7 +837,7 @@ WIDGET = {
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/357meng.github.io/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -853,7 +853,7 @@ WIDGET = {
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/357meng.github.io/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   
