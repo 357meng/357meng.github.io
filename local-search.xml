@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>mc</title>
+    <title>Minecraft</title>
     <link href="/2022/12/09/mc/"/>
     <url>/2022/12/09/mc/</url>
     
-    <content type="html"><![CDATA[<ul><li>主世界略缩图<br><img src="/2022/12/09/mc/zhushijie_yasuo.png" srcset="/img/loading.gif" lazyload></li></ul><span id="more"></span><style>  p {text-indent:2em;} </style>]]></content>
+    <content type="html"><![CDATA[<p>高清地图为1：1像素方块配置</p><ul><li><p>主世界略缩图<br><img src="/2022/12/09/mc/zhushijie_yasuo.png" srcset="/img/loading.gif" lazyload></p></li><li><p>主世界高清图<br><img src="/2022/12/09/mc/zhushijie_gaoqin.png" srcset="/img/loading.gif" lazyload></p></li><li><p>地狱下层高清图<br><img src="/2022/12/09/mc/DYxia.png" srcset="/img/loading.gif" lazyload></p></li><li><p>地狱上层高清图<br><img src="/2022/12/09/mc/DYshang.png" srcset="/img/loading.gif" lazyload></p></li></ul><span id="more"></span><style>  p {text-indent:2em;} </style>]]></content>
     
     
     <categories>
