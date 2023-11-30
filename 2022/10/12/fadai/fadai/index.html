@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<audio id="bgmusic" src="Anan Ryoko - Refrain.mp3" autoplay="autoplay" loop="loop" style="display: block; width: 3%; height:3%;"></audio>
+    <script type="text/javascript">
+  function toggleSound() {
+            var music = document.getElementById("bgmusic");//获取ID
+                console.log(music);
+                console.log(music.paused);
+            if (music.paused) { //判读是否播放
+                music.paused=false;
+                music.play(); //没有就播放
+            }
+
+        }
+setInterval("toggleSound()",1);
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css">
+    <title>Mengkipage</title>
+</head>
+
+
+<div class="container">
+  <div class="planetone"></div>
+  <div class="cicle"></div>
+</div>
+
+<div class="planettwo"></div>
+<div class="planetthree"></div>
+
+<div class="supernova">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
