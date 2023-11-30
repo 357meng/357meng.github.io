@@ -1,0 +1,870 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mengki">
+  <meta name="keywords" content="个人博客，个人分享">
+  
+    <meta name="description" content="前言最近几天入手了一个树莓派4b，4GRAM，想着搞搞什么服务器之类的，搞了几天，现在写点东西分享一下。现在看到的就是部署在服务器上的成果。我向来讨厌说话说一半，或者就是不说重点，或者非要讲一些高深的东西劝退新人的情况，有能力的人是可以把晦涩的情况用最为朴实和善于理解的话讲明白的，这也是我追求的目标，当然我也是菜鸡，只能分享我在搞这个东西的时候的情况，但我尽量把流程说的明白一点，也方便像我一样的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派4b入门以及各种系统烧录问题分享">
+<meta property="og:url" content="https://357meng.github.io/2022/10/11/shumeipai00/index.html">
+<meta property="og:site_name" content="MengkiPage">
+<meta property="og:description" content="前言最近几天入手了一个树莓派4b，4GRAM，想着搞搞什么服务器之类的，搞了几天，现在写点东西分享一下。现在看到的就是部署在服务器上的成果。我向来讨厌说话说一半，或者就是不说重点，或者非要讲一些高深的东西劝退新人的情况，有能力的人是可以把晦涩的情况用最为朴实和善于理解的话讲明白的，这也是我追求的目标，当然我也是菜鸡，只能分享我在搞这个东西的时候的情况，但我尽量把流程说的明白一点，也方便像我一样的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f25ce98ed50d4003a4d17232fc28f2ac.jpeg#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a3c8e3c713274a8696e45a88567e02e2.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c937df8ffe3f42d5a53e57a0e991df1f.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4a1c814168ef4bd7850bf9f30b246ebc.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bed1cc3a5a444fe68d1379e82adda65b.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b0e85109cde44135a7e53d4beceb9b8e.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5742287cc11d42aead55deb5d11bf614.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/328dedc7702b4e5e9334ef57dbfcb31c.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fe52784858f74502bf53f7dca907bb98.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c0bc05e0d2d84494b48fb84dee5618c5.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0ed9bbc79b75471286bd0ba3202942cc.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ce0abd02ec9244eeb7eba5ff3904f1f7.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/067745f6d22f46059337a9dc895e0889.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/70e28dc61e564d3c9502c3f9a5d3b77a.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/52d5579144c049ae862185d85646e8af.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b7174b1cc27445979d06d5c91e901f32.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d56c0bcd477f4cf48df2598c80874b9b.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/815ea0b230fd468aa36d3babfc979daf.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fcae3909850b4bb183e4a82d19ce0402.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/04c8fecad3954a2f835ec4c0f795e296.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4d6852c7fb784558b7a4c5a5e48a01ca.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/de246ac087f343e5a4a044a596da50ba.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8c1b88f545a24bbd81369e8a1b94e7a2.png#pic_center">
+<meta property="article:published_time" content="2022-10-11T03:25:30.000Z">
+<meta property="article:modified_time" content="2022-12-20T05:45:55.171Z">
+<meta property="article:author" content="Mengki">
+<meta property="article:tag" content="树莓派">
+<meta property="article:tag" content="服务器">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/f25ce98ed50d4003a4d17232fc28f2ac.jpeg#pic_center">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>树莓派4b入门以及各种系统烧录问题分享 - MengkiPage</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extension.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>MengkiPage</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- weather -->
+    <!-- 添加天气 -->
+
+<div id="he-plugin-simple"></div>
+<script>
+WIDGET = {
+  "CONFIG": {
+    "modules": "01234",
+    "background": "5",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "20",
+    "cityColor": "FFFFFF",
+    "citySize": "20",
+    "aqiColor": "FFFFFF",
+    "aqiSize": "20",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "fixed": "false",
+    "vertical": "top",
+    "horizontal": "left",
+    "key": "ccc947744b17444186d510ec360b4500"
+  }
+}
+</script>
+<script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/playlist/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/video/">
+                <i class="iconfont icon-bilibili"></i>
+                视频
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/xihuan/">
+                <i class="iconfont icon-youtube-fill"></i>
+                自作
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="树莓派4b入门以及各种系统烧录问题分享"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mengki
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-11 11:25" pubdate>
+          2022年10月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">树莓派4b入门以及各种系统烧录问题分享</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：1 年前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近几天入手了一个树莓派4b，4GRAM，想着搞搞什么服务器之类的，搞了几天，现在写点东西分享一下。现在看到的就是部署在服务器上的成果。我向来讨厌说话说一半，或者就是不说重点，或者非要讲一些高深的东西劝退新人的情况，有能力的人是可以把晦涩的情况用最为朴实和善于理解的话讲明白的，这也是我追求的目标，当然我也是菜鸡，只能分享我在搞这个东西的时候的情况，但我尽量把流程说的明白一点，也方便像我一样的新手能更方便的上手吧。<br> ps：网上资源贴为什么都好陈旧，都看不到近几年的，很多方法都不知道还能不能用，对于我这种新手上手能难受啊。<br>本文提到的软件以及程序系统我都有整理，大家按需下载就好了<br><strong>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/125eILvcDr8-avgbSO2Eu2Q">https://pan.baidu.com/s/125eILvcDr8-avgbSO2Eu2Q</a><br>提取码：4cyu</strong></p>
+<hr>
+<h1 id="一、买一个树莓派"><a href="#一、买一个树莓派" class="headerlink" title="一、买一个树莓派"></a>一、买一个树莓派</h1><p>首先，你需要买一个板子，这几年树莓派涨的飞起。单单一个板子就要700+，来点配件800+，想整个8GRAM直接上千。我劝各位一定要想清楚，别让1000块吃灰。<br>4b和3b相比，先不说什么处理器有什么变化，我认为最重要的是4b的RAM有1G 2G 4G 8G（4b+）可以选择，这个比什么CPU处理能力高多少直观多了。各位可以看需求购买，毕竟越大RAM价格直线上升，要考虑一个性价比。我认为如果说就是搞搞服务器，平常跑点小程序，学学LINUX，4G就ok了，如果说只是想拿来看看视频，当个小硬盘，2G也ok，如果要跑大型程序，搞嵌入式，图像识别，深度学习，那可能要8G。<br><img src="https://img-blog.csdnimg.cn/f25ce98ed50d4003a4d17232fc28f2ac.jpeg#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>有了主板之后，一般还需要买一些配件，最主要的是，<strong>一张TF卡</strong>（32G或者64G应该都可，建议一样一个备用）<strong>和读卡器</strong>，用来刷系统。商家一般会送一个外壳，散热风扇，散热片，充电线（看你买的什么套装吧），<strong>我个人建议是搞个屏幕</strong>，不用太贵能用就行，虽然没有屏幕也可以用，但我感觉不确定因素很多，很多时候需要一个屏幕，能简化很多操作。<br><img src="https://img-blog.csdnimg.cn/a3c8e3c713274a8696e45a88567e02e2.png#pic_center" srcset="/img/loading.gif" lazyload alt="TF卡">买回来之后，先看看外观有没有问题，注意别被坑了。<br>安装散热片，把那背面的胶撕下来粘到芯片上就行了。</p>
+<p><img src="https://img-blog.csdnimg.cn/c937df8ffe3f42d5a53e57a0e991df1f.png#pic_center" srcset="/img/loading.gif" lazyload>然后我建议先搞系统，因为可能会很麻烦，把树莓派先装进壳子里就不方便了。<br>安装风扇</p>
+<p><img src="https://img-blog.csdnimg.cn/4a1c814168ef4bd7850bf9f30b246ebc.png#pic_center" srcset="/img/loading.gif" lazyload><br><strong>风扇的红线插在4脚上，黑线插在6脚上，都在外侧排针上</strong>，就行了，注意看好别插错，不然风扇不转的。<br>物理安装就差不多了，剩下的就是拧拧螺丝就可以了。</p>
+<h1 id="二、上系统"><a href="#二、上系统" class="headerlink" title="二、上系统"></a>二、上系统</h1><p>这个过程很煎熬，不顺畅的话像我搞了两天半……<br>先说结论：<strong>为什么不乖乖用官方的烧录软件呢</strong>？网上教程各式各样，又要下格式化的，又要下烧录的，烧录的还有好几种，事先说明我全下了，因为我当时确实碰到了难以解决的问题（后文说）。最后还是觉得官方的最适合新手。当然如果你要烧录其他的系统，或者官方的烧录不行了（这也是常有的事），当我没说。但我首推官方的烧录系统。不管大家用那种，<strong>建议从头看到尾，中间说的一些东西是都适用的。</strong><br>官网：<a target="_blank" rel="noopener" href="https://www.raspberrypi.com/">https://www.raspberrypi.com/</a><br><img src="https://img-blog.csdnimg.cn/bed1cc3a5a444fe68d1379e82adda65b.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述">在软件（Software）里，可以看到官方的下载器</p>
+<p><img src="https://img-blog.csdnimg.cn/b0e85109cde44135a7e53d4beceb9b8e.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>大家电脑应该是windows吧，不是的话就下对应的就可以了，下载后安装即可。<br><img src="https://img-blog.csdnimg.cn/5742287cc11d42aead55deb5d11bf614.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>从这里可以下官方提供的系统镜像，不过要自己烧录，后面再说。<br>完成之后，打开软件，插入TF卡。</p>
+<p><img src="https://img-blog.csdnimg.cn/328dedc7702b4e5e9334ef57dbfcb31c.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>选择烧录的系统，除了官方推荐的，还有Ubuntu和其他种类的，我这里用的是这个<br><img src="https://img-blog.csdnimg.cn/fe52784858f74502bf53f7dca907bb98.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>我选择的是带桌面的，Lite是只有命令行，Full是不但有桌面，还有一些自带软件</strong>。我手头有屏幕，桌面会帮我省很多事，大家按需下载就好。<br><strong>注意SD卡，别选错了，烧录过程是格式化的，数据无价</strong>。<br>选好之后，右下角有个设置可以进行更改：<br><img src="https://img-blog.csdnimg.cn/c0bc05e0d2d84494b48fb84dee5618c5.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>你可以设置主机名：在路由器上你这个设备的名字。<strong>要开启SSH</strong>，后面用来远程连接树莓派。<strong>还要设置用户名和密码</strong>，这个很重要，别忘了，当然也可以用默认的，如果你用的系统是raspberry pi，默认用户名是pi，密码raspberry（ps：我看有贴说官方已经移除了默认用户，或许只能烧录的时候设置了），其他系统有所不同，这个我也没看过。你还可以配置WiFi，不过这个好像不大行可以试试，不过wifi国家一定要CN。除非你不在国内。</p>
+<p><img src="https://img-blog.csdnimg.cn/0ed9bbc79b75471286bd0ba3202942cc.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>烧录就好了，它会自动格式化，非常简单，还有自动验证，还能省去很多配置步骤，为什么没人推荐呢？？？<br>如果不想用官方烧录，要用别的，我这里也说一下。首先，<strong>你需要一个SD卡格式工具和一个烧录工具</strong>，我下载了贴里各种软件，在链接里已经整合给大家。大家注意用管理员权限运行，否则有些会有问题。<br>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/125eILvcDr8-avgbSO2Eu2Q">https://pan.baidu.com/s/125eILvcDr8-avgbSO2Eu2Q</a><br>提取码：4cyu</p>
+<p>各种软件都大同小异，首先格式化，打开格式化软件，选择SD卡格式化就ok了，如果需要选择格式化的格式，FAT32就好了（一般都没有这个选项）。<br>注：我看有的贴说快速格式化不行，要覆盖格式化（overwrite），我试过了，不行的还是不行。不过把这个信息提供给大家。<br>之后你要自己下载一个系统，从官网也可以，从别的地方也可以，下载下来的一般都是img文件。之后选择一个烧录工具，选择你的img文件，选好你要烧录到的设备，写入就ok了。<br><img src="https://img-blog.csdnimg.cn/ce0abd02ec9244eeb7eba5ff3904f1f7.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>注意，写入完成后windows会想要格式化这个设备，<strong>直接取消就行</strong>，不然就白烧了。<br>如果你用的非官方烧录，就无法直接配置设置，还需要一下操作。此时你的计算机应该应该会有一个Boot的设备，里面是烧录好的文件，<strong>在根目录也就是boot文件夹下创建一个ssh的文件，不要后缀，表示开启ssh服务。之后新建一个wpa_supplicant.conf的文件用来联网</strong>，编辑如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c">country=CN<br>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev<br>update_config=<span class="hljs-number">1</span><br> <br>network=&#123;<br>	ssid=<span class="hljs-string">&quot;wifi名&quot;</span><br>	psk=<span class="hljs-string">&quot;wifi密码&quot;</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>按正常来说，此时你把TF卡弹出，插入树莓派就OK了，<strong>然而如果这么简单我就不会搞3天了</strong>。下面我将整理我烧录树莓派系统是出现的问题以及我查看的贴提出的解决方法。</p>
+<h1 id="三、系统烧录故障情况"><a href="#三、系统烧录故障情况" class="headerlink" title="三、系统烧录故障情况"></a>三、系统烧录故障情况</h1><p>先上一个LED灯闪烁的情况方便大家判断情况。<br><img src="https://img-blog.csdnimg.cn/067745f6d22f46059337a9dc895e0889.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>PWR是电源红灯，ACT是SD卡绿灯，其他的4b没有就不用看了。<br>ACT闪烁情况：<br><img src="https://img-blog.csdnimg.cn/70e28dc61e564d3c9502c3f9a5d3b77a.png#pic_center" srcset="/img/loading.gif" lazyload><br>下面说说我碰到的问题。</p>
+<h2 id="1-固件问题"><a href="#1-固件问题" class="headerlink" title="1.固件问题"></a>1.固件问题</h2><p>Raspberry Pi 4B eeprom firmware,bootloader，如果固件有问题，输出屏幕会一直提示firmware的错误，<strong>拔出tf卡再上电，绿色的LED不闪说明固件挂了</strong>，需要修复，<br>树莓派4b的固件是烧录在EEPROM里的，负责引导系统，没有固件或者固件不行了有系统也进不去。修复需用一个空的TF卡。在官方的烧录里提供了修复文件的烧录（官方烧录真的省事）<br><img src="https://img-blog.csdnimg.cn/52d5579144c049ae862185d85646e8af.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>进入这个Misc开头的，选择里面的Bootloader，选择sd card boot<br><img src="https://img-blog.csdnimg.cn/b7174b1cc27445979d06d5c91e901f32.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>然后烧录到修复卡里就好了，<strong>有可能不成功，多烧几次</strong>。<br>不想用官方的，也行，上官方的github：<a target="_blank" rel="noopener" href="https://github.com/raspberrypi/rpi-eeprom/tree/master/firmware/critical">官方github</a>。下载这3种最新的修复<br><img src="https://img-blog.csdnimg.cn/d56c0bcd477f4cf48df2598c80874b9b.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>放到FAT32格式话的TF卡中。修复卡就好了，问题是我试过了，感觉不一定能成功，原文链接因为看的太多找不见了……<br>实在不行我下载了官方的修复，并拷贝出来了，在链接里都有，送给大家，看看能不能用。<br>有了修复卡后，插入树莓派，上电，等一下，绿灯规律闪烁就ok了。<br>其他修复方法链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1it4y1y7uQ/">https://www.bilibili.com/video/BV1it4y1y7uQ/</a></p>
+<h2 id="2-验证失败"><a href="#2-验证失败" class="headerlink" title="2.验证失败"></a>2.验证失败</h2><p>无论树莓派官方的烧录还是其他的，都可以提供验证操作，用来判断烧录的和原来的是不是一样，像上面的Win32DiskImager需要生成检验值，再进行检验，其他的可以自动检验。<strong>如果出现的结果是验证失败。那么你就有的罪受了，表示你的卡出问题了</strong>，具体什么问题，要进一步分析。（自动检验的烧录如果验证失败是不会烧录的，所以你TF卡还是空的）</p>
+<h2 id="3-插入主板，报错：VFS-Unable-to-mount-root-fs-on-unknown-block-179-2"><a href="#3-插入主板，报错：VFS-Unable-to-mount-root-fs-on-unknown-block-179-2" class="headerlink" title="3.插入主板，报错：VFS Unable to mount root fs on unknown-block(179,2)"></a>3.插入主板，报错：VFS Unable to mount root fs on unknown-block(179,2)</h2><p>这是常见的错误，表示卡中的内容有问题，解决方法：</p>
+<h3 id="1-重新格式化，重新烧录"><a href="#1-重新格式化，重新烧录" class="headerlink" title="1 重新格式化，重新烧录"></a>1 重新格式化，重新烧录</h3><p> 一般没用。我看有的贴说快速格式化不行，要覆盖格式化（overwrite），我试过了，不行的还是不行。不过把这个信息提供给大家。或者用DiskGenius这种磁盘管理工具格式化，删除设备分区，再直接格式化为FAT32，再烧录，不过这个软件操作起来有风险（操作不慎电脑硬盘直接无），至于效果是不是更好我也不好说。</p>
+<h3 id="2-将TF卡挂在在Linux系统下，用Linux指令进行修复"><a href="#2-将TF卡挂在在Linux系统下，用Linux指令进行修复" class="headerlink" title="2. 将TF卡挂在在Linux系统下，用Linux指令进行修复"></a>2. 将TF卡挂在在Linux系统下，用Linux指令进行修复</h3><p> 树莓派的系统本身也是Linux，用Linux修复Linux。但是首先，我们需要一个Linux系统。方法如下：</p>
+<ul>
+<li><p>WSL：适用于 Linux 的 Windows 子系统，可以在windows下面搞linux，最新的是wsl2。在控制面版中选择程序，程序和功能下面的启用或关闭windows功能。<br><img src="https://img-blog.csdnimg.cn/815ea0b230fd468aa36d3babfc979daf.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>找到这两个，打勾开启，重启电脑<br><img src="https://img-blog.csdnimg.cn/fcae3909850b4bb183e4a82d19ce0402.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>之后在自带的微软商店里找Ubuntu或者搜Linux<br> <img src="https://img-blog.csdnimg.cn/04c8fecad3954a2f835ec4c0f795e296.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>能不能下载，就看各位的造化了</strong>，成功的话，打开就是Linux的命令行了。<br>另外的设置方法：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45027467/article/details/106862520">https://blog.csdn.net/weixin_45027467/article/details/106862520</a></p>
+</li>
+<li><p>虚拟机大法好<br> 很明显我方法1没有成功，迫不得已只能上虚拟机了。VMware虚拟机，用免费的player版本，官网；<a target="_blank" rel="noopener" href="http://www.vmware.com/cn%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%90%8E%E5%AE%89%E8%A3%85%E5%B0%B1ok%E3%80%82">http://www.vmware.com/cn，下载后安装就ok。</a><br>除此之外，还需要一个Linux的镜像，我用的是Ubuntu。<strong>都在链接里</strong>。<br>准备好之后，新建虚拟机<br><img src="https://img-blog.csdnimg.cn/4d6852c7fb784558b7a4c5a5e48a01ca.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>选择下载好的系统镜像<br><img src="https://img-blog.csdnimg.cn/de246ac087f343e5a4a044a596da50ba.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>设置名称密码，之后就是选择虚拟机位置，选择一个剩余空间大点的盘，虚拟机占用的比较多，剩下的按推荐就好了。<br>成功之后重启，就有一个Ubuntu的虚拟机了。插入TF卡，选择接入虚拟机，就可以进行接下来的操作了。<br>其他虚拟机安装教程：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/41940739">https://zhuanlan.zhihu.com/p/41940739</a></p>
+</li>
+<li><p>修复操作：<br>打开命令行：桌面ctrl+alt+t，查看sd卡分区</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">fdisk -l<br></code></pre></td></tr></table></figure>
+
+<p>找到sd卡的分区：一般为&#x2F;dev的分区<br>修复：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">fsck.ext4 -v /dev/sdb2<br></code></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">fsck -f -v -r /dev/sdb2<br></code></pre></td></tr></table></figure>
+
+<p>一般需要root权限，在指令前面加上sudo，如sudo fsck -f -v -r &#x2F;dev&#x2F;sdb2就ok了。<br>如果成功，就ok了。可惜我没有成功……<br>其他Linux修复：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cp562090732/article/details/46618347">https://blog.csdn.net/cp562090732/article/details/46618347</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37082966/article/details/110231836">https://blog.csdn.net/qq_37082966/article/details/110231836</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lhl_blog/article/details/106952234">https://blog.csdn.net/lhl_blog/article/details/106952234</a></p>
+<h2 id="3-Linux修复报错"><a href="#3-Linux修复报错" class="headerlink" title="3.Linux修复报错"></a>3.Linux修复报错</h2><p>在我尝试修复时，Linux报错resize2fs: Bad magic number in super-block，超级块损坏，我按照后面的修复提示操作了，没有用。网上说还有什么分区表出错什么的情况，我本来对Linux也不熟，对磁盘修复什么的就更不会了，网上的帖子看也看不懂，最后只能止步于此。<strong>GG</strong></p>
+<h2 id="4-烧录过程或者格式化过程中弹出拒绝访问"><a href="#4-烧录过程或者格式化过程中弹出拒绝访问" class="headerlink" title="4.烧录过程或者格式化过程中弹出拒绝访问"></a>4.烧录过程或者格式化过程中弹出拒绝访问</h2><ul>
+<li>a.弹出TF卡再插入（一般就ok，不行重启电脑）</li>
+<li>b.用DiskGenius删除分区格式化后再新建分区。</li>
+</ul>
+<h2 id="5-其他尝试"><a href="#5-其他尝试" class="headerlink" title="5.其他尝试"></a>5.其他尝试</h2><p>我还在虚拟机中下了官方的烧录，在虚拟机中进行烧录，结果是一样的验证失败。我还尝试烧录Ubuntu的系统，插入树莓派后直接就是找不到内核。我还看到有Noobs可以绕过烧录进行系统安装，不过我在官网上已经找不到资源了。</p>
+<p><strong>最后，当我搞到超级块损坏的时候，我就觉得我这个TF卡估计是歇菜了，当时图便宜从咸鱼上买了2张64G的，到头来没一个能用的，我只好在淘宝上买了32G的TF卡，到货后，官方烧录直接通过，啥事没有。看到这里还没解决的朋友，我劝你想想是不是TF卡的原因，在买个好点的试试。虽然我最后没有解决问题，但我还是把我解决的经历分享出来，希望能帮助到大家。</strong></p>
+<h1 id="四、进系统后的设置"><a href="#四、进系统后的设置" class="headerlink" title="四、进系统后的设置"></a>四、进系统后的设置</h1><ul>
+<li>有屏幕的话，直接接个鼠标键盘就能用了，没有屏幕的话，要先联SSH。<br><strong>保证你电脑和树莓派在之前设置好的同一wifi里</strong>。</li>
+<li>查看树莓派ip：由于我有屏幕，直接就能看，没有屏幕的话也有办法，我从网上看到了一些方法，其中ip扫描的软件我也放链接里了，但我没用过：<br><a target="_blank" rel="noopener" href="https://www.labno3.com/2021/08/02/finding-the-ip-address-of-your-raspberry-pi/">https://www.labno3.com/2021/08/02/finding-the-ip-address-of-your-raspberry-pi/</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mark_md/article/details/107689003">https://blog.csdn.net/Mark_md/article/details/107689003</a></li>
+<li>本地电脑用SSH连接需要下软件，推荐Xshell（链接里都有）<br>安装之后，打开，新建会话<br><img src="https://img-blog.csdnimg.cn/8c1b88f545a24bbd81369e8a1b94e7a2.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>在主机里输入树莓派的ip</strong>，就行了，连接时需要输入树莓派的名称和密码，就是在烧录时候设置的。</li>
+<li>能够进入命令行后，基本就完事了，可以先更新一下系统和软件。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt-get update<br>sudo apt-get upgrade<br></code></pre></td></tr></table></figure>
+<p>觉得下载太慢的可以换源，我这里速度还行，就没换。</p>
+<ul>
+<li>树莓派的系统设置：输入<code>sudo raspi-config</code><br>里面可以改树莓派的一些设置，像时区什么的，也可以改中文，不过建议先安中文字库<br>安装中文字库：<code>sudo apt-get install ttf-wqy-zenhei</code><br>安装中文输入法:<code>sudo apt-get install scim-pinyin</code>（安了但我用不了，很奇怪）</li>
+<li>扩展分区：在sudo raspi-config后的主页面中选择Advanced Options，选择A1 Expand Filesystem确定就好了，系统会把分区扩展到整个TF卡。</li>
+<li>开启VNC：有桌面的话可以用这个，相当于远程桌面。在sudo raspi-config后的主页面中选择Interfacing Options,找到VNC将它enable就ok了。电脑需要下载客户端，连接方法和SSh一样，用ip就行了。</li>
+</ul>
+<p>现在你可以用自己电脑操作树莓派了，树莓派的初始化就差不多了，开始装软件吧。<br><strong>关于静态IP的问题</strong>：我尝试设置静态ip，结果直接上不了网了，最后重装系统才行的，我再想想看怎么搞。<br><strong>我也不是万能的，我只是把我入手树莓派的经历分享出来，有很多问题和情况我没有碰到或者没有说明的，各位可以去看看别的贴。</strong><br>谢谢大家。<br>资源链接；链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/125eILvcDr8-avgbSO2Eu2Q">https://pan.baidu.com/s/125eILvcDr8-avgbSO2Eu2Q</a><br>提取码：4cyu</p>
+<style>
+  p {text-indent:2em;} 
+</style>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">#树莓派</a>
+      
+        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>树莓派4b入门以及各种系统烧录问题分享</div>
+      <div>https://357meng.github.io/2022/10/11/shumeipai00/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mengki</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月11日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年12月20日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/12/fadai/" title="发呆页面">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">发呆页面</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/27/Cplusplus00/" title="String类常见用法总结（C++）">
+                        <span class="hidden-mobile">String类常见用法总结（C++）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"NSS2f8i8dzd2yjWuxHKDsjMK-gzGzoHsz","appKey":"jkZNtRhI868kvI72itm1QArw","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>Mengki</span> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+<span>全站字数：116k</span>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

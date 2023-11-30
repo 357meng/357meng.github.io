@@ -1,0 +1,924 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mengki">
+  <meta name="keywords" content="个人博客，个人分享">
+  
+    <meta name="description" content="八、	C语言入门大作业——信息管理系统（多文件版）C语言大作业学过的都知道这是一个对C语言综合应用的考核，也是对项目开发的实践，信息管理系统是C语言历史悠久的压轴，因为它用来综合使用C语言在合适不过了，今天我也用这个来做为这一系列的结尾，希望大家都能用C语言实现自己期望的目标和项目。信息管理只要4个核心功能——增删查改。信息管理系统的东西还是很多的，我这里精简一下，我们只要来实现5大功能：新建、查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言总结项目和入门大作业——信息管理系统（多文件版）">
+<meta property="og:url" content="https://357meng.github.io/2021/09/01/C07/index.html">
+<meta property="og:site_name" content="MengkiPage">
+<meta property="og:description" content="八、	C语言入门大作业——信息管理系统（多文件版）C语言大作业学过的都知道这是一个对C语言综合应用的考核，也是对项目开发的实践，信息管理系统是C语言历史悠久的压轴，因为它用来综合使用C语言在合适不过了，今天我也用这个来做为这一系列的结尾，希望大家都能用C语言实现自己期望的目标和项目。信息管理只要4个核心功能——增删查改。信息管理系统的东西还是很多的，我这里精简一下，我们只要来实现5大功能：新建、查">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://357meng.github.io/img/C.jpg">
+<meta property="article:published_time" content="2021-09-01T13:14:43.000Z">
+<meta property="article:modified_time" content="2022-10-31T09:33:04.884Z">
+<meta property="article:author" content="Mengki">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="知识总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://357meng.github.io/img/C.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>C语言总结项目和入门大作业——信息管理系统（多文件版） - MengkiPage</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extension.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>MengkiPage</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- weather -->
+    <!-- 添加天气 -->
+
+<div id="he-plugin-simple"></div>
+<script>
+WIDGET = {
+  "CONFIG": {
+    "modules": "01234",
+    "background": "5",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "20",
+    "cityColor": "FFFFFF",
+    "citySize": "20",
+    "aqiColor": "FFFFFF",
+    "aqiSize": "20",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "fixed": "false",
+    "vertical": "top",
+    "horizontal": "left",
+    "key": "ccc947744b17444186d510ec360b4500"
+  }
+}
+</script>
+<script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/playlist/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/video/">
+                <i class="iconfont icon-bilibili"></i>
+                视频
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/xihuan/">
+                <i class="iconfont icon-youtube-fill"></i>
+                自作
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C语言总结项目和入门大作业——信息管理系统（多文件版）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mengki
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-01 21:14" pubdate>
+          2021年9月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          29k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          242 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C语言总结项目和入门大作业——信息管理系统（多文件版）</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：1 年前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="八、C语言入门大作业——信息管理系统（多文件版）"><a href="#八、C语言入门大作业——信息管理系统（多文件版）" class="headerlink" title="八、	C语言入门大作业——信息管理系统（多文件版）"></a>八、	C语言入门大作业——信息管理系统（多文件版）</h1><p>C语言大作业学过的都知道这是一个对C语言综合应用的考核，也是对项目开发的实践，<strong>信息管理系统是C语言历史悠久的压轴</strong>，因为它用来综合使用C语言在合适不过了，今天我也用这个来做为这一系列的结尾，希望大家都能用C语言实现自己期望的目标和项目。<br><strong>信息管理只要4个核心功能——增删查改。</strong><br>信息管理系统的东西还是很多的，我这里精简一下，我们只要来实现<strong>5大功能：新建、查找、删除、修改、清空，并在文件中保存。同时我们将再次使用多文件编程（DevC++版），补充前面对多文件编程的漏洞，详细讲述条件编译和外部变量在多文件中的使用，我们将接触更多的系统函数，以及很多新鲜的用法。</strong><br>大家或许会觉得程序之间的关联性很强，一下子理不清关系，这是正常的，因为这个程序是我写完之后我知道什么是什么，不同函数遵循什么的规定，这些是我规划了很长时间才出来的，我会尽量讲的详细一点，大家多看肯定能看懂的。</p>
+<h2 id="一、功能模块的划分："><a href="#一、功能模块的划分：" class="headerlink" title="一、	功能模块的划分："></a>一、	功能模块的划分：</h2><p>大型项目首先要知道我们需要实现什么功能，再把这些功能向下划分，形成一个个可重复利用的函数，这也是封装的一种（自顶向下）。<br>首先，我们有5个功能，最起码5个函数就有了吧，其次我们还要保存在文件中，文件的读写函数也要有，2+5&#x3D;7个了，这是第一级划分，还可以再向下细分，这里就因人而异了，当然随时把现成的代码块封装成函数也是可以的，功能细分只是可以让你对这个项目有更好的认识。</p>
+<h2 id="二、多文件的编写"><a href="#二、多文件的编写" class="headerlink" title="二、	多文件的编写"></a>二、	多文件的编写</h2><p>一般来说，同一类功能的函数（math.h）或者同一文件中的函数放在同一个文件中。我这里使用了2个文件，一个文件放和文件读写相关的函数，另一个放和这个项目有关的所有函数。当然这样还是笼统的分，分多少文件也看个人习惯，这里做简单处理，就分2个吧，再加上对应的头文件和main函数文件，本项目共5个文件。<br>Dev c++多文件编写：<br>首先，打开。<br><img src="https://img-blog.csdnimg.cn/de24ce9dd98a4522a8510edeaca32fca.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>文件—新建—项目（<strong>所有的多文件工程都要新建项目</strong>）<br><img src="https://img-blog.csdnimg.cn/aa7b9f4e72f5452ea3d2ce51781e4fe2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>我们选第二个：控制台程序，并选择C语言<br><img src="https://img-blog.csdnimg.cn/232531de4f664a249458d98c9298cb25.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>选择一个保存项目的地方。<strong>最好新建一个属于这个项目的文件夹，方便后续添加文件。</strong><br>保存，OK，项目就好了。<br>它会自动提供一个main函数模板</p>
+<p><img src="https://img-blog.csdnimg.cn/19d03920e1c74e708684099e77336af7.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>咱们用自己写的，不用它这个。<br><img src="https://img-blog.csdnimg.cn/b65b2b399abe475ea8bd93c2e9545f4b.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>左侧项目管理可以管理这个项目的文件，咱们先把它自带的这个移除，右键移除就OK。<br>然后就可以添加自己的文件了，我们先新建一个文件<br><img src="https://img-blog.csdnimg.cn/ab86a3ea320b46b0bd00214dd92fc504.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>第一个，然后把main函数写进去，保存为main.c（前面的章节讲过了，这里略）<br>右键项目（就上面这个5（你自己命名的项目名））-添加，找到刚刚的文件就OK了。<br>用这种方法把需要的5个文件添加进去。<br>这里我已经规划好了，所以文件是直接全部新建导入的，实际在开发中文件是随时整理，随时编写的，什么时候觉得需要就可以搞。<br><img src="https://img-blog.csdnimg.cn/248bedc4231249a0a5fb640b3172d24b.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="三、基本函数的实现（重点）"><a href="#三、基本函数的实现（重点）" class="headerlink" title="三、	基本函数的实现（重点）"></a>三、	基本函数的实现（重点）</h2><p>我们把所有函数都进行封装，使main函数得到精简。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> temp=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span>(temp)<br>	&#123;<br>		<span class="hljs-keyword">switch</span>(Menu())<br>		&#123;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>				Build();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>				Seek();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>				Amend();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>				Delete();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>				Clear();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>				temp = <span class="hljs-number">0</span>;<br>		&#125;<br>		getchar();<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>这是最终main函数的样子。其余所有功能都靠函数实现，这些东西都会讲到，莫急莫急。</p>
+<ul>
+<li>菜单函数<br>首先我们来实现<strong>菜单函数</strong>。<br>菜单函数很简单，显示选择项，输入选项，OK了，</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Menu</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> n;<br>	<span class="hljs-keyword">do</span>&#123;<br>	system(<span class="hljs-string">&quot;cls&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n\n\n\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t\t   \n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|----------信息管理系统----------|\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t1.新建联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t2.查看联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t3.修改联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t4.删除联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t5.清空联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t6.退出                   |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|--------------------------------|\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t请输入选项&lt;1~6&gt;:&quot;</span>);<br>	<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	<span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">6</span>||n&lt;<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入有误，请重新输入\a&quot;</span>);<br>		getchar();<br>		getchar();<br>		system(<span class="hljs-string">&quot;cls&quot;</span>);<br>	&#125;<br>	&#125;<span class="hljs-keyword">while</span>(n&gt;<span class="hljs-number">6</span>||n&lt;<span class="hljs-number">1</span>);<br>	getchar();<br>	<span class="hljs-keyword">return</span> n;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>需要注意的是，我们通过菜单函数的返回值来判断用户输入了几，同时对于非法输入，应当提示重新输入，保证完整性。<br><strong>这个system(“cls”);是什么，这是一个系统函数，看system就知道了，cls是它的参数，实现的功能是小黑窗清屏，就是清除之前小黑窗（控制台命令行）的所有内容</strong>，由于我们这个程序会不断的循环执行，时间长了东西会很多，这里采用每次显示菜单的时候就进行清屏刷新的方式。<br>大家会发现这里用了很多好像没啥用的getchar();前面说了，这是读取一个字符的函数，但没有接收它的返回值，所以它相当于<strong>白读</strong>，实际上它<strong>起到的作用是阻碍程序进行</strong>，当程序运行到这里，它必须等待一个输入才能继续，<strong>相当于按任意键继续的感觉</strong>，由于我们有清屏函数的存在，如果程序不停的话，它printf的东西我们还没看呢，清屏了，啥也没有，就很难受。<br>有时候会连续出现2个getchar();这是因为上一次的键盘输入会产生输入的缓存，需要先用一个来消除，然后才能正确接收，只用一个的话就直接从缓存中读了一个字符，而和我们的输不输入没啥关系了，<strong>所以要先消耗缓存中的字符，这一点在输入字符串的时候尤为关键。</strong><br>菜单函数和main函数放在一起了。</p>
+<p>好了，接下来重头戏来了，我们写一下<strong>主体功能</strong>的实现<br>首先，我们写一下我们管理的东西的一些信息，我这里是用的人。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span><br>	<span class="hljs-type">char</span> phone[<span class="hljs-number">15</span>];	<span class="hljs-comment">//手机 </span><br>	<span class="hljs-type">char</span> name[<span class="hljs-number">100</span>];	<span class="hljs-comment">//名字 </span><br>	<span class="hljs-type">char</span> num[<span class="hljs-number">20</span>];	<span class="hljs-comment">//工号 </span><br>	<span class="hljs-type">char</span> ad[<span class="hljs-number">50</span>];	<span class="hljs-comment">//地址 </span><br>	<span class="hljs-type">char</span> sex;	<span class="hljs-comment">//性别 </span><br>	<span class="hljs-type">int</span> age;	<span class="hljs-comment">//年龄 </span><br>&#125;People;<br><br></code></pre></td></tr></table></figure>
+
+<p>同时用typedef重新定义这个结构体为People，现在我们就有了People这个数据类型了。<br>我们需要不断输入，通过输入判断是否结束，这意味着我们需要用链表来存储，我们再写一个链表的结构体。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span><br>	People peo;<br>	<span class="hljs-type">int</span> id;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>* <span class="hljs-title">p_next</span>;</span><br>&#125;Node;<br><br><br></code></pre></td></tr></table></figure>
+
+<p>这是链表中的节点结构体，包含这个节点存放的信息peo，这个节点的id，下一个节点的指针。并重定义为Node。</p>
+<ul>
+<li>新建函数</li>
+</ul>
+<p>接下来，我们将编写“增”——新建函数，在此之前先来说说我的思路。编写程序最重要的就是思路，思路有了编不出来就是对这个语言的了解不够，当你不知道如何实现，没有思路的时候，数据结构和算法就是时候去学习一下了。<br><strong>我们用链表结构存放我们输入的数据，如果我们没有输入特定的结束字符，就一直新建，同时我们用一个全局变量来记录我们生成了多少个节点（数据），这个数字将存在文件中表示文件中存放了多少个数据。</strong><br>Ps：虽然按道理我们只要一块一块的写入，再一块一块的读出，是能够正好读完的，用文件的结束标志就能完全读入，本应没必要再记录，但我写的程序总是会多载入一些乱码数据，以我的实力难以解决，只能出此下策。如有大神能指点迷津，甚是感谢！<br>需要注意的是，数据新建的时候是分为2种情况的，之前有数据和之前没有数据，要分开处理。我们做如下规定：当没有数据时，head指针为空，当存在数据时，head指针指向数据.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//新建函数，返回头节点 </span><br>Node* <span class="hljs-title function_">Create</span><span class="hljs-params">(Node* head)</span><br>&#123;<br>	Node* p_old,*p_new;<br>	People t;<br>	<br>	<span class="hljs-keyword">if</span>(!Input(&amp;t))<br>	&#123;<br>		<span class="hljs-keyword">return</span> head;		<span class="hljs-comment">//没有新建 </span><br>	&#125;<br>	<span class="hljs-keyword">if</span>(!head)<br>	&#123;<br>		head = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>		p_old = head;<br>		p_new = head;<br>		p_new-&gt;id = <span class="hljs-number">0</span>;<br>		p_new-&gt;peo = t;<br>		p_new-&gt;p_next = <span class="hljs-literal">NULL</span>;<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>		p_new = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>		<span class="hljs-keyword">for</span>(p_old = head;p_old-&gt;p_next != <span class="hljs-literal">NULL</span>;p_old = p_old-&gt;p_next);<br>		p_old-&gt;p_next = p_new;<br>		p_new-&gt;id = p_old-&gt;id+<span class="hljs-number">1</span>;<br>		p_old = p_new;<br>		p_new-&gt;peo = t;<br>		p_new-&gt;p_next = <span class="hljs-literal">NULL</span>;<br>	&#125;<br>	Number++;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!Input(&amp;t))<br>		&#123;<br>			<span class="hljs-keyword">return</span> head; <br>		&#125;<br>		<br>		p_new = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>		Number++;<br>		p_new-&gt;id = p_old-&gt;id+<span class="hljs-number">1</span>;<br>		p_new-&gt;peo = t;<br>		p_old-&gt;p_next = p_new;<br>		p_new-&gt;p_next = <span class="hljs-literal">NULL</span>;<br>		p_old = p_new;<br>		<br>	&#125;<br>	<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>我们用一个局部变量t来接收每次的输入。<br>我还编了一个<strong>输入函数</strong>，实现每次的输入</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//输入函数 </span><br><span class="hljs-type">int</span> <span class="hljs-title function_">Input</span><span class="hljs-params">(People* p)</span><br>&#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n输入姓名（输入#中止）：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;name);<br>	<span class="hljs-keyword">if</span>(p-&gt;name[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;#&#x27;</span>)<br>	&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;	<br>	&#125; <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入年龄：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;p-&gt;age);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入性别(m-男,f-女)：&quot;</span>);<br>	getchar();<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;p-&gt;sex);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入手机号：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;phone);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入地址：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;ad);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入工号:(没有输入-1)&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;num);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p><strong>通过一个People的指针的传入，直接对对应位置的结构体赋值。并规定退出符号——名字输入#，则返回0，表示输入结束符号，否则返回1，表示正常输入</strong>。其他的都是小玩意，可有可无的。我这里是考虑到不是人人都有编号，所以对编号的输入进行了规定，这些都是小问题。<br>当输入结束时，就返回头指针。对于第一次输入就退出的话，相当于没有新建，就把头指针原封不动的返回去。对于有新输入的话，我们会在后面进行合适的处理，保证头指针指向的链表是完整的。<br>当输入有效时，我们就可以建立空间存放这个新数据了，这里分2中情况，第一次新建和之前有数据，这个可以根据头指针来区分。<br>对于新建的，就好说了，我们直接新建一个空间，放刚刚输入的数据（**结构体可以直接赋值p_new-&gt;peo &#x3D; t;**）并让id&#x3D;0。对于之前存在数据的话，我们先新建一个节点空间，并通过<br>for(p_old &#x3D; head;p_old-&gt;p_next !&#x3D; NULL;p_old &#x3D; p_old-&gt;p_next);<br>这一个for循环定位原来数据的最后一个，这是一个循环体为空的for循环，大家知道for循环的机制应该是可以明白的，当p_old指向的下一个节点为NULL时，即为最后一个节点，此时p_old就定位在最后一个节点上。<br>之后就是关联，id递加，赋值，老节点跟进，和前面链表的时候一样的。</p>
+<p>由于我们开始的时候新建了一个，全局变量Number+1，表示多了一个，很好理解。<br>之后循环输入，用死循环+条件退出的形式。每次新建，关联，id递加，赋值，老节点跟进，并更新Number，没啥好说的。<br><strong>重点是：每次新建的节点，我都会让它的下一个节点指向默认为NULL，这样如果输入结束的话，直接返回头指针，也可以保证链表最后一个指针指向NULL，从而保证链表的完整性。</strong></p>
+<ul>
+<li>查找函数：</li>
+</ul>
+<p>我们提供除id以外的全因素查找，我这里id是当作内部资源不对外开放的，虽然也有id的查找函数但是内部使用的。缺点是只能返回查找到的第一个，原本我希望的是能返回所有符合结果的id号构成的数组，但这样的话需要一个动态数组来实现，工程量又大了不少，等我以后有空再更新吧。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//查找函数，head-头指针，k-方式选择 </span><br><span class="hljs-type">int</span> <span class="hljs-title function_">Find</span><span class="hljs-params">(Node* head,<span class="hljs-type">int</span> k)</span><br>&#123;<br>	<span class="hljs-type">char</span> n[<span class="hljs-number">50</span>];<br>	<span class="hljs-type">int</span> m;<br>	Node *p = head;<br>	<span class="hljs-keyword">switch</span>(k)<br>	&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:		<span class="hljs-comment">//名字查 </span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找姓名:&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,n);<br>			FindName(n,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:		<span class="hljs-comment">//年龄查 </span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查看的年龄：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;m);<br>			FindAge(m,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:		<span class="hljs-comment">//手机号查</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找的手机号:&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,n);<br>			FindPhone(n,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:		 <span class="hljs-comment">//地址查</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找地址:&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,n);<br>			FindAd(n,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:		<span class="hljs-comment">//性别查</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找性别m-男，f-女:&quot;</span>);<br>			getchar();<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;n[<span class="hljs-number">0</span>]);<br>			FindSex(n[<span class="hljs-number">0</span>],head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:		<span class="hljs-comment">//工号查</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找工号:&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,n);<br>			FindNum(n,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:		<span class="hljs-comment">//全部显示</span><br>			ShowAll(head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>: <br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入错误\a\n&quot;</span>);<br>	&#125;<br>	<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>这里我对于每种方式的查找都封装了自己函数，其实它们大同小异。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//想实现能全部找到返回各个序号的，但这需要动态数组，比较麻烦 </span><br><span class="hljs-type">int</span> <span class="hljs-title function_">FindName</span><span class="hljs-params">(<span class="hljs-type">char</span> name[],Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.name,name))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age,Node *head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(p-&gt;peo.age == age)<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindPhone</span><span class="hljs-params">(<span class="hljs-type">char</span> Phone[],Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.phone,Phone))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>	<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindAd</span><span class="hljs-params">(<span class="hljs-type">char</span> ad[],Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.ad,ad))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindSex</span><span class="hljs-params">(<span class="hljs-type">char</span> sex,Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(sex == p-&gt;peo.sex)<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindNum</span><span class="hljs-params">(<span class="hljs-type">char</span> num[],Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.num,num))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">//id查找 </span><br>Node* <span class="hljs-title function_">FindId</span><span class="hljs-params">(<span class="hljs-type">int</span> id,Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(p-&gt;id == id)<br>		&#123;<br>			<span class="hljs-keyword">return</span> p;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-keyword">if</span>(!p)<br>	&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>通过for循环遍历，找到就打印，没有找到就输出提示，大体都是这个思路，只不过字符串比较要用strcmp函数。<br>所有查找函数中，只有姓名查找和id查找有返回值，姓名查找返回是否存在，id查找返回节点指针，为什么这样设计，这是和我之后的安排相关的，因为之后的改和删都需要这两个查找函数。所以它们要顶一点。<br>同时，我也编写了打印函数，作为基础的输入输出函数使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//打印函数 </span><br><span class="hljs-type">void</span> <span class="hljs-title function_">Print</span><span class="hljs-params">(People *p)</span><br>&#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n姓名：%s\n&quot;</span>,p-&gt;name);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;年龄：%d\n&quot;</span>,p-&gt;age);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;性别：%c\n&quot;</span>,p-&gt;sex);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;电话：%s\n&quot;</span>,p-&gt;phone);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;地址：%s\n&quot;</span>,p-&gt;ad);<br>	<span class="hljs-keyword">if</span>((p-&gt;num)[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;-&#x27;</span>)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;工号：%s\n&quot;</span>,p-&gt;num);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>&#125;<br><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">ShowAll</span><span class="hljs-params">(Node* head)</span><br>&#123;<br>	Node* temp = head;<br>	<span class="hljs-keyword">while</span>(temp)<br>	&#123;<br>		Print(&amp;temp-&gt;peo);<br>		temp = temp-&gt;p_next;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>Print函数是对一个People类型的打印，ShowAll是输出所有people的数据，按照前面规定的，如果没有工号，就不输出。</p>
+<ul>
+<li>修改函数：</li>
+</ul>
+<p>这个有了前面查找函数的思路很简单，就是找到对应的节点数据，然后重新写值就OK，如果没有找到，就提示并退出。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//现在只能支持直接查找，等动态数组出来就可以随意处理了</span><br><span class="hljs-comment">//修改函数 （名字） </span><br><span class="hljs-type">void</span> <span class="hljs-title function_">Correct</span><span class="hljs-params">(<span class="hljs-type">char</span> a[],Node *head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-type">int</span> choice;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.name,a))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-keyword">if</span>(!p)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查到这个人，要修改什么:&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;1.姓名\t2.性别\t3.年龄\t4.地址\t5.工号\t6.电话7.全部重写\n请输入：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;choice);<br>	<span class="hljs-keyword">switch</span>(choice)<br>	&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新姓名：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;peo.name);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新性别：&quot;</span>);<br>			getchar();<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;p-&gt;peo.sex);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新年龄：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;p-&gt;peo.age);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新地址：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;peo.ad);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新工号：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;peo.num);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新电话：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;peo.phone);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:<br>			Input(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入错误\a&quot;</span>);<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>这个函数需要头指针指向的链表数据，和待查找的名字。</p>
+<ul>
+<li>删除函数：</li>
+</ul>
+<p>通过查找，找寻待删除的信息，如果删除，就进行链表的操作。<br>    链表的删除前面讲过了，这里再说一下，如果是头节点，就让头节点的下一个节点当头节点，如果是尾节点，就让倒数第二个节点的下一个节点指向空，如果是中间，就让前一个结点的下一节点指向后一个结点，需要注意的是，最后一定要释放删除的结点。<br>    每删除一个节点，Number就--。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//删除函数_目前只能看人名 </span><br> <span class="hljs-type">void</span> <span class="hljs-title function_">Det</span><span class="hljs-params">(Node* head,<span class="hljs-type">char</span> name[])</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-type">char</span> temp;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.name,name))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;	<br>	&#125;<br>	<br>	<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;确认删除吗:y-是，n-否&quot;</span>);<br>	getchar();<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;temp);<br>	<span class="hljs-keyword">if</span>(temp == <span class="hljs-string">&#x27;y&#x27;</span>)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(p == head)<br>		&#123;<br>			head = p-&gt;p_next;<br>		&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(p-&gt;p_next == <span class="hljs-literal">NULL</span>)&#123;<br>			Node *p1 = FindId(p-&gt;id<span class="hljs-number">-1</span>,head);<br>			p1-&gt;p_next =<span class="hljs-literal">NULL</span>;<br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			Node *p1 = FindId(p-&gt;id<span class="hljs-number">-1</span>,head);<br>			p1-&gt;p_next = p-&gt;p_next;<br>		&#125;<br>		<span class="hljs-built_in">free</span>(p);<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;OK\a\n&quot;</span>);<br>		Number--;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>我们还是通过和名字查找一样的方法得到指向待删除元素的指针。<br>我们首先提示一下，防止误操作，当得到确定的删除命令后，对上面的3中情况判断，然后释放删除空间，Number--，Ok。<br>大家可能会发现我这里没有查找失败，没有找到的情况，这是因为现在介绍的都是功能的核心程序，真正使用的话还要一个辅助程序，这个我们后面会讲。</p>
+<ul>
+<li>清空函数：</li>
+</ul>
+<p>大家或许有很多想法，但这个实现其实很简单，我们运用w方式打开文件时会格式化文件这个特性，就很方便了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Clear</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> temp;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;确定吗\a:y-确定，n-手滑了:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;temp);<br>	<span class="hljs-keyword">if</span>(temp == <span class="hljs-string">&#x27;y&#x27;</span>)<br>	&#123;<br>		FILE* fp ;<br>		<span class="hljs-keyword">if</span>(!(fp = fopen(TXT,<span class="hljs-string">&quot;wb&quot;</span>)))<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error\a\n&quot;</span>);<br>			<span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>		&#125;<br>		fclose(fp);<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;OK&quot;</span>);<br>		Number = <span class="hljs-number">0</span>; <br>		getchar();<br>		<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>我们打开，什么都不写立刻关闭文件，文件就清空了，是不是很方便。<br>这里的TXT是一个宏定义，表示文件名，后面文件操作函数会介绍。<br><strong>要注意的是，Number同时置0（这个BUG我找了好久……）</strong>。<br>大家或许发现我只是把文件清空了，但程序运行的时候，其实数据已经从文件中读到程序里了，这就意味着程序中仍然可以通过头指针访问这些数据。实际上，我的构想是每次进行数据操作时，都是先从文件中读出，再修改，再写入。所以下次的任何操作都会先读取文件，这样将会刷新head。<br><strong>注：这样的构造思路存在一个BUG，就是每次刷新都会开辟新内存空间，而原来的空间得不到释放，造成内存的严重浪费，虽然好像不怎么影响程序运行，但这对于C语言程序其实比较BUG的，虽然现在电脑性能有很大的提升，这点空间不足以挂齿，但这种思维的疏忽应当是写C程序的人所应当注意的，或许更好的解决方法是每次只在打开程序时读入，在结束程序时写入，而不是在每次操作中刷新，后面有时间我会更新这个BUG。</strong></p>
+<h2 id="四、文件操作函数"><a href="#四、文件操作函数" class="headerlink" title="四、文件操作函数"></a>四、文件操作函数</h2><p>好了，这些基本核心函数就完成了，下面是文件操作函数。<br>文件的操作，最简单的就是<strong>读写</strong>，所以我们来编写这两个函数。</p>
+<ul>
+<li>文件加载</li>
+</ul>
+<p>首先是文件加载，将文件中的数据加载到程序中。<br>我们用#define TXT “dat.txt”这个宏定义语句来定义打开的文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs c">Node* <span class="hljs-title function_">Load</span><span class="hljs-params">()</span><span class="hljs-comment">//失败返回空，没有返回空，有返回首地址 </span><br>&#123;<br>	FILE *fp;<br>	<span class="hljs-type">int</span> i;<br>	Node *head = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>	Node *p_old = head;<br>	Node *p_new = head;<br>	<span class="hljs-keyword">if</span>(access(TXT,<span class="hljs-number">0</span>))<br>	&#123;<br>		fp = fopen(TXT,<span class="hljs-string">&quot;w&quot;</span>);<br>		fclose(fp);<br>		<span class="hljs-keyword">if</span>(!(fp = fopen(TXT,<span class="hljs-string">&quot;rb&quot;</span>)))<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error&quot;</span>);<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>		&#125;<br>	&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!(fp = fopen(TXT,<span class="hljs-string">&quot;rb&quot;</span>)))<span class="hljs-comment">//存在，打开 </span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error\a\n&quot;</span>);<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>	&#125;<br>	<span class="hljs-comment">//空文件？ </span><br>	rewind(fp);<br>	<span class="hljs-keyword">if</span>(fgetc(fp) == EOF)<br>	&#123;<br>		<span class="hljs-built_in">free</span>(head);<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>	&#125;<span class="hljs-keyword">else</span><br>	&#123;<br>		rewind(fp);<br>	&#125;<br>	<br>	fread(&amp;Number,<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>),<span class="hljs-number">1</span>,fp);<br><br>	<span class="hljs-keyword">if</span>(!Number)<br>	&#123;<br>		<span class="hljs-built_in">free</span>(head);<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=Number;i++)<br>	&#123;<br>		fread(p_new,LEN,<span class="hljs-number">1</span>,fp);<br>		p_new = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>		p_old-&gt;p_next = p_new;<br>		p_old-&gt;id = i;<br>		p_old = p_new;<br>	&#125;<br>	<span class="hljs-built_in">free</span>(p_new);<br>	p_old = head;<br>	<br>	<span class="hljs-keyword">for</span>(;p_old-&gt;id != Number;p_old = p_old-&gt;p_next);<br>	<br>	p_old-&gt;p_next = <span class="hljs-literal">NULL</span>;<br>	fclose(fp);<br>	<span class="hljs-keyword">return</span> head;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>Load函数遵循规定，没有数据时就返回空。<br>access(TXT,0)这是一个新函数，其声明在头文件io.h中，这个函数用来判断文件的状态，我们这里用参数0的功能，来判断文件是否存在，如果文件不存在，就用w方式打开不存在文件时会新建文件这个功能来新建。如果文件本身存在，直接打开就OK。<br>之后我们判断是否是空文件，先将文件位置标志归位（文件开头）（其实这一步可以不用，但这样写更好理解），然后读取一个字符，判断是否是文件结束标志，如果是，说明文件是空的，就释放刚新建的空间，返回空指针，如果不是，就归位文件标志。<br>首先读入文件中数据个数Number（我们写的时候也是先写这个），如果个数为0，说明没有数据，就返回空指针。（文件空和没有数据是两种情况，因为我们的文件中还有一个数据个数参数）<br>之后就读入Number个数据，并用链表存放。<br>读完后，由于我们是开辟的下一个待读取的单元，所以会多开一个，我们把它释放掉，并找到读取的最后一个结点，让它的下一个指向空，关闭文件，返回头指针。</p>
+<ul>
+<li>保存函数：<br>先保存个数，再保存数据</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Save</span><span class="hljs-params">(Node* head)</span><br>&#123;<br>	FILE *fp;<br>	Node* p = head;<br>	<span class="hljs-keyword">if</span>(!head)	<span class="hljs-comment">//没有 </span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;kong&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(!(fp = fopen(TXT,<span class="hljs-string">&quot;wb&quot;</span>)))<span class="hljs-comment">//打开文件 </span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	fwrite(&amp;Number,<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>),<span class="hljs-number">1</span>,fp);<span class="hljs-comment">//写 </span><br>	<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<span class="hljs-comment">//写 </span><br>	&#123;<br>		fwrite(p,LEN,<span class="hljs-number">1</span>,fp);<br>	&#125;<br>	fclose(fp);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>如果头文件为空说明没有数据，就不报错，并提示，有数据的话，打开文件，写个数，循环写结点信息，OK。</p>
+<h2 id="五、函数的辅助函数"><a href="#五、函数的辅助函数" class="headerlink" title="五、函数的辅助函数"></a>五、函数的辅助函数</h2><p>我们对核心函数提供外围服务，使之成为可以真正使用的函数。</p>
+<ul>
+<li>新建函数：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Build</span><span class="hljs-params">()</span><br>&#123;<br><br>	Node* head = Load();<br>	head = Create(head);<br>	Save(head);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nOK\n&quot;</span>);<br>	getchar();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>这个很简单，先加载，再新建刷新头指针，之后再保存。</p>
+<ul>
+<li>查找函数：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Seek</span><span class="hljs-params">()</span><br>&#123;<br>	Node* head = Load();<br>	<span class="hljs-type">int</span> temp;<br>	<span class="hljs-keyword">if</span>(!head)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;列表空&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找方式：\n\t1.姓名\t2.年龄\t3.手机号\n\t4.地址\t5.性别\t6.工号\t7.全部显示:\n&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;temp);<br>	Find(head,temp<span class="hljs-number">-1</span>);<br>	getchar();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>同样的先加载，如果为空，还找啥，输出提示完事，否则选择查找方式，调用查找函数，OK</p>
+<ul>
+<li>修改函数：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Amend</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> a[<span class="hljs-number">50</span>];<br>	Node* head = Load();<br>	<span class="hljs-keyword">if</span>(!head)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;列表空&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入修改的姓名:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,a);<br>	Correct(a,head);<br>	Save(head);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nOK\n&quot;</span>);<br>	getchar();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>和查找函数大同小异，载入，获取修改姓名，调用函数，保存，OK</p>
+<ul>
+<li>删除函数：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Delete</span><span class="hljs-params">()</span><br>&#123;<br>	Node* head = Load();<br>	<span class="hljs-type">char</span> a[<span class="hljs-number">50</span>];<br>	<span class="hljs-keyword">if</span>(!head)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;列表空&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入删除的姓名:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,a);<br>	<span class="hljs-keyword">if</span>(FindName(a,head))<br>	&#123;<br>		Det(head,a);<br>		Save(head);<br>	&#125;<br>	<br>	getchar();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>和查找函数一样，载入，获取姓名，如果没有找到（这里就用到了姓名查找函数的返回值），就提示（这个提示在查找函数中就有了），啥也不干。如果找到了，就删除，保存，OK。<br>修改函数好像没有对未找到函数的判断，这是因为在correct函数中内含了，而det函数没有内涵没有名字的处理，所以要用外围辅助判断。这是两种函数的区别。<br>清空函数本身就能干大事，不用外围函数。</p>
+<h2 id="六、多文件编程和联系"><a href="#六、多文件编程和联系" class="headerlink" title="六、多文件编程和联系"></a>六、多文件编程和联系</h2><p>这一块我们将编写头文件，并对各个头文件之间进行关联。<br>先来写fun的头文件，头文件中包含所有fun中的函数的声明，这个就不用说，头文件中还可以包含结构体的定义，宏定义。</p>
+<p><strong>这里我们先介绍头文件编写的格式，</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> BASE</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASE</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br></code></pre></td></tr></table></figure>
+<p>#ifndef XXX……#endif，这是预处理指令，预处理指令是用来协调多文件的编译工作的，这个格式的意思是如果没有编译过XXX，就编译下面的指令。</p>
+<p>这个XXX是一个标志，要符合命名规则，我这里用BASE这个标志来标注下面这段代码（只有一个头文件包含指令）</p>
+<p>这个的用途是什么，<strong>当我们有多个文件都要用的时候，如这个头文件，很常用，每个文件都要用，如果你不包含这个头文件，你这个文件的函数就出错了，但如果直接包含，多个文件一起编译的时候，由于每个都包含一遍这个头文件，就会出现头文件重复包含的错误，这个结构就是解决这个问题的</strong>，对于每个单个文件，我本身没有定义BASE，当然会包含下面的头文件，对于多文件编译，当编译器编译了第一个BASE后，后面的BASE就会由于编译过而不在编译这一块，也是实现单次编译，OK。</p>
+<p>应当说明，<strong>实现这个效果，同一块编译的标志应该一样，不然你前面是BASE，后面编程BASS，编译器集体编译，发现没讲过BASS，一编译，发现里面一样，重复定义，没有用了</strong>。</p>
+<p>这个标志也有讲究，一般来说，会把本文件对应的所有编译块用和本文件相关的标志框起来。对于通用的编译文件，用统一的标识标注（上面的BASE）。</p>
+<p>说起来比较难理解，大家看实例就OK。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs c">fun.h头文件：<br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> BASE</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASE</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> FUN_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FUN_H</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> LEN sizeof(Node)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> TXT <span class="hljs-string">&quot;dat.txt&quot;</span></span><br><br><span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> Number;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span><br>	<span class="hljs-type">char</span> phone[<span class="hljs-number">15</span>];	<span class="hljs-comment">//手机 </span><br>	<span class="hljs-type">char</span> name[<span class="hljs-number">100</span>];	<span class="hljs-comment">//名字 </span><br>	<span class="hljs-type">char</span> num[<span class="hljs-number">20</span>];	<span class="hljs-comment">//工号 </span><br>	<span class="hljs-type">char</span> ad[<span class="hljs-number">50</span>];	<span class="hljs-comment">//地址 </span><br>	<span class="hljs-type">char</span> sex;	<span class="hljs-comment">//性别 </span><br>	<span class="hljs-type">int</span> age;	<span class="hljs-comment">//年龄 </span><br>&#125;People;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span><br>	People peo;<br>	<span class="hljs-type">int</span> id;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>* <span class="hljs-title">p_next</span>;</span><br>&#125;Node;<br><br><br>Node* <span class="hljs-title function_">New</span><span class="hljs-params">(Node *)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">Input</span><span class="hljs-params">(People* p)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Print</span><span class="hljs-params">(People *p)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">FindName</span><span class="hljs-params">(<span class="hljs-type">char</span> name[],Node* head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age,Node *head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindPhone</span><span class="hljs-params">(<span class="hljs-type">char</span> Phone[],Node* head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindAd</span><span class="hljs-params">(<span class="hljs-type">char</span> ad[],Node* head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindSex</span><span class="hljs-params">(<span class="hljs-type">char</span> sex,Node* head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindNum</span><span class="hljs-params">(<span class="hljs-type">char</span> num[],Node* head)</span>;<br>Node* <span class="hljs-title function_">FindId</span><span class="hljs-params">(<span class="hljs-type">int</span> id,Node* head)</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">ShowAll</span><span class="hljs-params">(Node* head)</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Det</span><span class="hljs-params">(Node* head,<span class="hljs-type">char</span> name[])</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Correct</span><span class="hljs-params">(<span class="hljs-type">char</span> a[],Node *head)</span>;<br><br>Node* <span class="hljs-title function_">Create</span><span class="hljs-params">(Node* head)</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Seek</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Build</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Clear</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Delete</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Amend</span><span class="hljs-params">()</span>;<br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><br></code></pre></td></tr></table></figure>
+<p>我们用FUN_H标注这个fun文件的编译代码。<br>大家发现一个问题：我们哪里都用到了Number这个变量，fun和save的文件中的函数都有用到，但这个变量定义在哪里呢？我这里把它定义在了main函数的文件中，<strong>这意味着，如果不做处理，fun和save的文件中的函数将无法识别到这个变量</strong>。</p>
+<p>这个变量跨过多个文件，还要保证是同一个变量，这是什么，<strong>外部变量</strong>。<br>关于<strong>外部变量的多文件使用</strong>，比较麻烦，首先我们可以在头文件中声明外部变量，如上面的extern int Number;这就是对Number进行外部声明，但头文件中不能定义变量，所以不能对Number赋值，赋值操作必须在c文件中，这也是我们为什么要定义在main文件中的一个原因。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c">Save.h头文件<br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> BASE</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASE</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SAVE_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SAVE_H</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&quot;fun.h&quot;</span></span><br><br><span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> Number;<br><br>Node* <span class="hljs-title function_">Load</span><span class="hljs-params">()</span>;<span class="hljs-comment">//失败返回空，没有返回空，有返回首地址 </span><br><span class="hljs-type">void</span> <span class="hljs-title function_">Save</span><span class="hljs-params">(Node* head)</span>;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br></code></pre></td></tr></table></figure>
+<p>由于我们文件操作中也有用到fun文件中的函数，所以干脆包含进来吧。<br>在main函数文件中：<br><img src="https://img-blog.csdnimg.cn/b02079655ad34bcf96ddf025b9e6ed02.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>虽然我们save.h文件包含了fun.h文件，但由于我们的预编译的作用，它们可以同时在main函数文件中包含而不会发生重定义，预编译标志的重要性可见一斑。</strong><br>当然我们知道fun头文件在save中，我们就直接包含save就OK了。<br>大家会发现，Number外部变量声明其实是声明了两次，一次在fun中，一次在save中，但没有问题，因为这是声明，只有声明不冲突，声明几次都没啥问题。</p>
+<h2 id="七、文件编译"><a href="#七、文件编译" class="headerlink" title="七、文件编译"></a>七、文件编译</h2><p><img src="https://img-blog.csdnimg.cn/ab3e5076b0234d20a5c1a34ea2106185.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>用了这么久，我们终于用到了最后一个编译按钮，全部重新编译，这个就是针对多文件项目的。点击这个按钮，就可以对所有文件进行编译。<br>编译之后运行，一个成功的程序，信息管理系统就OK了。<br>运行情况：<br><img src="https://img-blog.csdnimg.cn/2452194f9b4345608de49c29da68719d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/bea3be01d4c345c0af14329b3055a882.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/b479aebe3b2d400a87d8b42e2bf77001.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/5c7efb79a57f4b159169ea4c55ad2105.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/bf67fb67a9754400b3edb368d30d53a3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/f225109d22df4317967631e0e1307e5c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/f36674d3e9b04337bac544c429563f48.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/c387475bb4f84506a5ed75f47cd2074a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pif5aScLueni-WjsA==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这个系统还是很简陋的，高级的系统更为复杂。</p>
+<h2 id="八、全部代码："><a href="#八、全部代码：" class="headerlink" title="八、全部代码："></a>八、全部代码：</h2><p><strong>希望大家能有所收获，如果是做作业的话，尽量不要CV大法，看看前面的分析过程，自己写出来的代码更有成就感！</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br></pre></td><td class="code"><pre><code class="hljs c">Main.c<br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&quot;save.h&quot;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">Menu</span><span class="hljs-params">()</span>;<br><span class="hljs-type">int</span> Number = <span class="hljs-number">0</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> temp=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span>(temp)<br>	&#123;<br>		<span class="hljs-keyword">switch</span>(Menu())<br>		&#123;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>				Build();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>				Seek();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>				Amend();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>				Delete();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>				Clear();<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>				temp = <span class="hljs-number">0</span>;<br>		&#125;<br>		getchar();<br>	&#125;<br>	<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">Menu</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> n;<br>	<span class="hljs-keyword">do</span>&#123;<br>	system(<span class="hljs-string">&quot;cls&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n\n\n\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t\t   \n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|----------信息管理系统----------|\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t1.新建联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t2.查看联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t3.修改联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t4.删除联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t5.清空联系人             |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|\t6.退出                   |\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t|--------------------------------|\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t\t请输入选项&lt;1~6&gt;:&quot;</span>);<br>	<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	<span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">6</span>||n&lt;<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入有误，请重新输入\a&quot;</span>);<br>		getchar();<br>		getchar();<br>		system(<span class="hljs-string">&quot;cls&quot;</span>);<br>	&#125;<br>	&#125;<span class="hljs-keyword">while</span>(n&gt;<span class="hljs-number">6</span>||n&lt;<span class="hljs-number">1</span>);<br>	getchar();<br>	<span class="hljs-keyword">return</span> n;<br>&#125;<br><br>Fun.c<br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&quot;fun.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string.h&gt;</span></span><br><br><br><span class="hljs-comment">//查找函数，head-头指针，k-方式选择 </span><br><span class="hljs-type">int</span> <span class="hljs-title function_">Find</span><span class="hljs-params">(Node* head,<span class="hljs-type">int</span> k)</span><br>&#123;<br>	<span class="hljs-type">char</span> n[<span class="hljs-number">50</span>];<br>	<span class="hljs-type">int</span> m;<br>	Node *p = head;<br>	<span class="hljs-keyword">switch</span>(k)<br>	&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:		<span class="hljs-comment">//名字查 </span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找姓名:&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,n);<br>			FindName(n,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:		<span class="hljs-comment">//年龄查 </span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查看的年龄：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;m);<br>			FindAge(m,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:		<span class="hljs-comment">//手机号查</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找的手机号:&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,n);<br>			FindPhone(n,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:		 <span class="hljs-comment">//地址查</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找地址:&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,n);<br>			FindAd(n,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:		<span class="hljs-comment">//性别查</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找性别m-男，f-女:&quot;</span>);<br>			getchar();<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;n[<span class="hljs-number">0</span>]);<br>			FindSex(n[<span class="hljs-number">0</span>],head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:		<span class="hljs-comment">//工号查</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找工号:&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,n);<br>			FindNum(n,head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:		<span class="hljs-comment">//全部显示</span><br>			ShowAll(head);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>: <br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入错误\a\n&quot;</span>);<br>	&#125;<br>	<br>&#125;<br><br><span class="hljs-comment">//想实现能全部找到返回各个序号的，但这需要动态数组，比较麻烦 </span><br><span class="hljs-type">int</span> <span class="hljs-title function_">FindName</span><span class="hljs-params">(<span class="hljs-type">char</span> name[],Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.name,name))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age,Node *head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(p-&gt;peo.age == age)<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindPhone</span><span class="hljs-params">(<span class="hljs-type">char</span> Phone[],Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.phone,Phone))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>	<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindAd</span><span class="hljs-params">(<span class="hljs-type">char</span> ad[],Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.ad,ad))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindSex</span><span class="hljs-params">(<span class="hljs-type">char</span> sex,Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(sex == p-&gt;peo.sex)<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">FindNum</span><span class="hljs-params">(<span class="hljs-type">char</span> num[],Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.num,num))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">//id查找 </span><br>Node* <span class="hljs-title function_">FindId</span><span class="hljs-params">(<span class="hljs-type">int</span> id,Node* head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(p-&gt;id == id)<br>		&#123;<br>			<span class="hljs-keyword">return</span> p;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-keyword">if</span>(!p)<br>	&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>	&#125;<br>&#125;<br><br><br><br><span class="hljs-comment">//输入函数 </span><br><span class="hljs-type">int</span> <span class="hljs-title function_">Input</span><span class="hljs-params">(People* p)</span><br>&#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n输入姓名（输入#中止）：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;name);<br>	<span class="hljs-keyword">if</span>(p-&gt;name[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;#&#x27;</span>)<br>	&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;	<br>	&#125; <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入年龄：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;p-&gt;age);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入性别(m-男,f-女)：&quot;</span>);<br>	getchar();<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;p-&gt;sex);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入手机号：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;phone);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入地址：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;ad);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入工号:(没有输入-1)&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;num);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><br><br><span class="hljs-comment">//打印函数 </span><br><span class="hljs-type">void</span> <span class="hljs-title function_">Print</span><span class="hljs-params">(People *p)</span><br>&#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n姓名：%s\n&quot;</span>,p-&gt;name);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;年龄：%d\n&quot;</span>,p-&gt;age);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;性别：%c\n&quot;</span>,p-&gt;sex);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;电话：%s\n&quot;</span>,p-&gt;phone);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;地址：%s\n&quot;</span>,p-&gt;ad);<br>	<span class="hljs-keyword">if</span>((p-&gt;num)[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;-&#x27;</span>)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;工号：%s\n&quot;</span>,p-&gt;num);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Amend</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> a[<span class="hljs-number">50</span>];<br>	Node* head = Load();<br>	<span class="hljs-keyword">if</span>(!head)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;列表空&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入修改的姓名:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,a);<br>	Correct(a,head);<br>	Save(head);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nOK\n&quot;</span>);<br>	getchar();<br>&#125;<br><br><span class="hljs-comment">//现在只能支持直接查找，等动态数组出来就可以随意处理了</span><br><span class="hljs-comment">//修改函数 （名字） </span><br><span class="hljs-type">void</span> <span class="hljs-title function_">Correct</span><span class="hljs-params">(<span class="hljs-type">char</span> a[],Node *head)</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-type">int</span> choice;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.name,a))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-keyword">if</span>(!p)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查无此人\a&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;查到这个人，要修改什么:&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;1.姓名\t2.性别\t3.年龄\t4.地址\t5.工号\t6.电话7.全部重写\n请输入：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;choice);<br>	<span class="hljs-keyword">switch</span>(choice)<br>	&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新姓名：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;peo.name);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新性别：&quot;</span>);<br>			getchar();<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;p-&gt;peo.sex);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新年龄：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;p-&gt;peo.age);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新地址：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;peo.ad);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新工号：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;peo.num);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入新电话：&quot;</span>);<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;p-&gt;peo.phone);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:<br>			Input(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入错误\a&quot;</span>);<br>	&#125;<br>&#125;<br><span class="hljs-comment">//删除函数_目前只能看人名 </span><br> <span class="hljs-type">void</span> <span class="hljs-title function_">Det</span><span class="hljs-params">(Node* head,<span class="hljs-type">char</span> name[])</span><br>&#123;<br>	Node *p = head;<br>	<span class="hljs-type">char</span> temp ;<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(p-&gt;peo.name,name))<br>		&#123;<br>			Print(&amp;p-&gt;peo);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;	<br>	&#125;<br>	<br>	<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;确认删除吗:y-是，n-否&quot;</span>);<br>	getchar();<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;temp);<br>	<span class="hljs-keyword">if</span>(temp == <span class="hljs-string">&#x27;y&#x27;</span>)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(p == head)<br>		&#123;<br>			head = p-&gt;p_next;<br>		&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(p-&gt;p_next == <span class="hljs-literal">NULL</span>)&#123;<br>			Node *p1 = FindId(p-&gt;id<span class="hljs-number">-1</span>,head);<br>			p1-&gt;p_next =<span class="hljs-literal">NULL</span>;<br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			Node *p1 = FindId(p-&gt;id<span class="hljs-number">-1</span>,head);<br>			p1-&gt;p_next = p-&gt;p_next;<br>		&#125;<br>		<span class="hljs-built_in">free</span>(p);<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;OK\a\n&quot;</span>);<br>		Number--;<br>	&#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Build</span><span class="hljs-params">()</span><br>&#123;<br><br>	Node* head = Load();<br>	head = Create(head);<br>	Save(head);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nOK\n&quot;</span>);<br>	getchar();<br>&#125;<br><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">ShowAll</span><span class="hljs-params">(Node* head)</span><br>&#123;<br>	Node* temp = head;<br>	<span class="hljs-keyword">while</span>(temp)<br>	&#123;<br>		Print(&amp;temp-&gt;peo);<br>		temp = temp-&gt;p_next;<br>	&#125;<br>&#125;<br><br><br>Node* <span class="hljs-title function_">Create</span><span class="hljs-params">(Node* head)</span><br>&#123;<br>	Node* p_old,*p_new;<br>	People t;<br>	<br>	<span class="hljs-keyword">if</span>(!Input(&amp;t))<br>	&#123;<br>		<span class="hljs-keyword">return</span> head;		<span class="hljs-comment">//没有新建 </span><br>	&#125;<br>	<span class="hljs-keyword">if</span>(!head)<br>	&#123;<br>		head = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>		p_old = head;<br>		p_new = head;<br>		p_new-&gt;id = <span class="hljs-number">0</span>;<br>		p_new-&gt;peo = t;<br>		p_new-&gt;p_next = <span class="hljs-literal">NULL</span>;<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>		p_new = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>		<span class="hljs-keyword">for</span>(p_old = head;p_old-&gt;p_next != <span class="hljs-literal">NULL</span>;p_old = p_old-&gt;p_next);<br>		p_old-&gt;p_next = p_new;<br>		p_new-&gt;id = p_old-&gt;id+<span class="hljs-number">1</span>;<br>		p_old = p_new;<br>		p_new-&gt;peo = t;<br>		p_new-&gt;p_next = <span class="hljs-literal">NULL</span>;<br>	&#125;<br>	Number++;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!Input(&amp;t))<br>		&#123;<br>			<span class="hljs-keyword">return</span> head; <br>		&#125;<br>		<br>		p_new = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>		Number++;<br>		p_new-&gt;id = p_old-&gt;id+<span class="hljs-number">1</span>;<br>		p_new-&gt;peo = t;<br>		p_old-&gt;p_next = p_new;<br>		p_new-&gt;p_next = <span class="hljs-literal">NULL</span>;<br>		p_old = p_new;<br>		<br>	&#125; <br>	<br>&#125; <br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Seek</span><span class="hljs-params">()</span><br>&#123;<br>	Node* head = Load();<br>	<span class="hljs-type">int</span> temp;<br>	<span class="hljs-keyword">if</span>(!head)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;列表空&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入查找方式：\n\t1.姓名\t2.年龄\t3.手机号\n\t4.地址\t5.性别\t6.工号\t7.全部显示:\n&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;temp);<br>	Find(head,temp<span class="hljs-number">-1</span>);<br>	getchar();<br>&#125;<br><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Clear</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> temp;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;确定吗\a:y-确定，n-手滑了:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;temp);<br>	<span class="hljs-keyword">if</span>(temp == <span class="hljs-string">&#x27;y&#x27;</span>)<br>	&#123;<br>		FILE* fp ;<br>		<span class="hljs-keyword">if</span>(!(fp = fopen(TXT,<span class="hljs-string">&quot;wb&quot;</span>)))<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error\a\n&quot;</span>);<br>			<span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>		&#125;<br>		fclose(fp);<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;OK&quot;</span>);<br>		Number = <span class="hljs-number">0</span>; <br>		getchar();<br>		<br>	&#125;<br>&#125;<br><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Delete</span><span class="hljs-params">()</span><br>&#123;<br>	Node* head = Load();<br>	<span class="hljs-type">char</span> a[<span class="hljs-number">50</span>];<br>	<span class="hljs-keyword">if</span>(!head)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;列表空&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入删除的姓名:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,a);<br>	<span class="hljs-keyword">if</span>(FindName(a,head))<br>	&#123;<br>		Det(head,a);<br>		Save(head);<br>	&#125;<br>	<br>	getchar();<br>&#125;<br><br>Fun.h<br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> BASE</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASE</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> FUN_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FUN_H</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> LEN sizeof(Node)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> TXT <span class="hljs-string">&quot;dat.txt&quot;</span></span><br><br><span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> Number;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span><br>	<span class="hljs-type">char</span> phone[<span class="hljs-number">15</span>];	<span class="hljs-comment">//手机 </span><br>	<span class="hljs-type">char</span> name[<span class="hljs-number">100</span>];	<span class="hljs-comment">//名字 </span><br>	<span class="hljs-type">char</span> num[<span class="hljs-number">20</span>];	<span class="hljs-comment">//工号 </span><br>	<span class="hljs-type">char</span> ad[<span class="hljs-number">50</span>];	<span class="hljs-comment">//地址 </span><br>	<span class="hljs-type">char</span> sex;	<span class="hljs-comment">//性别 </span><br>	<span class="hljs-type">int</span> age;	<span class="hljs-comment">//年龄 </span><br>&#125;People;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span><br>	People peo;<br>	<span class="hljs-type">int</span> id;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>* <span class="hljs-title">p_next</span>;</span><br>&#125;Node;<br><br><br>Node* <span class="hljs-title function_">New</span><span class="hljs-params">(Node *)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">Input</span><span class="hljs-params">(People* p)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Print</span><span class="hljs-params">(People *p)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">FindName</span><span class="hljs-params">(<span class="hljs-type">char</span> name[],Node* head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age,Node *head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindPhone</span><span class="hljs-params">(<span class="hljs-type">char</span> Phone[],Node* head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindAd</span><span class="hljs-params">(<span class="hljs-type">char</span> ad[],Node* head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindSex</span><span class="hljs-params">(<span class="hljs-type">char</span> sex,Node* head)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">FindNum</span><span class="hljs-params">(<span class="hljs-type">char</span> num[],Node* head)</span>;<br>Node* <span class="hljs-title function_">FindId</span><span class="hljs-params">(<span class="hljs-type">int</span> id,Node* head)</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">ShowAll</span><span class="hljs-params">(Node* head)</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Det</span><span class="hljs-params">(Node* head,<span class="hljs-type">char</span> name[])</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Correct</span><span class="hljs-params">(<span class="hljs-type">char</span> a[],Node *head)</span>;<br><br>Node* <span class="hljs-title function_">Create</span><span class="hljs-params">(Node* head)</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Seek</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Build</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Clear</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Delete</span><span class="hljs-params">()</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Amend</span><span class="hljs-params">()</span>;<br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br>Save.c<br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&quot;save.h&quot;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;io.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Save</span><span class="hljs-params">(Node* head)</span><br>&#123;<br>	FILE *fp;<br>	Node* p = head;<br>	<span class="hljs-keyword">if</span>(!head)	<span class="hljs-comment">//没有 </span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;kong&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(!(fp = fopen(TXT,<span class="hljs-string">&quot;wb&quot;</span>)))<span class="hljs-comment">//打开文件 </span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error&quot;</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	fwrite(&amp;Number,<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>),<span class="hljs-number">1</span>,fp);<span class="hljs-comment">//写 </span><br>	<br>	<span class="hljs-keyword">for</span>(;p;p = p-&gt;p_next)<span class="hljs-comment">//写 </span><br>	&#123;<br>		fwrite(p,LEN,<span class="hljs-number">1</span>,fp);<br>	&#125;<br>	fclose(fp);<br>&#125;<br><br><br>Node* <span class="hljs-title function_">Load</span><span class="hljs-params">()</span><span class="hljs-comment">//失败返回空，没有返回空，有返回首地址 </span><br>&#123;<br>	FILE *fp;<br>	<span class="hljs-type">int</span> i;<br>	Node *head = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>	Node *p_old = head;<br>	Node *p_new = head;<br>	<span class="hljs-keyword">if</span>(access(TXT,<span class="hljs-number">0</span>))<br>	&#123;<br>		fp = fopen(TXT,<span class="hljs-string">&quot;w&quot;</span>);<br>		fclose(fp);<br>		<span class="hljs-keyword">if</span>(!(fp = fopen(TXT,<span class="hljs-string">&quot;rb&quot;</span>)))<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error&quot;</span>);<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>		&#125;<br>	&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!(fp = fopen(TXT,<span class="hljs-string">&quot;rb&quot;</span>)))<span class="hljs-comment">//存在，打开 </span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error\a\n&quot;</span>);<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>	&#125;<br>	<span class="hljs-comment">//空文件？ </span><br>	rewind(fp);<br>	<span class="hljs-keyword">if</span>(fgetc(fp) == EOF)<br>	&#123;<br>		<span class="hljs-built_in">free</span>(head);<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>	&#125;<span class="hljs-keyword">else</span><br>	&#123;<br>		rewind(fp);<br>	&#125;<br>	<br>	fread(&amp;Number,<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>),<span class="hljs-number">1</span>,fp);<br><br>	<span class="hljs-keyword">if</span>(!Number)<br>	&#123;<br>		<span class="hljs-built_in">free</span>(head);<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=Number;i++)<br>	&#123;<br>		fread(p_new,LEN,<span class="hljs-number">1</span>,fp);<br>		p_new = (Node*)<span class="hljs-built_in">malloc</span>(LEN);<br>		p_old-&gt;p_next = p_new;<br>		p_old-&gt;id = i;<br>		p_old = p_new;<br>	&#125;<br>	<span class="hljs-built_in">free</span>(p_new);<br>	p_old = head;<br>	<br>	<span class="hljs-keyword">for</span>(;p_old-&gt;id != Number;p_old = p_old-&gt;p_next);<br>	<br>	p_old-&gt;p_next = <span class="hljs-literal">NULL</span>;<br>	fclose(fp);<br>	<span class="hljs-keyword">return</span> head;<br>&#125;<br><br>Save.h<br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> BASE</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASE</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SAVE_H</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SAVE_H</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&quot;fun.h&quot;</span></span><br><br><span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> Number;<br><br>Node* <span class="hljs-title function_">Load</span><span class="hljs-params">()</span>;<span class="hljs-comment">//失败返回空，没有返回空，有返回首地址 </span><br><span class="hljs-type">void</span> <span class="hljs-title function_">Save</span><span class="hljs-params">(Node* head)</span>;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<p>OK，C语言入门总结就到这里结束了，感谢大家的观看，希望大家能有所收获，如果有空我会更新其他系列的东西，欢迎大家观看，如果本栏目有什么BUG，大家可以在下面评论，我能改的尽量改（我也不是高手……）。</p>
+<style>
+  p {text-indent:2em;} 
+</style>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="category-chain-item">知识总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/">#C</a>
+      
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">#知识总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C语言总结项目和入门大作业——信息管理系统（多文件版）</div>
+      <div>https://357meng.github.io/2021/09/01/C07/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mengki</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月1日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年10月31日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/26/Cplusplus01/" title="STL常用容器用法大全">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">STL常用容器用法大全</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/24/C06/" title="C语言总结项目和入门——文件操作">
+                        <span class="hidden-mobile">C语言总结项目和入门——文件操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"NSS2f8i8dzd2yjWuxHKDsjMK-gzGzoHsz","appKey":"jkZNtRhI868kvI72itm1QArw","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>Mengki</span> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+<span>全站字数：116k</span>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

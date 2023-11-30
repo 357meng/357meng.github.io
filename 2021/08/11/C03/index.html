@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mengki">
+  <meta name="keywords" content="个人博客，个人分享">
+  
+    <meta name="description" content="调试和多文件编程随着我们学习的东西越来越多，编写的程序也会越来越复杂，尤其是函数使用之后，很多时候光靠我们自己去发现bug闲的很是吃力，或者自己的想法有出入，导致代码本身就有缺陷，这种时候我们就需要调试这个工具来帮助我们测试这个代码的运行状态，帮助我们判断代码的运行情况。调试就是一点一点的执行程序，而不是像以前一样一下跑完，它中间会停住，我们可以查看一些变量的信息，看一下程序的状态是否正确，或者是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言总结项目和入门特别篇——调试和多文件工程">
+<meta property="og:url" content="https://357meng.github.io/2021/08/11/C03/index.html">
+<meta property="og:site_name" content="MengkiPage">
+<meta property="og:description" content="调试和多文件编程随着我们学习的东西越来越多，编写的程序也会越来越复杂，尤其是函数使用之后，很多时候光靠我们自己去发现bug闲的很是吃力，或者自己的想法有出入，导致代码本身就有缺陷，这种时候我们就需要调试这个工具来帮助我们测试这个代码的运行状态，帮助我们判断代码的运行情况。调试就是一点一点的执行程序，而不是像以前一样一下跑完，它中间会停住，我们可以查看一些变量的信息，看一下程序的状态是否正确，或者是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://357meng.github.io/img/C.jpg">
+<meta property="article:published_time" content="2021-08-11T13:14:43.000Z">
+<meta property="article:modified_time" content="2022-10-31T09:31:38.198Z">
+<meta property="article:author" content="Mengki">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="知识总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://357meng.github.io/img/C.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>C语言总结项目和入门特别篇——调试和多文件工程 - MengkiPage</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extension.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>MengkiPage</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- weather -->
+    <!-- 添加天气 -->
+
+<div id="he-plugin-simple"></div>
+<script>
+WIDGET = {
+  "CONFIG": {
+    "modules": "01234",
+    "background": "5",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "20",
+    "cityColor": "FFFFFF",
+    "citySize": "20",
+    "aqiColor": "FFFFFF",
+    "aqiSize": "20",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "fixed": "false",
+    "vertical": "top",
+    "horizontal": "left",
+    "key": "ccc947744b17444186d510ec360b4500"
+  }
+}
+</script>
+<script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/playlist/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/video/">
+                <i class="iconfont icon-bilibili"></i>
+                视频
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/xihuan/">
+                <i class="iconfont icon-youtube-fill"></i>
+                自作
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C语言总结项目和入门特别篇——调试和多文件工程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mengki
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-11 21:14" pubdate>
+          2021年8月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C语言总结项目和入门特别篇——调试和多文件工程</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：1 年前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="调试和多文件编程"><a href="#调试和多文件编程" class="headerlink" title="调试和多文件编程"></a>调试和多文件编程</h1><p>随着我们学习的东西越来越多，编写的程序也会越来越复杂，尤其是函数使用之后，很多时候光靠我们自己去发现bug闲的很是吃力，或者自己的想法有出入，导致代码本身就有缺陷，这种时候我们就需要调试这个工具来帮助我们测试这个代码的运行状态，帮助我们判断代码的运行情况。<br>调试就是一点一点的执行程序，而不是像以前一样一下跑完，它中间会停住，我们可以查看一些变量的信息，看一下程序的状态是否正确，或者是否有逻辑的漏洞。<br>下面介绍一下Dev c++和VS2019的调试方法。</p>
+<ul>
+<li>Dev c++：</li>
+</ul>
+<p>首先，我们要打开调试的选项：<br>在上面的工具里，打开编译选项<br><img src="https://img-blog.csdnimg.cn/70ea43fb76004aa7807246a4d03ee3f5.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>点击代码生成，再点连接器，更改设置如下<br><img src="https://img-blog.csdnimg.cn/407f5517ac224caabd37605e1cda1d67.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>OK了，我们可以开始调试了。</p>
+<p>首先，为了阻止程序一溜烟跑完了，我们还啥也没看呢，我们要先设置断点，断点就是程序执行到这里就会中断，会停止的意思。我这里使用前面函数的例子的第一版代码，这个是有bug的，正好来学习调试。<br>当然，调试前提是程序语法没有问题，是逻辑或者程序的漏洞，如果编译器都报错了，还是要赶紧改。<br>代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;math.h&gt;</span></span><br><br><span class="hljs-type">double</span> <span class="hljs-title function_">Str2Num</span><span class="hljs-params">(<span class="hljs-type">char</span> str[], <span class="hljs-type">int</span> len)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> a[] = <span class="hljs-string">&quot;123456&quot;</span>;<br>	<span class="hljs-type">int</span> num = <span class="hljs-keyword">sizeof</span>(a) / <span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]) - <span class="hljs-number">1</span>;<br>	<span class="hljs-type">double</span> res = Str2Num(a, num);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, res);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br><span class="hljs-type">double</span> <span class="hljs-title function_">Str2Num</span><span class="hljs-params">(<span class="hljs-type">char</span> str[], <span class="hljs-type">int</span> len)</span><br>&#123;<br>	<span class="hljs-type">int</span> i;<br>	<span class="hljs-type">double</span> result = <span class="hljs-number">0</span>;<br><br>	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>	&#123;<br>		result += str[i] * <span class="hljs-built_in">pow</span>(<span class="hljs-number">10</span>, len - i);<br>	&#125;<br>	<span class="hljs-keyword">return</span> result;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<p>编译是过了的：<br><img src="https://img-blog.csdnimg.cn/b818e6994fe741258c8dbaf7ef4e9f9a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>断点怎么设置：<br>把鼠标移到这里：<br><img src="https://img-blog.csdnimg.cn/604ce5a05b674e27aedbfb09b882a97a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>就是行号和代码中间的灰长条区域，移动到你想暂停的地方的所在行上，点一下，这一行就变绿了（当然颜色可能不一样，设置里可以改），同时前面出现一个红点，就是断点，再点一下，恢复正常，断点没了。<br><img src="https://img-blog.csdnimg.cn/dc6ec6f0e4e542179d140831d42e476a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>断点一般设置在可能出问题的代码前面一点，这样程序停下来的时候就能清楚执行这行代码前是什么状态，是怎么执行的。<br>比如我想看函数是怎么执行的，我就把断点加在函数的使用的前面，比如加在int num &#x3D; sizeof(a) &#x2F; sizeof(a[0]) - 1;这行上。<br>设置好断点后，我们点击调试按钮（第一章讲的啦。）<br><img src="https://img-blog.csdnimg.cn/cc8edb3147674ffdabbf29989b44fe44.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>OK，我们已经进入调试状态了<br><img src="https://img-blog.csdnimg.cn/2b93994920314ea1b51af1608f41d626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>蓝色代表程序正要执行的行（还没执行呢）可以看到它现在正好停在了断点处。<br>下面原本显示编译信息的地方编程了显示调试信息的地方了<br>调试就是我们想让程序怎么跑，程序就得怎么跑<br>具体怎么做呢，我们来介绍一下这些按键的操作：<br>从第一行开始说起，首先是调试，这个不用了，我们已经在调试了。<br><strong>添加查看</strong>：我们可以查看想看的变量，比如我们想看num这个变量的值，我们点击，输入num<br><img src="https://img-blog.csdnimg.cn/3778bcb5c4cc45b1a685366f9b8e372e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>OK，现在我们能在代码左侧那一大块空白区域看到num的当前值了<br><img src="https://img-blog.csdnimg.cn/cfbc9d03f11e456b98a1698c6115b885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>当然，更方便的方法：鼠标放在哪个地方，就能显示哪个地方的值（这里不好截图）<br>OK了，鼠标晃一晃，左边几乎就都有了。<br>大家会看到，这里i说没有找到，为什么，<strong>其实这就是生存周期的体现，i只在函数中有效，我们程序现在在main函数中，自然没有i。</strong><br><strong>下一步</strong>：我们点击一下，程序就向下执行一行。<br>我们点一下，会发现num的值变为6了，说明刚刚停留的行被执行了，程序停在了下一行。<br>下一行我们调用了函数，但我们点击下一步就走到printf那一行了，没有进入函数。<br>如果我们想看程序是怎么跳转的，我们需要点<strong>单步进入</strong>，单步进入就是程序怎么执行的，它就怎么走，不会说明明执行了函数不给你看的情况。<br><strong>跳过函数</strong>：当我们单步进入函数中后，我们不想看这个函数的具体执行过程，就可以点击跳过函数，程序会自动执行函数内容后返回主程序。<br><strong>跳过</strong>：程序一直执行直到碰到断点，比如我们设置两个断点：<br><img src="https://img-blog.csdnimg.cn/d805d31bb9a9483b85c001aad6417c62.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>调试，程序会在前面的断点停下来，这时我们如果点击跳过，程序会像往常那样自己就跑了，知道它在函数中碰到了第二个断点才停下来：<br><img src="https://img-blog.csdnimg.cn/0ad69e8307f549ce95d7027e346e73fa.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这个东西还挺有用的，对于<strong>快速跳出多次循环</strong>，我们可以在循环结束后放一个断点，直接跳，程序就把循环跑完了，也能停下来。<br><strong>停止执行</strong>：中止调试。<br>OK，常用的说完了，剩下的几个除非很奇怪的bug或者程序优化什么的时候会看，其他的时候根本不会用的，但我还是要说φ(゜▽゜*)♪<br><strong>查看cpu窗口</strong>：我们点一下，会出来这个窗口：<br><img src="https://img-blog.csdnimg.cn/7e35c4f2382b478a9cd5be2976ca91fc.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>我们前面说过，编译器就是翻译官，<strong>这些就是它翻译出来的代码，是更为底层的汇编代码，是用汇编语言写的</strong>，&#x3D;&gt;表示当前所在的汇编代码中的行，这个翻译不是一句变一句，有时候是一句变多句，看代码功能而区分。我也知识粗略的学过一点汇编，看这种代码也是看的半生不熟的，不过还是认得一些，知道它们是干什么的。大家看这个：<br><img src="https://img-blog.csdnimg.cn/aebba70caa904df3b2ecc8ecbfdca225.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>是不是很眼熟，这不是我们的函数吗，这里的callq是一个过程调用，汇编里的过程和我们的函数其实差不多，前面一堆0x什么的，是一个地址，这个地址是函数的入口地址，大家看这里：<br><img src="https://img-blog.csdnimg.cn/6c88b00932364f9785b4c01e356336bd.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>你会发现这个函数名后面跟着的和汇编调用的是一个地方，其实就是函数的指针（<strong>指针又出来了，我已经不知道第几次提它了，只能说指针真是C语言的灵魂，别的语言都没有如此强调指针这个概念，但当你理解了指针是什么，你对整个程序是怎么跑的，汇编语言是怎么调用的，IP是怎么跳的，清楚的一批。（ps：IP里放的就是和指针差不多的）</strong>）<br>大家还会发现，前面还有一个main函数的call指令，说明main函数也是函数，那么是谁调用的呢，答案是操作系统，如果在命令行窗口中调用我们这个程序，你就会清楚的知道这个程序是怎么被调用的了（可是我不会命令行……）。<br>说多了，下一个。<br><strong>下一条语句</strong>：就是汇编语句的下一条，同样的，call指令也不会跳走，而是直接执行完了，永远执行相邻地址的下一条。<br><strong>进入语句</strong>：汇编语句会跳的那种。<br>行了，调试的基本的东西都已经讲完了。</p>
+<ul>
+<li>VS2019调试：</li>
+</ul>
+<p>从接触VS，大家就已经是专业的工具人了，可以写自己的项目了。<br>现在很多程序都是用VS这个IDE，我们最后也还是要用这个的，但是Dev c++比较友好，适合新手，所以开始的时候都是用那个（现在开始讲VS说明大家已经不是新手啦！）。<br>打开VS（怎么下的就靠各位大神了）<br><img src="https://img-blog.csdnimg.cn/1c29d50e6b9a41d89c8b51f941248ab8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="（请无视我最近在学的py……）"></p>
+<p>我们创建新项目：<br><img src="https://img-blog.csdnimg.cn/cf6a7b07df7144d39327a58825af0ad4.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>选择C++空项目（C++和C差不多），创建，选择名称和存放路径就OK了。<br>现在直接写C的代码还是会有点问题，毕竟是专门写C++的代码的<br><img src="https://img-blog.csdnimg.cn/0ece3763d0994b45a14878471ff7dc4e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>点击项目-最下面的那个属性（快捷键p）<br>找到这里：<br><img src="https://img-blog.csdnimg.cn/a1aaa73c80b54cfeb7888f26cd9c11c9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>把SDL改为否，应用确定，ok了。<br>当然现在你还是什么都写不了，因为你只是新建了一个工程，这个工程是空的，要添加东西进去（这就是VS的复杂了，操作多）<br><img src="https://img-blog.csdnimg.cn/073cdf6ca6364f99912d1622933c0af1.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>点击解决方案资源管理器，在源文件的文件夹右键添加新建项（原本应该是空的，我这里有之前添加好的文件一个）<br><img src="https://img-blog.csdnimg.cn/39fbcdbb1b7149a684e2ddb283494268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p><strong>把名字改为.c的后缀，.cpp是c++的后缀</strong><br>添加好了之后，就能敲代码了。<br><img src="https://img-blog.csdnimg.cn/d501893b8f624aa6b2d57b07669b97fc.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>看起来也更好看了，不是吗？<br>断点还是一样的，点一下有，点两下无<br><img src="https://img-blog.csdnimg.cn/ce3a45e23339420e9a82fd0bee56293a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>加好之后直接运行（原本正常执行程序也是点这个）<br><img src="https://img-blog.csdnimg.cn/70dc394777cc4196b49e70eb283021d4.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>程序会在断点处停下来<br><img src="https://img-blog.csdnimg.cn/9564ea75f06b4bb699c10ff5aefab1c9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>大家不要看这么多窗口，什么进程内存都出来，不要慌，很多都用不上。<br>首先，鼠标移到变量上看当前值的操作还是有的。<br>我们想看值的话，可以在监视1的窗口里显示。<br>添加一个num，回车就OK了<br><img src="https://img-blog.csdnimg.cn/5b1ca645a223470c871ffdaaf4afae59.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这里因为在函数里，所以num不在生存周期，就没了，这个i为什么是这么个奇怪的值，因为我们只是定义了i，没有给初值，所以i的初值不好确定，它现在就是这么个值了，当然，箭头指向的是还没执行要指向的行，这个for循环的执行过程是什么？（复习了复习了！）——先执行第一个部分【for（一；二；三）】，这里就给i赋值了。<br>然后看这里<br><img src="https://img-blog.csdnimg.cn/308d4bd02fe04de59a05761b960bab6a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>调试主要是这三个：从左到右介绍<br><strong>逐语句</strong>：相当于单步进入，碰到函数会进函数。<br><strong>逐过程</strong>：相当于下一步，不进函数。<br><strong>跳出</strong>：跳出函数<br>那个红色的方框按钮就是中止调试。<br>没了，VS调试主要就这几个，剩下的咱也不会用。</p>
+<h1 id="多文件编程"><a href="#多文件编程" class="headerlink" title="多文件编程"></a>多文件编程</h1><p>现在，我们向大工程文件又近了一步。<br>我们首先了解预处理。<br>预处理就是在编译器编译源程序之前做的准备工作，比如翻看头文件。<br>预处理的指令都是以#开头的，并且它们不是语句，<strong>结尾没有；</strong><br>预处理的指令主要有下面几种：</p>
+<table>
+<thead>
+<tr>
+<th align="center">#include</th>
+<th>包含头文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#define</td>
+<td>宏定义（#define PI 3.14159）讲PI这个字符串与3.14159挂钩，编译器见到PI，就用3.14159替换，注意是<strong>直接替换，有时可能会产生运算顺序的错误</strong></td>
+</tr>
+<tr>
+<td align="center">#undef</td>
+<td>取消宏定义</td>
+</tr>
+<tr>
+<td align="center">#if</td>
+<td>如果给定条件为真，则编译下面代码</td>
+</tr>
+<tr>
+<td align="center">#ifdef</td>
+<td>如果已经有宏定义，则编译下面代码</td>
+</tr>
+<tr>
+<td align="center">#ifndef</td>
+<td>如果没有宏定义，则编译下面代码</td>
+</tr>
+<tr>
+<td align="center">#elif</td>
+<td>相当于elseif，如果#if条件为假，就看这个判断</td>
+</tr>
+<tr>
+<td align="center">#endif</td>
+<td>#if……#else条件编译块的结束</td>
+</tr>
+<tr>
+<td align="center">#error</td>
+<td>停止编译，显示错误信息</td>
+</tr>
+</tbody></table>
+<p>对于头文件的包含，我们可以有这两种形式：<br>#include&lt;stdio.h&gt;<br>#include”stdio.h”<br>两种都是可以的，差别在编译器找头文件所在地的时候的顺序不同，一般的，我们包含原本提供的头文件的时候使用&lt;&gt;，包含自己的头文件的时候使用“”。<br>我们使用VS来做例子，因为以后的大工程文件大多都用VS来写的。<br>打开上次的项目，多文件编程肯定是要多个文件的，所以我们再创建一个.c的文件在源文件下面。<br>我们将在这个新建的文件夹下面编写我们自己的函数库。<br>首先，我们把上次写好的字符串转数字的函数搬过来。<br>再把我们之前写的任意整数次幂封装成函数整过来。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;math.h&gt;</span></span><br><span class="hljs-type">double</span> <span class="hljs-title function_">Str2Num</span><span class="hljs-params">(<span class="hljs-type">char</span> str[], <span class="hljs-type">int</span> len)</span><br>&#123;<br>	<span class="hljs-type">int</span> i, j = len;<br>	<span class="hljs-type">char</span> isNegative;<br>	<span class="hljs-type">double</span> result = <span class="hljs-number">0</span>;<br><br>	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>	&#123;<br>		<span class="hljs-keyword">if</span> (str[i] == <span class="hljs-string">&#x27;.&#x27;</span>)<br>		&#123;<br>			<span class="hljs-keyword">if</span> (j != len)<br>			&#123;<br>				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;ERROR\a\n&quot;</span>);<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>			&#125;<br>			j = i;<br>		&#125;<br>		<br>		<span class="hljs-keyword">if</span> ((str[i] &lt; <span class="hljs-number">48</span> || str[i]&gt;<span class="hljs-number">57</span>) &amp;&amp; str[i] != <span class="hljs-string">&#x27;.&#x27;</span> &amp;&amp;str[<span class="hljs-number">0</span>] != <span class="hljs-string">&#x27;-&#x27;</span> &amp;&amp;str[<span class="hljs-number">0</span>] != <span class="hljs-string">&#x27;+&#x27;</span>)<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;NO\a\n&quot;</span>);<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">if</span> (str[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;-&#x27;</span>)<br>	&#123;<br>		i = <span class="hljs-number">1</span>;<br>		isNegative = <span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (str[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;+&#x27;</span>)<br>	&#123;<br>		i = <span class="hljs-number">1</span>;<br>		isNegative = <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>		i = <span class="hljs-number">0</span>;<br>		isNegative = <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (; i &lt; len; i++)<br>	&#123;<br>		<span class="hljs-keyword">if</span> (i &lt; j)<br>		&#123;<br>			result += (str[i] - <span class="hljs-number">0x30</span>) * <span class="hljs-built_in">pow</span>(<span class="hljs-number">10</span>, j - i - <span class="hljs-number">1</span>);<br>		&#125;<br>		<span class="hljs-keyword">if</span> (i &gt; j)<br>		&#123;<br>			result += (str[i] - <span class="hljs-number">0x30</span>) * <span class="hljs-built_in">pow</span>(<span class="hljs-number">0.1</span>, i - j);<br>		&#125;<br><br>	&#125;<br>	<span class="hljs-keyword">if</span> (isNegative)<br>	&#123;<br>		result = -result;<br>	&#125;<br>	<span class="hljs-keyword">return</span> result;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">JieCheng</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>	<span class="hljs-type">int</span> a;<br>	<span class="hljs-type">int</span> result = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span> (a = n; a &gt; <span class="hljs-number">0</span>; a--)<br>	&#123;<br>		result *= a;<br>	&#125;<br>	<span class="hljs-keyword">return</span> result;<br>&#125;<br><span class="hljs-type">double</span> <span class="hljs-title function_">Power</span><span class="hljs-params">(<span class="hljs-type">double</span> di,<span class="hljs-type">int</span> zhi)</span><br>&#123;<br>	<span class="hljs-type">double</span> ans = <span class="hljs-number">1</span>;<br>	<span class="hljs-type">int</span> i;<br><br>	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; zhi; i++)<br>	&#123;<br>		ans *= di;<br>	&#125;<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, ans);<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<p>好了，我们现在有3个自己的函数了。<br>    对于自己的函数，光有定义不行，我们还需要一个头文件把我们写的函数的声明整合起来，这样到时候只要包含头文件就能使用我们的函数了。<br>    在头文件夹下面新建一个和你放函数的.c文件一样文件名的.h文件（头文件）<br><img src="https://img-blog.csdnimg.cn/3122ff3620e84d8dafee50fdd780b6ea.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>建好之后是这样的<br><img src="https://img-blog.csdnimg.cn/133b36d3e7a94090a0209a183667790f.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>#pragma once是防止头文件被重复包含的，我们保留就行了。<br>我们把刚写的函数的声明写进去</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> once</span><br><br><span class="hljs-type">double</span> <span class="hljs-title function_">Str2Num</span><span class="hljs-params">(<span class="hljs-type">char</span> str[], <span class="hljs-type">int</span> len)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">JieCheng</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>;<br><span class="hljs-type">double</span> <span class="hljs-title function_">Power</span><span class="hljs-params">(<span class="hljs-type">double</span> di, <span class="hljs-type">int</span> zhi)</span>;<br><br></code></pre></td></tr></table></figure>
+<p>保存，好了，我们自己的头文件创建OK<br>接下来我们在第一个.c文件中包含我们的.h头文件，并调用里面的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&quot;second.h&quot;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> a[] = <span class="hljs-string">&quot;+123456.06659&quot;</span>;<br>	<span class="hljs-type">int</span> num = <span class="hljs-keyword">sizeof</span>(a) / <span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]) - <span class="hljs-number">1</span>;<br>	<span class="hljs-type">double</span> res = Str2Num(a, num);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s to %lf\n&quot;</span>,a, res);<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d!=%d\n&quot;</span>, <span class="hljs-number">5</span>, JieCheng(<span class="hljs-number">5</span>));<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf^%d = %lf&quot;</span> ,<span class="hljs-number">2.5</span>, <span class="hljs-number">3</span>, Power(<span class="hljs-number">2.5</span>, <span class="hljs-number">3</span>));<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<p>可以成功执行：<br><img src="https://img-blog.csdnimg.cn/23d003cf6d6c4cf1a75d56f89d13cff1.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>好了，最简单的分文件编程就OK了，后面会有更复杂的，更多种类的自定义的函数的头文件的使用，更多类型的变量的跨文件使用。<br><strong>我们下一章再见！</strong></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+
+
+<style>
+  p {text-indent:2em;} 
+</style>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="category-chain-item">知识总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/">#C</a>
+      
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">#知识总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C语言总结项目和入门特别篇——调试和多文件工程</div>
+      <div>https://357meng.github.io/2021/08/11/C03/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mengki</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年8月11日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年10月31日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/16/C04/" title="C语言总结项目和入门——指针篇">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C语言总结项目和入门——指针篇</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/09/C02/" title="C语言总结项目和入门——函数">
+                        <span class="hidden-mobile">C语言总结项目和入门——函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"NSS2f8i8dzd2yjWuxHKDsjMK-gzGzoHsz","appKey":"jkZNtRhI868kvI72itm1QArw","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>Mengki</span> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+<span>全站字数：116k</span>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1021 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mengki">
+  <meta name="keywords" content="个人博客，个人分享">
+  
+    <meta name="description" content="废话不多说，咱们马上开始。 三、C语言基础下（从交互到数组）一、输入输出从上一章的例子可以看出，很多时候我们需要向程序输入一些数据，或者希望程序将一些数据以可视化的方式呈现在我们眼前。人机的交互就显得十分重要。C语言本身不提供输入输出的语句，但它提供了一个标准库，即说明书，里面定义了一些输入输出的方法，如printf和scanf。本章将介绍这些方法的用法。使用这些方法之前，要包含这个说明书哦（#i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言总结项目和入门——基础下">
+<meta property="og:url" content="https://357meng.github.io/2021/08/01/C01/index.html">
+<meta property="og:site_name" content="MengkiPage">
+<meta property="og:description" content="废话不多说，咱们马上开始。 三、C语言基础下（从交互到数组）一、输入输出从上一章的例子可以看出，很多时候我们需要向程序输入一些数据，或者希望程序将一些数据以可视化的方式呈现在我们眼前。人机的交互就显得十分重要。C语言本身不提供输入输出的语句，但它提供了一个标准库，即说明书，里面定义了一些输入输出的方法，如printf和scanf。本章将介绍这些方法的用法。使用这些方法之前，要包含这个说明书哦（#i">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://357meng.github.io/img/C.jpg">
+<meta property="article:published_time" content="2021-08-01T04:14:43.000Z">
+<meta property="article:modified_time" content="2022-10-30T12:52:59.766Z">
+<meta property="article:author" content="Mengki">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="知识总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://357meng.github.io/img/C.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>C语言总结项目和入门——基础下 - MengkiPage</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extension.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>MengkiPage</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- weather -->
+    <!-- 添加天气 -->
+
+<div id="he-plugin-simple"></div>
+<script>
+WIDGET = {
+  "CONFIG": {
+    "modules": "01234",
+    "background": "5",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "20",
+    "cityColor": "FFFFFF",
+    "citySize": "20",
+    "aqiColor": "FFFFFF",
+    "aqiSize": "20",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "fixed": "false",
+    "vertical": "top",
+    "horizontal": "left",
+    "key": "ccc947744b17444186d510ec360b4500"
+  }
+}
+</script>
+<script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/playlist/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/video/">
+                <i class="iconfont icon-bilibili"></i>
+                视频
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/xihuan/">
+                <i class="iconfont icon-youtube-fill"></i>
+                自作
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C语言总结项目和入门——基础下"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mengki
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-01 12:14" pubdate>
+          2021年8月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          105 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C语言总结项目和入门——基础下</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：1 年前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>废话不多说，咱们马上开始。</p>
+<h1 id="三、C语言基础下（从交互到数组）"><a href="#三、C语言基础下（从交互到数组）" class="headerlink" title="三、C语言基础下（从交互到数组）"></a>三、C语言基础下（从交互到数组）</h1><h2 id="一、输入输出"><a href="#一、输入输出" class="headerlink" title="一、输入输出"></a>一、输入输出</h2><p>从上一章的例子可以看出，很多时候我们需要向程序输入一些数据，或者希望程序将一些数据以可视化的方式呈现在我们眼前。人机的交互就显得十分重要。<br>C语言本身不提供输入输出的语句，但它提供了一个标准库，即说明书，里面定义了一些输入输出的方法，如printf和scanf。本章将介绍这些方法的用法。<br>使用这些方法之前，要包含这个说明书哦（#include&lt;stdio.h&gt;）。</p>
+<ol>
+<li>printf</li>
+</ol>
+<p>printf用来向小黑窗输出一些数据。<br>用法：<br>a．	printf（”输出”）；——将“”里的东西打印出来。<br>注：转移字符也是可以打印的，如果在“”中出现&#x2F;a，打印的时候就会有提示音，如果是&#x2F;n，后面的内容就会换行打印。具体可以对照前面的转义字符表。<br>    b．printf（“包含格式控制”，输出列表）；<br>    还记得前面的例子我们如何打印周长的值的吗，就是用的这个方法，当我们想打印变量的值时，就可以采用这种格式。<br>    格式控制是什么？简单来说，就是在“”中代替变量的东西，比如我们想打印一个整型变量a的值，如果直接在“”中出现a，printf会认为你本身就想输出a这个字符，而不是变量，这时就需要格式控制字符出马了。<br>        格式控制字符有下面几种，分别对应不同的数据类型和情况。</p>
+<table>
+<thead>
+<tr>
+<th>%d</th>
+<th>输出带符号十进制整数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%c</td>
+<td>输出一个字符</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>输出一个字符串</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>输出实数（带小数）（注：只能输出6位小数）</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>以八进制形式输出一个整数</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>以十六进制形式输出一个整数</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>输出无符号型数据</td>
+</tr>
+<tr>
+<td>%e，%E</td>
+<td>以指数形式输出实数</td>
+</tr>
+<tr>
+<td>%g，%G</td>
+<td>自动匹配实数输出方式（小数形式或者指数形式）</td>
+</tr>
+</tbody></table>
+<p>在%d，%f，%x，%o可以加l前缀变成%ld，%lf，%lx，%lo，表示长型。<br>对于%c，可加数字指定宽度，如%5c，表示输出5个长度的字符，前面用空格补齐。<br>对%f，可以有形如%m.nf的形式，其中m表示输出占的宽度，n表示输出的小数，采用四舍五入的形式。如%8.3f表示输出一共长为8，其中有3位小数。位数不够时，在前面补空格（后对齐），如果是%-m.nf，则是在后面补空格（前对齐）。<br>    当然，格式控制字符可以夹杂在普通字符之中，也可以在一个printf中输出多个变量，要注意和输出列表相对应就行，第一个控制字符对于输出列表中的第一个变量。<br>    如果想输出%这个字符，和输出&#x2F;类似的，要连续写2个%%，这时才会输出一个%字符。</p>
+<ol start="2">
+<li><pre><code class="hljs">scanf
+</code></pre>
+</li>
+</ol>
+<p>scanf用来从键盘上输入东西给程序。其一般格式为：<br>scanf（“格式控制“，地址列表）；</p>
+<p>格式与printf一样，以%开头，可以与其他字符混合使用，但注意此时输入必须完全一致。如“ “中是“ok56%d”，由前面可知我们想输入一个整型，但此时直接输入是不能起作用的，必须按照写的内容先输入ok56之后再输入的数字才算整型变量的内容。 </p>
+<p>注意，这里是地址列表，和上面的变量列表有所不同。</p>
+<p>具体不同在哪里？就是要把输入的值给哪个变量，哪个变量前面要加上&amp;一个符号，从而构成地址列表。</p>
+<p>如scanf（“%d”，&amp;a）；表示输入一个整型变量，并给a。<br><strong>注意，不管scanf还是printf，变量与格式类型都要一直，否则无法正确输出或输入。<br>接下来引入地址的概念。</strong></p>
+<p>我们前面已经说过，变量开辟在内存的某个区域，里面存放的值就是这个变量的值，我们通过变量名对这片区域操作。那么我们能否知道这个区域在哪里呢？实际上是可以的，虽然我们无法指定这个变量开辟在内存的什么地方，但我们可以知道它被开辟在哪里，变量开辟在内存的什么地方就是变量的地址，就好比房子与门牌号，内存空间就是房子，里面住着变量，门牌号就是地址。那么怎么取得这个门牌号？我们用一种新的运算符&amp;，&amp;a就表示a的地址。当然我们可以看看。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> a,b;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%x\n%x&quot;</span>,&amp;a,&amp;b);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/f226197ecab44d0c9796fd5e3111830a.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>a和b的地址就显示出来了。</p>
+<p>虽然现在看起来这个地址没啥用，在后面可是有非常重要的作用，和C语言的灵魂——指针相互配合，能产生极强的combo。当然这都是后话，循序渐进嘛。</p>
+<p>我们也可以一次输入多个变量的值。注意匹配就行。对于数字类型的输入，两两之间要以空格、回车、tab键分割来区分，对于字符类型的输入，因为空格、回车、tab键也是字符，或者说从键盘上输入的全是字符，所以连续输入就行了。</p>
+<p>介绍了用处最多的两种输入输出，下面介绍一些其他的输入输出。</p>
+<ul>
+<li>putchar：输出一个字符，putchar（c），c为字符型变量。</li>
+<li>getchar：输入一个字符，没有参数，需要有变量接收，c &#x3D; getchar（），c为字符型变量，接受来着键盘输入的一个字符。</li>
+</ul>
+<p>注：这里讲解一下接收的概念，我们从键盘上向程序输入一个东西，程序就需要用一个东西来接收我们的输入，通常是用变量来接收。</p>
+<ul>
+<li>puts（）：输出一个字符串。</li>
+<li>gets（）：输入一个字符串。</li>
+</ul>
+<p>注：大家会发现，数据类型虽然有字符串，但C语言并没有相应的变量类型，不像别的语言有string这中字符串的变量类型，那么C语言怎么实现字符串的操作？是通过数组来实现的，这里先埋个伏笔。</p>
+<h2 id="二、程序结构"><a href="#二、程序结构" class="headerlink" title="二、程序结构"></a>二、程序结构</h2><p>在这一章，我们来从整体程序的角度，看看程序一般由什么部分构成。</p>
+<p>程序结构分三大块，选择结构、循环结构、顺序结构<br>我们前面写的都是顺序结构，即从头写到尾，这个结构是线性的。</p>
+<ol>
+<li>选择结构</li>
+</ol>
+<p>还记得三目运算符吗，它通过判断逻辑表达式的真假，实现执行不同的代码的作用，这就是选择结构。选择结构通过判断，根据判断的结果执行不同的代码块。</p>
+<ul>
+<li>if选择结构的基本构成：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>（判断条件）<br>&#123;<br> 代码块a<br>&#125;<br></code></pre></td></tr></table></figure>
+判断条件是逻辑表达式或其组合，当判断条件为真（非0值）时，程序进入大括号执行代码块a，否则跳过不执行代码块a。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>（判断条件）<br>&#123;<br>	代码块a<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>	代码块b<br>&#125;<br></code></pre></td></tr></table></figure>
+判断条件是逻辑表达式或其组合，当判断条件为真（非0值）时，程序进入大括号执行代码块a，否则执行代码块b。</li>
+</ul>
+<p>If里面可以套if，不断细分判断情况，if——else也可以逐级使用，实现分级过滤的效果。<br>如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>（判断条件<span class="hljs-number">1</span>）<br>&#123;<br>		代码块a<br>&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>（判断条件<span class="hljs-number">2</span>）<br>&#123;<br>		代码块b<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>		代码块c<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>判断是否符合条件1，不符合的话，判断是否符合条件2，不符合的话，就执行最后的else，即代码块c。这种结构可以多级使用。<br><strong>If与else的匹配：当然实际上我们在写代码的时候会有缩进，很容易看出if和哪个else是对应的，但架不住有人喜欢考啊，这里说一下，else总是和最近的if匹配。</strong><br><strong>关系运算符的优先级：</strong><br><img src="https://img-blog.csdnimg.cn/91441c0639be451988189fea80fd3740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>    关系运算符优先级低于算术运算符，高于赋值运算符。</p>
+<ul>
+<li>switch语句实现多分支</li>
+</ul>
+<p>对于多种彼此互斥的情况，如一等二等三等，我们当然可以使用上面的if——else进行分级判断</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>（是一等）<br>&#123;<br>		代码块a<br>&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>（二等）<span class="hljs-comment">//不是一等，还可能是二等三等，对二等进行判断。</span><br>&#123;<br>		代码块b<br>&#125;<span class="hljs-keyword">else</span>&#123;			<span class="hljs-comment">//不是一二等，是三等</span><br>		代码块c<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>C语言还提供了一种新的判断的结构，即switch结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">基本构成：<br><span class="hljs-keyword">switch</span>（判断变量）<br>&#123;<br>		<span class="hljs-keyword">case</span> 情况<span class="hljs-number">1</span>：<br>		<span class="hljs-keyword">case</span> 情况<span class="hljs-number">2</span>：<br>		<span class="hljs-keyword">default</span>：<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里的case可以有很多，取决于要判断的情况，这里只举例写了两个。</p>
+<p>switch判断要判断的变量的值，对应下面的哪个情况，比如待判断的变量值为5，就走case 5：这一条分支（如果写了case 5：这一条分支的话）。如果都没有，在有default的情况下执行default的程序，没有的话就跳出switch。</p>
+<p>首先需要指出，这里判断的变量只能是整数，所以a只能为整型或字符型，这一点极大的限制了switch的使用。</p>
+<p>其次，这里的情况是要和待判断的变量的值相匹配。由于我们必须指明一种情况来对应一个case，（a&lt;1是不能当case的情况的，即case的情况也必须是整数）所以我们只有知道确切的条件判断情况才能使用switch语句，对于a&lt;1这种判断switch是无法使用的。<br><strong>下面对switch语句进行进一步理解。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">switch</span>（判断变量）<br>&#123;<br>	<span class="hljs-keyword">case</span> 情况<span class="hljs-number">1</span>：<br>	<span class="hljs-keyword">case</span> 情况<span class="hljs-number">2</span>：<br>	<span class="hljs-keyword">default</span>：<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里的case M：的作用只是起到一个标号的作用，<strong>就是告诉switch这里有一个入口，进入这个入口的条件是待判断的变量的值等于M</strong>，我们可以罗列所有待判断变量的取值，这样可以保证每次都进入一个case，当然很多时候罗列是不可行的，我们采用default分支，当switch发现没有入口对应这个变量的值时，他就会进入default的入口。</p>
+<p>注意：case只是起到标号的作用，告诉入口，<strong>但并不告诉出口</strong>。这什么意思呢，就是当switch进入一个case入口后，它不知道什么时候出去，我们当然是希望它只执行这个case里的语句，当它执行完就不再执行其他case和default的语句而是直接跳出switch，而实际上如果不加控制，switch会从进入的case语句一直向下执行，把写在这个入口case语句下面的case和default都执行了，那这样根本没起到分支的效果啊（当然这种特性有也奇用）。所以我们需要添加出口，来告诉switch进入后从哪里出，既然是先进入才出，那出口肯定是要写在case语句里，而且由于上面的原因，每个case都要一个出口（default一般可以不要，因为它一般写在switch最后，执行完switch也就执行完了，不需要额外的出口）。<strong>C语言实现出口的语句是break</strong>，所以我们在每个case里都加上break，程序就能顺利执行了，所以程序一般实际上是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cswitch（判断变量）">&#123;<br>		case 情况1：代码；break;<br>		case 情况2：代码；break;<br>		default：代码；<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="代码训练与详解"><a href="#代码训练与详解" class="headerlink" title="代码训练与详解"></a>代码训练与详解</h1><p>首先来一个分段函数；</p>
+<p>例：实现sgn函数（x&lt;0是为-1，x&#x3D;0时为0，x&gt;0时为1）</p>
+<p>我们用if来实现（switch不行，因为x&lt;0是无穷多的情况，不能用case表示）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">double</span> x=<span class="hljs-number">0</span>;<br>	<span class="hljs-type">double</span> y=<span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input the x:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf&quot;</span>,&amp;x);<br>	<span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span>)<br>	&#123;<br>		y = <span class="hljs-number">-1</span>;<br>	&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x == <span class="hljs-number">0</span>)<br>	&#123;<br>		y = <span class="hljs-number">0</span>;<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>		y = <span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;y = %-1.0lf&quot;</span>,y);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>有了上面分段函数的定义就很好写了。先判断x是否小于0，不小于的话再判断x是否等于0，要是也不等于，说明x是大于0的，再把各个部分的代码块补充完成，就OK了。最后printf采用m.n的形式输出，因为一定是没有小数的，所以后面的一堆0就不必显示了。</p>
+<p><strong>例：实现大小月的判断</strong><br>这里我们采用switch分支，因为只有12个月是有限的。</p>
+<p>老样子，先上码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> month=<span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input the month:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;month);<br>	<span class="hljs-keyword">switch</span>(month)<br>	&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">8</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">10</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">12</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;It has 31 days.&quot;</span>);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;It usually has 28days.&quot;</span>);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">9</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">11</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;It has 30 days.&quot;</span>);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error input\a&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>这里我采用了前面case的奇妙用法，<strong>因为虽然入口需要彼此不同（一条路（入口）怎么走向2个方向呢，能走向2个方向必然要有分支），但可以指向同一个地方（条条大路通罗马）。</strong><br>我们当然可以这样写<br><img src="https://img-blog.csdnimg.cn/7972b30afb884b419bf55fd8dedf42a6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>等等，但这里我们不让程序结束，而是<strong>引导所有的入口指向统一地方（代码块）</strong>，就可以实现多输入，单输出的效果。</p>
+<p>注意，每一块代码块完成后，要给出出口防止程序继续执行别的代码块。<br>大家还可以发现，case的情况的顺序可以随便写的，因为它只是个入口，而与它本身处在的位置无关，甚至default放开头当然也没有问题。<br>大家都知道一年有12个月，那12个case足以包含所有情况了，为什么还要一个default？这里是为了程序的健壮性。当用户输入一个不在1到12之间的数时，我们希望给与输入错误的反馈，而不是啥也不管继续执行，防止后续程序因这个判断的失效而崩溃。（我喜欢在error的地方加上提示音起到警示的作用，当然这个就看个人啦。）<br>当然，这个程序还可以完善，比如闰年2月29天，平年2月28天，从而升级成对任何年份都成立的月份天数判断程序。<br>我们要先判断平闰年，这个判断比较复杂，但写起来缺很短。<br>当然if也可以实现，但这里我们采用逻辑表达式，因为用逻辑表达式更为精炼。<br><strong>例：实现平闰年的判断</strong></p>
+<p>首先，我们知道闰年大特性：能被4整除，百年能被400整除，由此我们可以写出这样的判断：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(year%<span class="hljs-number">4</span> == <span class="hljs-number">0</span> || year%<span class="hljs-number">400</span> == <span class="hljs-number">0</span>）<br>&#123;<br>	<span class="hljs-built_in">printf</span>(“闰年”)；<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>整除代表着余数为0。这样的代码看起来没啥，但细看就会发现问题。能被400整除就一定能被4整除，所以由前面的知识，后面的判断根本不会执行。让我们来看看我们的初心：我们希望百年能被400整除，这里遗漏了一个点：百年，所以我们要先判断百年，再判断能被400整除吗？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(（year%<span class="hljs-number">4</span> == <span class="hljs-number">0</span> &amp;&amp; year%<span class="hljs-number">100</span>！=<span class="hljs-number">0</span>） || year%<span class="hljs-number">400</span> == <span class="hljs-number">0</span>）<br>&#123;<br>	<span class="hljs-built_in">printf</span>(“闰年”)；<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>前面用来判断是否是百年。</p>
+<ol start="2">
+<li>循环结构</li>
+</ol>
+<p>当我们希望程序循环执行某一块程序，如循环输出，循环相加。我们要是使用顺序执行，就必须写很多行形式相同的代码，当然我们也可以使用循环结构来简化编程。<br>循环结构就是让程序循环执行一块程序。<br>C语言循环结构的基本框架：</p>
+<ul>
+<li>while循环<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"> <span class="hljs-keyword">while</span>（循环条件）<br>&#123;<br>	循环体；<br>&#125;<br></code></pre></td></tr></table></figure>
+在while语句中，while首先判断循环条件是否满足，如果满足，就执行一边循环体，再判断循环条件是否满足，再进行与上面同样的操作。</li>
+</ul>
+<p>如果循环无法结束，即循环条件不可能为假，那么这个循环会一直执行下去，称为死循环。</p>
+<p>这是应该避免的。所以说，循环条件一般要包含变量，这个变量是要在循环体中发生改变的，这样才有可能跳出循环。</p>
+<ul>
+<li>do——while循环：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">do</span><br>&#123;<br>    循环体；<br>&#125;<span class="hljs-keyword">while</span>（循环条件）；<br></code></pre></td></tr></table></figure>
+这种结构与上面是相同的，只是不同的是先执行一边循环体，再判断循环条件是否成立。</li>
+<li>for循环（很重要）<br> 基本结构：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>（初始化；循环条件；循环调整）<span class="hljs-comment">//三部分</span><br>&#123;<br>    循环体；<br>&#125;<br></code></pre></td></tr></table></figure>
+循环变量：参与循环条件判断或者循环体的变量。<br>初始化：一般是对循环变量进行初始化，保证正确的循环次数，可以同时对多个变量初始化，彼此用逗号隔开。<br>循环条件：判断继续循环的条件。<br>循环调整：每轮循环都会执行的部分，通常用来使循环变量发生改变。<br>for语句的执行过程：先进行初始化，再判断循环条件是否满足，如果满足，再执行循环体，再执行循环调整，然后再判断，一直反复直到跳出。<br>for循环的三部分都可以省略，但分号一个不能省。<br>eg：for(i&#x3D;0;i&lt;10;i++)<br>表示i的初始值为0，每轮循环结束后i++，当i&#x3D;10是中止循环，实际循环10次。</li>
+</ul>
+<p>上述的所有循环种类之间可以相互嵌套。<br>大家可以把循环想成一个环形公路+一个分支路口，当循环条件满足时一直在环形公路里跑，当循环条件不满足时，就跑出环形公路。<br>C语言还支持对这个循环公路进行修改。如果我们希望提前结束循环，就相当于在环形公路上添加出口，即break语句。当然我们也应当添加一个分支路口，这样就实现可控的出口，当条件满足就从break出口跳出循环，不满足还是要走原来的环形公路，这是什么——if条件分支。break语句通常放在if条件中，要是直接加在循环中的话，程序跑到break一定会跳出，就起不到循环的作用了。<br>我们还可以对环形公路<strong>添加捷径</strong>，让它从某一块直接返回开头，<strong>这个添加捷径的语句是continue</strong>。它的执行将使程序跳过它后面的所有循环代码直接回到循环开头，进行新一轮的循环。同样的，<strong>应当对这个捷径加以控制，即放在if条件分支中，来保持循环主体的整体性（直接写在循环中，它后面的循环程序永远不会执行，那不就白写了吗。）</strong></p>
+<p>对于循环嵌套，break和continue只能对自己所处的循环起作用。相当于大公路套小公路，你的分支出口和捷径都是加在其本身所处的循环公路上的，所以只对本身起作用。<br>对于循环嵌套是很重要的一块内容，设计难度也比较大，本教程还是以入门为主，编程不想将太难的，各位读者应注意这个部分。</p>
+<h1 id="代码训练与详解-1"><a href="#代码训练与详解-1" class="headerlink" title="代码训练与详解"></a>代码训练与详解</h1><p>学完了所有的程序结构，我们终于可以写出一些像样的代码，实现一些比较复杂的功能了。<br><strong>例：显示不超过任意整数的水仙花数</strong><br>所谓的“水仙花数”是指一个三位数其各位数字的立方和等于该数本身，例如153是“水仙花数”。<br>这里我们采用强硬的枚举方法，即一个一个试，计算机最擅长这种操作了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-comment">//输入上限数字 </span><br>	<span class="hljs-type">int</span> i=<span class="hljs-number">100</span>;<br>	<span class="hljs-type">int</span> num=<span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input the num:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;num);<br>	<span class="hljs-comment">//枚举 </span><br>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-type">int</span> bai = i/<span class="hljs-number">100</span>;<br>		<span class="hljs-type">int</span> shi = (i%<span class="hljs-number">100</span>)/<span class="hljs-number">10</span>;<br>		<span class="hljs-type">int</span> ge = (i%<span class="hljs-number">10</span>);<br>		<span class="hljs-keyword">if</span>(i == bai*bai*bai+shi*shi*shi+ge*ge*ge)<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n%d&quot;</span>,i);<br>		&#125;<br>		<span class="hljs-keyword">if</span>(i&gt;num)<br>		&#123;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			i++;<br>		&#125;<br>	&#125;<br>	<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>这里bai，shi，ge分别用来提取i的百位十位个位，运用整型除整型，结果没小数的特点，除几十就是取纳位，如除100就是取百位，除1000就是取千位，当然前提是这一位必须是最高位，如果是个千位的数，你除100得到的就是千位和百位构成的一个大于10的数，这显然不是我们想要的。所以我们用取余的方法得到除去哪位剩下的数，对100取余就是去掉百位，以此类推。<br>上面我们采用了在死循环中（while（1）恒成立）添加出口的形式。当然也可以将判断写在while中。</p>
+<p><strong>例：编写计算整数次幂的程序</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">double</span> ans=<span class="hljs-number">1</span>;<br>	<span class="hljs-type">double</span> di;<br>	<span class="hljs-type">int</span> zhi;<br>	<span class="hljs-type">int</span> i;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入底数：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf&quot;</span>,&amp;di);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入指数：&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;zhi);<br>	<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;zhi;i++)<br>	&#123;<br>		ans*=di;<br>	&#125;<br>	<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf&quot;</span>,ans);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>只要抓住乘幂就是连乘，就OK。</p>
+<p>现在它还是个程序，大家知道我们很多时候需要这种乘幂的运算，每用一次乘幂，就意味着我们需要这些代码一次，一个程序可能需要很多次乘幂运算，每次这么多代码，程序肯定又臭又长，<strong>这是编程应当避免的，编程应当最求美感，让人看得赏心悦目</strong>。那么有没有解决办法，当然有，就是<strong>封装成函数</strong>，具体内容将在函数中讲解，这里先引入一下。</p>
+<h2 id="三、-数组"><a href="#三、-数组" class="headerlink" title="三、 数组"></a>三、 数组</h2><p>恭喜大家，来的了C语言基础的最后一部分，学完数组大家差不多就算跨在门槛上了。当然数组也是所有目前学过的最难的一部分。让我们开始吧。<br><strong>数组就是容器，里面放着很多同样的东西。</strong><br>我们前面说过，<strong>变量是一个房间，那数组就是一栋楼，里面放着元素。</strong><br>我们先从一维数组说起。</p>
+<ul>
+<li>一维数组</li>
+</ul>
+<p>定义：int a[num]；<br>int代表这个数组的元素的类型，因为数组的元素要求是一样的，所以不能把一个double的放在int数组里。这里只是举例，各种类型的数组都是可以的。<br>a是数组名，num是数组的大小，即这个数组里能放几个元素。<br>初始化：<br>int a[num] &#x3D; {初始化列表};<br>注：只有在定义的同时进行初始化才能这样写，如果已经定义完了，在用a[num] &#x3D; {初始化列表}这样的形式是非法的。<br>初始化列表可以少于num，剩下的会自动补0；<br>这样的初始化可以省去num，即int a[ ] &#x3D; {初始化列表};编译器会自动默认num位初始化列表的元素个数。<br>注意：num必须是能够确定的值，不能是未知的。如<br>scanf(“%d”,&amp;num);<br>int a[num];是非法的，因为num的值无法确定，取决于输入。即C语言不能开辟动态大小的数组。<strong>（就是这个特点，对编程带来了多少的问题和困难啊！！我必须吐槽一下）</strong><br>数组的访问：<br>采用数组名+下标的方式，如a[2]，a[0]，注意：数组内的元素是从0开始的，即a[0]代表第一个元素，所以在定义时的a[10]确实是说明它有10个元素，但，在使用是只能最大用到a[9],a[10]是非法的，因为它超出数组定义时的范围了。<br>我们现在已经知道如何使用数组中的元素了，a[n]就是数组中第n+1个元素，可以执行所有变量允许的操作，加减乘除都不在话下。<br>数组初始化<br>我们除了可以在定义的时候就赋初值，我们还可以在定义后赋值，不过这样无法使用大括号的方式，我们需要对每个数组元素进行操作，挨个给他们赋值，这是一个循环重复的操作，我们用循环结构完成<br>for(i&#x3D;0;i&lt;len;i++)<br>{<br>    a[i] &#x3D; num;<br>}<br>其中len是数组长度，<strong>注意：这里和数组定义时的数字是一样的，都表示数组内元素个数，例如int a[10]，那么这个len就为10，因为当i&#x3D;10的时候，不满足i&lt;10，所以i取值为0到9，正好覆盖所有数组元素。</strong><br>num是给数组赋值的元素，当然每次都可以是不一样的。</p>
+<ul>
+<li>二维数组</li>
+</ul>
+<p><strong>对一维数组内的细分，假设数组名是房子，一维数组是各个房间，那么对一维数组再细分就能得到二维数组，如每个房间里的人就能构成一个二维数组，当我们希望查看某个人的信息时，我们先要找对房子，然后找见房间，再从这个房间中查看这个人而不是其他人的信息，着就时一个二维数组的访问过程。</strong><br>先说定义<br>double b[num1][num2]；<br>与一维同样的，double是这个二维数组里元素的类型，b是数组名，num1，num2是维度，如果把二维数组想成矩阵，分别是矩阵的行和列，想成矩形平面，分别是宽和长。<br>如：double b[5][2]；表示这是一个5行2列的二维数组。按上面的理解，这是对一个元素个数为5的一维数组的再细分，每个元素再细分为2个元素，即可以看成是double b[5]的一个一维数组，每个元素包含2个值（或者说又包含一个长度为2的一维数组，两个一维一和，就是二维了。）（这种理解对维数扩展很重要，对指针的使用也有帮助。）<br>如何访问二维数组的元素呢？<br>一维一维的访问，如double b[2][2]，先看第一维，表示咱们要访问第3个元素，由于第三个元素又是个一维数组，我们还要用下标的方式访问，即后面的数，表明我们要访问第三个元素（一个一维数组）中的第三个元素（是个double类型的变量）。注意，这里和一维是一样的，从0开始，最后一个数是长度减一。<br>初始化<br>同样的，可以在定义时就初始化，<br>Int a[ 3 ][ 4]&#x3D;{ { },{ },{ } };<br>这种形式再配合前面的讲解就很好理解了，二维是一维套一维，初始化就是两层大括号嵌套。<br>当然，也可以对每个第二维的元素的部分赋初值，其余的此维会自动补0</p>
+<ul>
+<li>字符数组</li>
+</ul>
+<p>当然字符数组只是类型发生了变化，结构和上面一二维是一样的。<br>Char a[10]；<br>字符数组每个元素都是一个字符。其初始化的方式和上面讲的没有区别。访问也是一样的。<br>应当说明的是，C语言中对字符串的操作时通过字符数组来实现的。由于字符串会有结束标志‘\0’，所以字符数组中就认为出现‘\0’就是这个字符串的结束标志。<br>如字符串：char a[]&#x3D;{“HAPPY”}；<br>那么a的长度是多少，答案是6，因为除了前面5个字母，还有一个结束标志\0，通常我们也可以将大括号省略。char a[]&#x3D;“HAPPY”；系统会自动认出这是一个字符串，在结尾加结束标志‘\0’。<br>字符串的输出，可是使用%s的形式，如printf(“%s”,a)其中a为放这个字符串的数组名。输出时遇到第一个结束标志就结束输出。<br>字符串输入，同样的,scanf(“%s”,a)其中a要是已定义的字符数组，长度要大于输入的字符串的长度。<br>输入多个字符串，如scanf(“%s%s%s”,a，b，c)，每个字符串之间用空格隔开。<br>对于字符串操作，我们有一些现成的方法，这些东西也不是C语言本身提供的，要包含说明书string.h。</p>
+<table>
+<thead>
+<tr>
+<th>puts（a）</th>
+<th>将a中的内容输出，a要为字符数组名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gets（a）</td>
+<td>输入一个字符串放a中</td>
+</tr>
+<tr>
+<td>strcat（a，b）</td>
+<td>把b字符串的内容拼接到a的后面，结果放在a字符串中，同时返回a的地址（这里的返回，地址的概念现在不用管，因为马上就会有了）<strong>注意，a要足够大，能放下两个拼接后的新字符</strong>串。</td>
+</tr>
+<tr>
+<td>strcpy（a，b）</td>
+<td>把b中的内容复制到a去。同样的a要足够大。</td>
+</tr>
+<tr>
+<td>strncp（a，b，n）</td>
+<td>把b中的前n个字符复制到a去</td>
+</tr>
+<tr>
+<td>strcmp（a，b）</td>
+<td>将a与b的字符串比较，相同的话，返回0.</td>
+</tr>
+<tr>
+<td>strlen（a）</td>
+<td>测a的长度（不算结束符’\0’）</td>
+</tr>
+<tr>
+<td>strlwr（a）</td>
+<td>a中大写变小写</td>
+</tr>
+<tr>
+<td>strupr（a）</td>
+<td>a中小写变大写</td>
+</tr>
+</tbody></table>
+<h1 id="代码训练与详解-2"><a href="#代码训练与详解-2" class="headerlink" title="代码训练与详解"></a>代码训练与详解</h1><p><strong>例：实现一个二维矩阵的转置。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">3</span>][<span class="hljs-number">5</span>]=&#123;&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;,&#123;<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>&#125;,&#123;<span class="hljs-number">9</span>,<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">12</span>,<span class="hljs-number">13</span>&#125;&#125;;<br>	<span class="hljs-type">int</span> i,j;<br>	<span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">5</span>;j++)<br>	&#123;<br>		<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">3</span>;i++)<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,a[i][j]);<br>		&#125;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>转置就是行列互换，可以这样理解：原本是列满了，才进下一行，现在我们只有反过来，行满进下一列，就能实现转置的效果。<br>这里i，j表示原来的行列。<br>对于二维数组遍历时，通常都会用到2层循环，这有体现了循环的重要性。<br>结果：<br><img src="https://img-blog.csdnimg.cn/e39114798a2c4409929f47d98c000e2a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这里每输出一行进行一个换行，可以使输出更为美观。</p>
+<p><strong>例：简单密码登录系统</strong><br>分析：我们通过输入的密码与存储的密码相比较，等于的话输出成功登录，不等的话提示错误重新输入，错误超过5次结束程序。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> password[] = <span class="hljs-string">&quot;123456&quot;</span>;<br>	<span class="hljs-type">char</span> input[<span class="hljs-number">10</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>	<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(i&lt;<span class="hljs-number">5</span>)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input the password:&quot;</span>);<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,input);<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(password,input))<br>		&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Right!\n&quot;</span>);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error!Try again!\n\a&quot;</span>);<br>			i++;<br>		&#125;	<br>	&#125;<br>	<span class="hljs-keyword">if</span>(i == <span class="hljs-number">5</span>)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Failed\a&quot;</span>);<br>	&#125;<br>	<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>首先我们假设密码为123456，用i记录错误次数，用input记录输入。<br>这里：if(!strcmp(password,input))，我们已经知道当这两个一样的时候，strcmp的结果会是0，其他时候不为0，我们这里希望判断它是否相等，相等则进入if语句，即strcmp的结果是0的时候进入，那么我们对它取反，就能顺利进入if语句，而在其他情况不为0，取反之后就会变为0，无法进入if语句，这正是我们想要的。<br>如果成功，我们就跳出，失败，我们就记录一次，从头再来。<br>注意这里判断失败的方式，5次机会，则i从0到4，当i等于5 时，我们让循环结束（因为没必要了）然后输出失败就行了，那么这里为什么要一个判断呢？因为如果有成功，就会跳出循环，如果不加限制，跳出循环一定会显示失败，这个程序不就是自己打架吗。所以我们加一定的限制。我们知道当循环因为失误太多而跳出时，i的值一定是5，而成功跳出，i的值一定小于5，这就成为一个判断的条件。</p>
+<p><img src="https://img-blog.csdnimg.cn/9a3e09719d944276a5bf89a68055ccd6.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/0b8d0cb4fdf84f2b96204348eb431b2f.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU1OTcxNDQ5,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>   大家可以发现这里其实有个小bug，最后一次输入错误的话仍会提示再输入，这样的效果不是我们想要的，大家可以想想怎么改进一下。<br>C语言的一些基本概念都已经讲的差不多了，现在这些知识也足够编写一些像样的程序了。<br>后续内容就是真正C语言入门的知识，包括函数、指针、结构体、文件操作，每一章都极为重要。<br>我们下一讲再见！</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<style>
+    p {text-indent:2em;} 
+</style>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="category-chain-item">知识总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/">#C</a>
+      
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">#知识总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C语言总结项目和入门——基础下</div>
+      <div>https://357meng.github.io/2021/08/01/C01/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mengki</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年8月1日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年10月30日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/05/py00/" title="Python学习入门（个人版）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python学习入门（个人版）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/14/C00/" title="C语言总结项目和入门——前言与基础上">
+                        <span class="hidden-mobile">C语言总结项目和入门——前言与基础上</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"NSS2f8i8dzd2yjWuxHKDsjMK-gzGzoHsz","appKey":"jkZNtRhI868kvI72itm1QArw","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>Mengki</span> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+<span>全站字数：116k</span>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

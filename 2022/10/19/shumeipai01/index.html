@@ -1,0 +1,882 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mengki">
+  <meta name="keywords" content="个人博客，个人分享">
+  
+    <meta name="description" content="前言换源： https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;help&#x2F;ubuntu 如果你安装的过程中出现无法定位软件包的问题，或者下不动，可以考虑换源。 其他换源教程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43029747&#x2F;article&#x2F;details&#x2F;94874442 上次搞了一个树莓派，相当于有了自己的服务器。大家应该也想着部署些什么东西上去吧。这次带">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx服务器搭建与个人博客部署">
+<meta property="og:url" content="https://357meng.github.io/2022/10/19/shumeipai01/index.html">
+<meta property="og:site_name" content="MengkiPage">
+<meta property="og:description" content="前言换源： https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;help&#x2F;ubuntu 如果你安装的过程中出现无法定位软件包的问题，或者下不动，可以考虑换源。 其他换源教程：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43029747&#x2F;article&#x2F;details&#x2F;94874442 上次搞了一个树莓派，相当于有了自己的服务器。大家应该也想着部署些什么东西上去吧。这次带">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image001.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image003.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image005.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image007.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image009.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image011.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image013.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image015.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image017.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image019.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image033.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image021.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image023.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image025.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image027.png">
+<meta property="og:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image029.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b3a11d10196c4f9eac80e36360da8c96.png#pic_center">
+<meta property="article:published_time" content="2022-10-19T10:59:05.000Z">
+<meta property="article:modified_time" content="2022-10-31T09:34:17.907Z">
+<meta property="article:author" content="Mengki">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="树莓派">
+<meta property="article:tag" content="服务器">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://357meng.github.io/2022/10/19/shumeipai01/image001.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Nginx服务器搭建与个人博客部署 - MengkiPage</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extension.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"357meng.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>MengkiPage</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- weather -->
+    <!-- 添加天气 -->
+
+<div id="he-plugin-simple"></div>
+<script>
+WIDGET = {
+  "CONFIG": {
+    "modules": "01234",
+    "background": "5",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "20",
+    "cityColor": "FFFFFF",
+    "citySize": "20",
+    "aqiColor": "FFFFFF",
+    "aqiSize": "20",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "fixed": "false",
+    "vertical": "top",
+    "horizontal": "left",
+    "key": "ccc947744b17444186d510ec360b4500"
+  }
+}
+</script>
+<script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/playlist/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/video/">
+                <i class="iconfont icon-bilibili"></i>
+                视频
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/xihuan/">
+                <i class="iconfont icon-youtube-fill"></i>
+                自作
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/ownimg/inndex.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Nginx服务器搭建与个人博客部署"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mengki
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-19 18:59" pubdate>
+          2022年10月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Nginx服务器搭建与个人博客部署</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：1 年前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>换源： <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu</a></p>
+<p>如果你安装的过程中出现无法定位软件包的问题，或者下不动，可以考虑换源。</p>
+<p>其他换源教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43029747/article/details/94874442">https://blog.csdn.net/qq_43029747/article/details/94874442</a></p>
+<p>上次搞了一个树莓派，相当于有了自己的服务器。大家应该也想着部署些什么东西上去吧。这次带来我关于服务器以及个人博客搭建的分享。Ps：虽然有了一个树莓派，但是没有温控风扇只能一直转，又吵又费电，有能力的可以自己DIY一个温控单元。加上我还在学校，经常有断网断电的现象，重启后还需要进行相关配置，所以我现在搞了一个阿里云的服务器，免费1个月，可以先用着。服务器及博客配置：<strong>nginx+hexo静态博客</strong></p>
+<p>关于服务器，我个人理解就是部署在你本地的机器（云服务器就是在云端机器）上面的平台，负责处理网页的请求和相应，相当于本机和网络的桥梁，我们在这个平台上面搭建自己的web程序。</p>
+<p>关于博客：网页页面分2种：动态页面和静态页面。静态页面比较简单，直接是浏览器能够读取的文本形式，如html等，有人访问的时候直接把html丢过去就行了，比较快速，缺点是管理比较麻烦，每次更新都相当于重写整个页面的代码，没有相关框架的话工程量比较大。动态页面涉及到数据库的操作，代码也是更为上层的形式，所有元素都是从库中调用的关系，有访问的时候需要在服务器先编译，把库中的内容联系起来生成浏览器可以访问的形式，再进行发送。反应比静态的慢（对于有限带宽、处理器内存也不行的话更是如此），但是适合管理和大型工程。个人博客比较简单，静态页面也有快速响应、保密性好的特点。所以个人博客大多数是静态的。如果从头开始编写html之类的代码，对于外行人属实是折磨。所以我们一般使用静态博客的框架，相当于帮助我们快速完成html等相关代码的编写，我们只需要专注于博客设计和文章就好了，你可能觉得这样博客会显的比较单调或者不能独树一帜。我当时也有这种想法，不过现在我可以说不用担心，一方面博客框架都有很多的主题可以选择，另一方面主题也会提供很多参数让你自己修改，完全能够满足个人的需求。如果你说我就想要一个前无古人后无来者的风格，你或许可以考虑自己写一个或者使用动态博客。静态博客框架有很多，我这里使用的hexo。</p>
+<h1 id="一、web服务器：Nginx搭建"><a href="#一、web服务器：Nginx搭建" class="headerlink" title="一、web服务器：Nginx搭建"></a>一、web服务器：Nginx搭建</h1><p>首先，下载nginx：<code>sudo apt install nginx</code><br>查看版本：<code>nginx -v</code><br>下载完成后，输入nginx就可以运行（大家都是这么说）。然而如果你出现了fail to listen 80端口的情况，一般来说都是你的nginx已经在运行了。可以先关闭：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nginx -s stop<br></code></pre></td></tr></table></figure>
+<p><img src="/2022/10/19/shumeipai01/image001.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>再启动，就ok了</p>
+<p><strong>此时在网页输入你的ip（树莓派就是树莓派的ip，前提是在和你树莓派在同一网络的设备的浏览器上输入，当然如果你有公网ip（云服务器就自带）就都行。），能看到下面的欢迎页面就ok</strong><br><img src="/2022/10/19/shumeipai01/image003.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>Nginx重启：<code>nginx -s reload</code><br>其他Nginx教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40036754/article/details/102463099?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166616431316800192281667%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=166616431316800192281667&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-102463099-null-null.142%5Ev59%5Epc_search_tree,201%5Ev3%5Econtrol_1&utm_term=nginx&spm=1018.2226.3001.4187">大佬nginx学习教程</a></p>
+<h1 id="二、博客搭建"><a href="#二、博客搭建" class="headerlink" title="二、博客搭建"></a>二、博客搭建</h1><p>由于使用静态博客框架，所以<strong>博客框架不一定要放在服务器</strong>上，比如我在我的电脑上使用博客框架，对主题进行调教，写文章，等等。等我感觉差不多了，再生成静态的文本代码等等文件，把这些文件放到服务器上，就相当于把我设计的网站部署在服务器上了。这就是静态网页的好处，设计和部署可以分开，只要把框架生成好的现成的html等等代码放到服务器上，别人就可以正常访问。当然前提是你有web平台（如nginx）。综上，<strong>我建议在自己电脑上写博客，再进行部署</strong>，能少折腾一点服务器。</p>
+<p>博客框架有很多，我这里使用的是Hexo框架，官网：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
+<p>我的电脑是windows，下面的教程也是在windows上的。</p>
+<p>其实官网已经写的十分详细了，照着来应该不会有问题。我说说主要的操作。</p>
+<p>首先，这个框架需要Node.js，需要提前下载：<a target="_blank" rel="noopener" href="https://nodejs.org/en/%EF%BC%8C%E8%87%B3%E4%BA%8Egit%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E6%88%91%E6%84%9F%E8%A7%89%E7%9B%AE%E5%89%8D%E8%BF%98%E4%B8%8D%E7%94%A8%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A6%81%E8%AE%B2%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%9C%A8github%E6%88%96%E8%80%85%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E6%9B%B4%E6%96%B0%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%AE%89%E8%A3%85git%E3%80%82%E6%9C%89%E6%A0%91%E8%8E%93%E6%B4%BE%E6%88%96%E8%80%85%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E4%BB%A5%E5%85%88%E4%B8%8D%E7%94%A8%EF%BC%8C%E9%83%A8%E7%BD%B2%E4%BB%80%E4%B9%88%E7%9A%84%E5%85%88%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%90%8E%E9%9D%A2%E5%86%8D%E8%AF%B4%E3%80%82">https://nodejs.org/en/，至于git是否需要我感觉目前还不用，如果你要讲博客部署在github或者要实现同步更新，可以安装git。有树莓派或者云服务器可以先不用，部署什么的先简单的上传文件就好了，可以后面再说。</a></p>
+<p>下好之后安装，之后打开cmd看看有没有成功<br><img src="/2022/10/19/shumeipai01/image005.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>说明安装成功了，如果显示不是外部或内部指令啥的，需要修改一下全局变量。</p>
+<p>参考配置全局变量：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zsx0806/article/details/121891980">https://blog.csdn.net/zsx0806/article/details/121891980</a></p>
+<p>创建一个文件夹用来放hexo以及管理你的博客，之后就可以安装hexo了，cd到你刚刚创建好的文件夹，使用npm命令：<code>npm install -g hexo-cli</code><br>进行下载，使用<code>hexo -v</code>查看下载的版本，使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init<br>npm install<br></code></pre></td></tr></table></figure>
+<p>进行安装，必须新建空文件夹，否则<br><img src="/2022/10/19/shumeipai01/image007.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>完整运行后，应该是这样的<br><img src="/2022/10/19/shumeipai01/image009.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>此时这个ttest文件夹就是你Hexo框架的文件夹了。关于其中的文件目录可以上官网看。</p>
+<p>如果你输入hexo显示不是外部或内部指令啥的，同样需要修改一下全局变量，将hexo的文件加入，放上我个人的环境变量目录：<br> <img src="/2022/10/19/shumeipai01/image011.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>Ok之后，使用cmd在你的Hexo框架的文件夹（如上面的ttest）目录下输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo g<br>hexo s<br></code></pre></td></tr></table></figure>
+
+<p>打开命令行中提示网址，我这里使用了主题，所以输出和白板hexo情况下不太一样</p>
+<p><img src="/2022/10/19/shumeipai01/image013.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>关于Hexo的文件目录，有几个比较重要：</p>
+<ul>
+<li><strong>public：存放生成的页面，要运行生成页面的指令后才出现这个文件夹，部署的话就将这个文件夹下的所有文件放到服务器的nginx的根目录下面就ok了（后面还会说）</strong></li>
+<li>scaffolds：生成文章的一些模板</li>
+<li>source：用来存放你的文章，Hexo按照你的文章内容生成html文件。</li>
+<li>themes：主题，选择一个好看的主题也是一大乐趣。</li>
+<li><strong>_config.yml: 博客的配置文件</strong>，用来更好的调教你的博客，可以修改配置进行自定义个性化。具体什么是什么可以看官网，非常详细。</li>
+</ul>
+<p>主题：hexo官网也提供很多主题，我使用的是Fluid，当时也是在网上逛的时候看到的，使用下来感觉非常不错，安利一下，感谢大佬们的开源。<br>知乎介绍：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137679728">https://zhuanlan.zhihu.com/p/137679728</a><br>Fluid调教方法（官方手册）：<a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/guide">https://fluid-dev.github.io/hexo-fluid-docs/guide</a><br><img src="/2022/10/19/shumeipai01/image015.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>官方文档写的也是非常详细，从安装到调教都有了，大家可以自行食用。<br>个人调教的结果：<br><img src="/2022/10/19/shumeipai01/image017.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/2022/10/19/shumeipai01/image019.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><img src="/2022/10/19/shumeipai01/image033.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>Ps：目前博客已经部署在阿里云服务器上了，之前都是部署在我的树莓派上，后来受不了吵闹和频繁的断电断网。但是域名没有搞定，说是阿里云免费的服务器是按量的不能备案，<strong>我真的3Q</strong>。没办法又不能暴露公网IP，大家就先稍等吧。<br>PPS：我把域名挂在Github上了，最起码现在能用了。<br>最常用的Hexo指令，我称之为一条龙服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean<br>hexo g<br>hexo s <br></code></pre></td></tr></table></figure>
+
+<p>分别是：清空，生成，开服务，其中hexo g这个指令很重要，<strong>它可以将你写的md文件按照你选择的主题生成静态网页文件</strong>，放在public文件夹中。</p>
+<p>其他Hexo教程：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/44213627">https://zhuanlan.zhihu.com/p/44213627</a></p>
+<h1 id="三、部署在服务器"><a href="#三、部署在服务器" class="headerlink" title="三、部署在服务器"></a>三、部署在服务器</h1><p>重点来了，谁能想到，这是我消耗时间最多的部分。希望我能够帮助大家少走弯路。</p>
+<p>当你把博客调教好后，首先，重新生成一遍防止BUG，之后将public文件夹下的所有文件拷贝，上传到你的服务器的文件夹下（建议在服务器上也新建一个文件夹用来放）。树莓派可以使用VNC传输文件，云服务器没有桌面可以用Xshell的rz指令。完成之后，启动nginx，访问ip，你会发现还是nginx的欢迎页面，<strong>因为nginx的相关配置没有改</strong>，需要操作一下。</p>
+<p><strong>重点来了</strong>，修改nginx配置，我看了极多帖子，都是说修改nginx.conf文件，这样的页面<br><img src="/2022/10/19/shumeipai01/image021.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>大多数帖子是2020年的，我不知道现在还能不能行，反正我的文件中压根就没有location这块，更别提什么root了。于是我猜测是导入了其他的配置文件了，我一个一个的翻，终于找到能够生效的改root根目录的地方（使用Linux系统的情况下）。</strong></p>
+<p><strong>&#x2F;etc&#x2F;nginx&#x2F;sites-enabled</strong>，在这个目录中有一个default文件，打开之后才是大家所说的，你会在这里看到一个root<br><img src="/2022/10/19/shumeipai01/image023.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述">把后面的目录改成指向你服务器上放hexo生成的静态文件的那个文件夹。然后保存重启nginx，不出意外，就成功了。</p>
+<h1 id="四、内网穿透"><a href="#四、内网穿透" class="headerlink" title="四、内网穿透"></a>四、内网穿透</h1><p>博客搞好了，只能在局域网里看多没意思，我们要<strong>让公网也能访问</strong>，一种方法，搞一个公网ip和域名（云服务器），还有用内网穿透。</p>
+<p>内网穿透具体就是让有公网访问能力的人转接你服务器的访问任务，当有人访问你的网址（通常是提供内网穿透的平台给你分配的公网可以访问的网址）时，提供内网穿透的平台会将这个来自公网的请求发送给你的局域网（前提你这个局域网要联网），再发送到你的服务器上，放回也是一样的，先返回给平台，再返回给用户，从而实现公网访问。</p>
+<p>树莓派上实现内网穿透的有很多，我用了2个分享给大家。</p>
+<h2 id="1-sunny内网穿透：https-www-ngrok-cc"><a href="#1-sunny内网穿透：https-www-ngrok-cc" class="headerlink" title="1.	sunny内网穿透：https://www.ngrok.cc/"></a>1.	sunny内网穿透：<a target="_blank" rel="noopener" href="https://www.ngrok.cc/">https://www.ngrok.cc/</a></h2><p> 这个可以自定义域名，好像需要实名认证，还有花2块钱购买一个最低等级的隧道，之后就可以配置了。<br> <img src="/2022/10/19/shumeipai01/image025.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>启动的话，需要下载相关软件，官网有教程<br><img src="/2022/10/19/shumeipai01/image027.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>树莓派注意下载ARM版本的<br><img src="/2022/10/19/shumeipai01/image029.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>下载之后放在服务器上，cd到存放你刚刚下载的sunny文件的路径上，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./sunny clientid 隧道<span class="hljs-built_in">id</span><br></code></pre></td></tr></table></figure>
+
+<p>其中隧道id就是上面注册时分配给你的。<br>成功的话，你就可以在公网通过你的网址进行访问了。不过有时候连不上，只能说不稳定，而且响应比较慢。</p>
+<h2 id="2-cpolar：-https-dashboard-cpolar-com-login"><a href="#2-cpolar：-https-dashboard-cpolar-com-login" class="headerlink" title="2.	cpolar： https://dashboard.cpolar.com/login"></a>2.	cpolar： <a target="_blank" rel="noopener" href="https://dashboard.cpolar.com/login">https://dashboard.cpolar.com/login</a></h2><p>不能自定义域名，稳定性比上一个好。<br><img src="https://img-blog.csdnimg.cn/b3a11d10196c4f9eac80e36360da8c96.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>同样，下载ARM的cpolar文件，按照教程来就ok，nginx的端口一般是80。成功的话会在命令行里显示分配给你的网址，同样可以公网访问了。速度当然也慢。</p>
+<style>
+  p {text-indent:2em;} 
+</style>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="category-chain-item">知识总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>
+      
+        <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">#树莓派</a>
+      
+        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Nginx服务器搭建与个人博客部署</div>
+      <div>https://357meng.github.io/2022/10/19/shumeipai01/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mengki</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年10月31日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/30/sanwen01/" title="秋声">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">秋声</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/13/fenxiang01/" title="《星星变奏曲》 江河">
+                        <span class="hidden-mobile">《星星变奏曲》 江河</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"NSS2f8i8dzd2yjWuxHKDsjMK-gzGzoHsz","appKey":"jkZNtRhI868kvI72itm1QArw","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>Mengki</span> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+<span>全站字数：116k</span>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
