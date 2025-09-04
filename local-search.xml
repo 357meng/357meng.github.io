@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>朝圣之歌</title>
+    <link href="/2025/09/04/kongdongqishi/"/>
+    <url>/2025/09/04/kongdongqishi/</url>
+    
+    <content type="html"><![CDATA[<div class="audio-container">  <div class="audio-player">    <audio id="audio" controls="" autoplay preload="none">      <source id="mp3" src="/music/Christopher Larkin - White Palace.mp3">    </audio>    <div class="song-info">White Palace</div>  </div></div><p>穿过漫长崎岖的山路，穿过熙熙攘攘的人流，穿过青翠的野地、梦幻的水母群和丰饶的蘑菇树林。就这样走到这里，这片废土上的灯塔，见证永恒和唯一的文明。</p><p>远处铃铛的叮叮声，越过厚重的盔甲武士和铁门，乘着电梯缓缓而下。淅沥的雨声渐起，弥漫在楼梯和窗户上，精美复杂的构造，倒映在每一个来到这最后国度的朝圣者眼中。</p><p>躺在热气腾腾的温泉中，听着婉转悠扬的歌声，与大师探讨纯粹凝聚的方法，沉溺在这繁荣的片刻中，耳边回响起刚到德特茅斯时长者的颂歌：</p><p>“去吧，去到王国中心的城里。在那里，希望都会成真，真相都会显露。”</p><p>在最苍白的注视下，灵魂得到了救赎，我来到了做梦也想不到的世界……</p><p>耀眼的光亮穿透整个雨幕，如泡沫般短暂而强烈，光芒散去，四周一片寂寞，只有脚下厚重的台阶和远方躁动的太阳。</p><p>没有可以思考的心智，没有可以屈从的意志，没有可以为苦难哭泣的声音，生于神与虚空之手……</p><p>是时候结束这一切了，就在这黑色穹顶之下——无论什么代价，都在所不惜。</p><p>ps：感谢丝之歌的催更，不然我肯定不会加班写稿的。</p><p><img src="/2025/09/04/kongdongqishi/1.jpg"></p><style>  /* 设置整个页面的字体 */  html, body, .markdown-body {    font-family: KaiTi,"Microsoft YaHei",Georgia, sans, serif;    font-size: 20px;  }  p {text-indent:2em;}  /* 只设置 markdown 字体 */  .markdown-body {    font-family: KaiTi,"Microsoft YaHei",Georgia, sans, serif;    font-size: 25px;  }</style><script>  window.addEventListener('DOMContentLoaded', (event) => {    const audio = document.getElementById('audio');        // 设置自动播放音量为 0.5    audio.volume = 0.16;  });</script><style>.audio-container {  display: flex;  justify-content: center;  align-items: center;  height: 10vh;}.audio-player {  display: flex;  align-items: center;  background-color: #f2f2f2;  padding: 10px;  border-radius: 5px;}.song-info {  margin-left: 10px;  font-size: 14px;  font-weight: bold;}</style><style>.video-player {  position: relative;  padding-bottom: 56.25%; /* 16:9纵横比视频 */  height: 0;  overflow: hidden;}.video-player video {  position: absolute;  top: 0;  left: 0;  width: 100%; /* 使视频充满父容器 */  height: 100%; /* 使视频充满父容器 */}.video-info {  margin-top: 10px;  font-size: 14px;  text-align: center;}</style>]]></content>
+    
+    
+    <categories>
+      
+      <category>故事</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>随记--遗忘</title>
     <link href="/2024/12/06/suiji1206/"/>
     <url>/2024/12/06/suiji1206/</url>
